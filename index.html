@@ -1,46 +1,593 @@
 <!DOCTYPE HTML>
-
-<html>
+<html lang="en">
 	<head>
-		<title>Kartavya_jharwal</title>
+		<title>Kartavya Jharwal - Student & Tech Enthusiast</title>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/x-icon" href="/favicon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Kartavya Jharwal - An ambitious polymath and upcoming student at Hult International Business School">
+		<meta name="keywords" content="Kartavya Jharwal, Student, Tech Enthusiast, Polymath, Hult International Business School">
+		<meta name="author" content="Kartavya Jharwal">
+		<meta name="theme-color" content="#1a1b26">
+		<meta property="og:title" content="Kartavya Jharwal - Student & Tech Enthusiast">
+		<meta property="og:description" content="Kartavya Jharwal - An ambitious polymath and upcoming student at Hult International Business School">
+		<meta property="og:type" content="website">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Kartavya Jharwal - Student & Tech Enthusiast">
+		<meta name="twitter:description" content="Kartavya Jharwal - An ambitious polymath and upcoming student at Hult International Business School">
+		
+		<!-- Preload critical resources -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preload" href="https://kit.fontawesome.com/aac9b59570.js" as="script" crossorigin="anonymous">
+		
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+		<style>
+			/* Catppuccin Color Palette */
+			:root {
+				/* Dark theme (Mocha) */
+				--ctp-base: hsl(240, 21%, 15%);
+				--ctp-surface0: hsl(240, 24%, 18%);
+				--ctp-surface1: hsl(240, 23%, 21%);
+				--ctp-text: hsl(226, 64%, 88%);
+				--ctp-subtext0: hsl(227, 35%, 80%);
+				--ctp-blue: hsl(221, 86%, 77%);
+				--ctp-lavender: hsl(232, 97%, 85%);
+				--ctp-overlay0: hsla(240, 21%, 15%, 0.95);
+				
+				/* Applied Colors */
+				--text-primary: var(--ctp-text);
+				--text-secondary: var(--ctp-subtext0);
+				--border-color: hsla(226, 64%, 88%, 0.1);
+				--shadow-color: hsla(240, 21%, 5%, 0.2);
+				--gradient-start: var(--ctp-base);
+				--gradient-end: var(--ctp-surface1);
+				--accent-color: var(--ctp-blue);
+				--logo-bg: var(--ctp-surface0);
+				--bg-color: var(--ctp-base);
+				--main-bg: var(--ctp-surface0);
+			}
+
+			[data-theme="light"] {
+				/* Light theme (Latte) */
+				--ctp-base: hsl(220, 23%, 95%);
+				--ctp-surface0: hsl(220, 23%, 97%);
+				--ctp-surface1: hsl(220, 23%, 99%);
+				--ctp-text: hsl(234, 16%, 35%);
+				--ctp-subtext0: hsl(233, 12%, 50%);
+				--ctp-blue: hsl(220, 91%, 54%);
+				--ctp-lavender: hsl(231, 97%, 72%);
+				--ctp-overlay0: hsla(220, 23%, 95%, 0.95);
+				
+				/* Applied Colors */
+				--text-primary: var(--ctp-text);
+				--text-secondary: var(--ctp-subtext0);
+				--border-color: hsla(234, 16%, 35%, 0.1);
+				--shadow-color: hsla(220, 23%, 5%, 0.1);
+				--gradient-start: var(--ctp-base);
+				--gradient-end: var(--ctp-surface1);
+				--accent-color: var(--ctp-blue);
+				--logo-bg: var(--ctp-surface0);
+				--bg-color: var(--ctp-base);
+				--main-bg: var(--ctp-surface0);
+			}
+
+			body {
+				font-family: 'Roboto', sans-serif;
+				color: var(--text-primary);
+				margin: 0;
+				padding: 0;
+				overflow-x: hidden;
+			}
+
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(20px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			#header h1 {
+				font-weight: 700;
+				font-size: 3.2em;
+				letter-spacing: 0.03em;
+				text-transform: uppercase;
+				margin-bottom: 0.3em;
+				text-shadow: 0 2px 4px var(--shadow-color);
+				animation: fadeIn 0.8s ease-out;
+			}
+
+			#header .tagline {
+				font-weight: 400;
+				font-size: 1.1em;
+				letter-spacing: 0.02em;
+				text-transform: none;
+				color: var(--text-secondary);
+				margin-bottom: 2em;
+				animation: fadeIn 0.8s ease-out 0.2s backwards;
+			}
+
+			#header .description {
+				display: none;
+			}
+
+			#header nav {
+				margin-top: 2.5em;
+				animation: fadeIn 0.8s ease-out 0.4s backwards;
+			}
+
+			#header nav ul {
+				display: flex;
+				justify-content: center;
+				gap: 0.5em;
+			}
+
+			#header nav ul li {
+				margin: 0;
+			}
+
+			#header nav ul li a {
+				opacity: 0.85;
+				transition: all 0.3s ease;
+				box-shadow: 0 2px 4px var(--shadow-color);
+			}
+
+			#header nav ul li a:hover {
+				opacity: 1;
+				transform: translateY(-2px) scale(1.1);
+				animation: pulse 1s infinite;
+			}
+
+			@keyframes pulse {
+				0% { transform: translateY(-2px) scale(1.1); }
+				50% { transform: translateY(-2px) scale(1.15); }
+				100% { transform: translateY(-2px) scale(1.1); }
+			}
+
+			#bg {
+				background: var(--bg-color);
+			}
+
+			#bg::before, #bg::after {
+				content: none;
+			}
+
+			#main {
+				position: relative;
+				z-index: 1;
+				background: var(--main-bg);
+				border-radius: 15px;
+				border: 1px solid var(--border-color);
+				box-shadow: 0 8px 32px var(--shadow-color);
+				padding: 3em 2em;
+				transition: all 0.3s ease;
+			}
+
+			#footer {
+				margin-top: 2em;
+				animation: fadeIn 0.8s ease-out 0.6s backwards;
+			}
+
+			#footer .copyright {
+				color: var(--text-secondary);
+				font-size: 0.9em;
+			}
+
+			#footer a {
+				color: var(--text-secondary);
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+
+			#footer a:hover {
+				color: var(--text-primary);
+			}
+
+			#theme-toggle {
+				position: fixed;
+				top: 15px;
+				right: 15px;
+				width: 35px;
+				height: 35px;
+				border-radius: 8px;
+				background: var(--bg-color);
+				border: 1px solid var(--border-color);
+				color: var(--text-primary);
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.2em;
+				box-shadow: 0 2px 8px var(--shadow-color);
+				transition: all 0.3s ease;
+				z-index: 1000;
+			}
+
+			#theme-toggle:hover {
+				transform: translateY(-1px);
+				box-shadow: 0 4px 12px var(--shadow-color);
+			}
+
+			#theme-toggle:active {
+				transform: translateY(1px);
+			}
+
+			#theme-toggle i {
+				transition: all 0.3s ease;
+			}
+
+			[data-theme="light"] #theme-toggle {
+				background: var(--main-bg);
+			}
+
+			[data-theme="light"] #main {
+				background: var(--main-bg);
+			}
+
+			/* Accessibility Improvements */
+			:focus {
+				outline: 2px dashed var(--accent-color);
+				outline-offset: 4px;
+			}
+
+			/* Responsive Design */
+			@media (max-width: 768px) {
+				#header h1 {
+					font-size: 2.5em;
+				}
+				#header .tagline {
+					font-size: 1em;
+				}
+				#main {
+					padding: 2em 1em;
+				}
+			}
+
+			/* Additional Responsive Design */
+			@media (max-width: 480px) {
+				#header h1 {
+					font-size: 2em;
+					margin-bottom: 0.5em;
+				}
+				
+				#header nav ul {
+					flex-wrap: wrap;
+					justify-content: space-around;
+					gap: 1em;
+				}
+				
+				#header nav ul li a {
+					font-size: 1.5em;
+					padding: 0.5em;
+				}
+				
+				#theme-toggle {
+					top: 10px;
+					right: 10px;
+					width: 30px;
+					height: 30px;
+					font-size: 1em;
+				}
+			}
+
+			/* Touch Device Optimizations */
+			@media (hover: none) {
+				#header nav ul li a:hover {
+					transform: none;
+					animation: none;
+				}
+				
+				#header nav ul li a:active {
+					transform: scale(0.95);
+				}
+				
+				#theme-toggle:hover {
+					transform: none;
+				}
+				
+				#theme-toggle:active {
+					transform: scale(0.95);
+				}
+			}
+
+			/* Print Styles */
+			@media print {
+				#theme-toggle {
+					display: none;
+				}
+				
+				#main {
+					box-shadow: none;
+					border: none;
+				}
+				
+				body {
+					background: white;
+					color: black;
+				}
+			}
+
+			/* Reduced Motion */
+			@media (prefers-reduced-motion: reduce) {
+				* {
+					animation: none !important;
+					transition: none !important;
+				}
+			}
+
+			/* Keyboard Navigation Styles */
+			.keyboard-nav a:focus,
+			.keyboard-nav button:focus {
+				outline: 3px solid var(--accent-color);
+				outline-offset: 4px;
+				box-shadow: 0 0 0 4px rgba(var(--accent-color), 0.2);
+			}
+
+			/* ARIA improvements */
+			[aria-hidden="true"] {
+				display: none !important;
+			}
+
+			/* High Contrast Mode */
+			@media (forced-colors: active) {
+				* {
+					border-color: ButtonText;
+				}
+				
+				a {
+					color: LinkText;
+				}
+				
+				#theme-toggle {
+					border: 2px solid ButtonText;
+				}
+				
+				#main {
+					border: 2px solid ButtonText;
+				}
+			}
+
+			/* Refined Logo Styles */
+			.logo {
+				position: fixed;
+				top: 15px;
+				left: 15px;
+				font-size: 1.2em;
+				font-weight: 500;
+				text-decoration: none;
+				color: var(--text-secondary);
+				z-index: 1000;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 35px;
+				height: 35px;
+				border-radius: 8px;
+				background: var(--bg-color);
+				border: 1px solid var(--border-color);
+				box-shadow: 0 2px 8px var(--shadow-color);
+				transition: all 0.3s ease;
+				font-family: 'Roboto', sans-serif;
+				letter-spacing: -0.5px;
+				animation: fadeIn 0.8s ease-out;
+			}
+
+			.logo:hover {
+				transform: translateY(-1px);
+				box-shadow: 0 4px 12px var(--shadow-color);
+				color: var(--text-primary);
+			}
+
+			.logo:active {
+				transform: translateY(1px);
+			}
+
+			@media (max-width: 480px) {
+				.logo {
+					top: 10px;
+					left: 10px;
+					width: 30px;
+					height: 30px;
+					font-size: 1em;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
+		<a href="#main" class="skip-to-main">Skip to main content</a>
+		<a href="/" class="logo" aria-label="KJ Logo">KJ</a>
+		<button id="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+			<i class="fas fa-moon" aria-hidden="true"></i>
+		</button>
 		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+			<div id="bg" aria-hidden="true"></div>
+			<div id="main" role="main" tabindex="-1">
 
 				<!-- Header -->
-					<header id="header">
+					<header id="header" role="banner">
 						<h1>Kartavya Jharwal</h1>
-						<p><b style="font-style: italic;">Ambitious Polymath</b> &nbsp;&bull;&nbsp; Upcoming Student at Hult&nbsp;&bull;&nbsp; Jack of all. Master of some. Still better than a master of none.</p>
-						<nav>
+						<p class="tagline">Ambitious Polymath <a href="/passion/index.html" style="text-decoration: none; color: inherit;" aria-label="View my passions">|</a> First Year BBA student at Hult</p>
+						<nav role="navigation" aria-label="Social media links">
 							<ul>
-								<li><a href="https://www.linkedin.com/in/kartavyajharwal/" target="_blank"  class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-								<li><a href="https://open.spotify.com/user/8yrsnc28zfw0xlit71xfb0328?si=KT5s6QXIQwu_eNd2JMczqg" target="_blank"  class="icon brands fa-spotify"><span class="label">Spotify</span></a></li>
-								<li><a href="https://t.me/Kartavya_jharwal" target="_blank"  class="icon fa-paper-plane"><span class="label">Telegram</span></a></li>
-								<li><a href="https://github.com/Kartavya-Jharwal" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="mailto:KartavyaJharwal@gmail.com?bcc=kjisgreatforever@gmail.com&subject=What%20is%20it%09that%20you%20wan%20to%20write%20to%20kartavya%20about" target="_blank"  class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								<li><a href="https://www.linkedin.com/in/kartavyajharwal/" target="_blank" rel="noopener noreferrer" class="icon brands fa-linkedin" title="Connect on LinkedIn" aria-label="LinkedIn Profile"><span class="label" aria-hidden="true">LinkedIn</span></a></li>
+								<li><a href="https://github.com/Kartavya-Jharwal" target="_blank" rel="noopener noreferrer" class="icon brands fa-github" title="View My Projects" aria-label="GitHub Profile"><span class="label" aria-hidden="true">Github</span></a></li>
+								<li><a href="mailto:KartavyaJharwal@gmail.com" class="icon solid fa-envelope" title="Email Me" aria-label="Send Email"><span class="label" aria-hidden="true">Email</span></a></li>
+								<li><a href="https://t.me/Kartavya_jharwal" target="_blank" rel="noopener noreferrer" class="icon fa-paper-plane" title="Message on Telegram" aria-label="Telegram Profile"><span class="label" aria-hidden="true">Telegram</span></a></li>
+								<li><a href="https://open.spotify.com/user/8yrsnc28zfw0xlit71xfb0328" target="_blank" rel="noopener noreferrer" class="icon brands fa-spotify" title="Follow on Spotify" aria-label="Spotify Profile"><span class="label" aria-hidden="true">Spotify</span></a></li>
 							</ul>
 						</nav>
 					</header>
 
 				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; Kartavya Jharwal. Design: <a href="">HTML5 UP</a>.</span>
+					<footer id="footer" role="contentinfo">
+						<span class="copyright">&copy; 2025 Kartavya Jharwal. Design inspired by <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a>.</span>
 					</footer>
 
 			</div>
 		</div>
 		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
+			// Debounce function for performance
+			function debounce(func, wait) {
+				let timeout;
+				return function executedFunction(...args) {
+					const later = () => {
+						clearTimeout(timeout);
+						func(...args);
+					};
+					clearTimeout(timeout);
+					timeout = setTimeout(later, wait);
+				};
+			}
+			
+			// Theme toggle functionality with system preference detection
+			const themeToggle = document.getElementById('theme-toggle');
+			const icon = themeToggle.querySelector('i');
+			const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+			
+			// Check for saved theme preference or system preference
+			const savedTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+			document.documentElement.setAttribute('data-theme', savedTheme);
+			updateThemeIcon(savedTheme);
+			
+			// Listen for system theme changes
+			prefersDarkScheme.addListener((e) => {
+				if (!localStorage.getItem('theme')) {
+					const newTheme = e.matches ? 'dark' : 'light';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					updateThemeIcon(newTheme);
+				}
+			});
+			
+			themeToggle.addEventListener('click', () => {
+				const currentTheme = document.documentElement.getAttribute('data-theme');
+				const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+				
+				document.documentElement.setAttribute('data-theme', newTheme);
+				localStorage.setItem('theme', newTheme);
+				updateThemeIcon(newTheme);
+			});
+			
+			function updateThemeIcon(theme) {
+				icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+			}
+
+			// Generate a seeded random number based on date
+			function seededRandom(seed) {
+				const x = Math.sin(seed++) * 10000;
+				return x - Math.floor(x);
+			}
+
+			// More vibrant but controlled pastel palette inspired by Catppuccin
+			const pastelPalette = {
+				rosewater: { h: 10, s: 58, l: 80 },
+				flamingo: { h: 0, s: 60, l: 78 },
+				pink: { h: 316, s: 62, l: 76 },
+				mauve: { h: 267, s: 65, l: 75 },
+				lavender: { h: 232, s: 67, l: 77 },
+				sky: { h: 189, s: 59, l: 71 },
+				teal: { h: 170, s: 57, l: 70 },
+				mint: { h: 156, s: 63, l: 74 },
+				peach: { h: 23, s: 62, l: 72 }
+			};
+
+			function getTodayColors() {
+				const date = new Date();
+				const seed = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
+				
+				const colors = Object.values(pastelPalette);
+				const baseColorIndex = Math.floor(seededRandom(seed) * colors.length);
+				const baseColor = colors[baseColorIndex];
+				
+				// Generate multiple colors for complex gradient
+				const secondaryHueShift = 30 + Math.floor(seededRandom(seed + 1) * 30);
+				const tertiaryHueShift = 60 + Math.floor(seededRandom(seed + 2) * 30);
+				
+				const secondColor = {
+					h: (baseColor.h + secondaryHueShift) % 360,
+					s: baseColor.s - 5,
+					l: baseColor.l - 2
+				};
+				
+				const thirdColor = {
+					h: (baseColor.h + tertiaryHueShift) % 360,
+					s: baseColor.s - 8,
+					l: baseColor.l - 4
+				};
+				
+				// Ensure colors stay within vibrant but controlled range
+				[secondColor, thirdColor].forEach(color => {
+					color.s = Math.min(Math.max(color.s, 45), 70);
+					color.l = Math.min(Math.max(color.l, 65), 82);
+				});
+				
+				return {
+					color1: `hsl(${baseColor.h}, ${baseColor.s}%, ${baseColor.l}%)`,
+					color2: `hsl(${secondColor.h}, ${secondColor.s}%, ${secondColor.l}%)`,
+					color3: `hsl(${thirdColor.h}, ${thirdColor.s}%, ${thirdColor.l}%)`
+				};
+			}
+
+			function initBackground() {
+				const colors = getTodayColors();
+				const bg = document.getElementById('bg');
+				bg.style.background = `
+					linear-gradient(45deg, ${colors.color1} 0%, ${colors.color2} 100%),
+					linear-gradient(135deg, transparent 40%, ${colors.color3} 100%),
+					radial-gradient(circle at top right, ${colors.color2}55, transparent 50%),
+					radial-gradient(circle at bottom left, ${colors.color1}55, transparent 50%),
+					linear-gradient(to right, ${colors.color3}33, transparent)
+				`;
+				bg.style.backgroundBlendMode = 'overlay, soft-light, overlay, difference, normal';
+				bg.style.backgroundSize = '200% 200%, 200% 200%, 100% 100%, 100% 100%, 100% 100%';
+			}
+
+			let lastScrollPosition = 0;
+			const debouncedScroll = debounce(() => {
+				const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+				const bg = document.getElementById('bg');
+				const colors = getTodayColors();
+				
+				const scrollDiff = currentScroll - lastScrollPosition;
+				const intensity = Math.min(Math.abs(scrollDiff) / 150, 0.6);
+				
+				if (scrollDiff !== 0) {
+					requestAnimationFrame(() => {
+						const angle1 = 45 + (scrollDiff > 0 ? intensity * 30 : -intensity * 30);
+						const angle2 = 135 + (scrollDiff > 0 ? -intensity * 20 : intensity * 20);
+						bg.style.background = `
+							linear-gradient(${angle1}deg, ${colors.color1} 0%, ${colors.color2} 100%),
+							linear-gradient(${angle2}deg, transparent 40%, ${colors.color3} 100%),
+							radial-gradient(circle at top right, ${colors.color2}55, transparent 50%),
+							radial-gradient(circle at bottom left, ${colors.color1}55, transparent 50%),
+							linear-gradient(to right, ${colors.color3}33, transparent)
+						`;
+					});
+				}
+				
+				lastScrollPosition = currentScroll;
+			}, 16);
+
+			document.addEventListener('scroll', debouncedScroll, { passive: true });
+
+			// Initialize with performance optimization
+			window.addEventListener('load', () => {
+				requestAnimationFrame(() => {
+					document.body.classList.remove('is-preload');
+					initBackground();
+				});
+			});
+
+			// Add keyboard navigation
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Tab') {
+					document.body.classList.add('keyboard-nav');
+				}
+			});
+
+			document.addEventListener('mousedown', () => {
+				document.body.classList.remove('keyboard-nav');
+			});
 		</script>
+		<script src="https://kit.fontawesome.com/aac9b59570.js" crossorigin="anonymous"></script>
 	</body>
 </html>
