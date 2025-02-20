@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
   <title>Kartavya_jharwal</title>
 	<meta charset="utf-8" />
@@ -37,13 +37,13 @@
  <div class="blog-header-container">
   <div class="blog-header">
    <div class="blog-article header-article">
-    <div class="blog-big__title">Art</div>
+    <div class="blog-big__title">Studies</div>
     <div class="blog-menu small-title date">12.06.2021</div>
    </div>
    <div class="blog-article">
     <img src="https://images.unsplash.com/photo-1496629062893-b0f566065d44?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
     <h2>Sharing The <span>Widespread</span> Acclaim About Motivation</h2>
-    <div class="blog-detail">   
+    <div class="blog-detail">     
      <span>5 Min Read</span>
     </div>
     <p>Blonde received widespread acclaim, with critics praising Ocean's introspective lyrics and the album's unconventional</p>
@@ -59,11 +59,11 @@
   </div>
   <div class="blog-header">
    <div class="blog-article header-article">
-    <div class="blog-big__title">Spirit</div>
+    <div class="blog-big__title">Code</div>
     <div class="blog-menu small-title date">12.06.2021</div>
    </div>
    <div class="blog-article">
-    <img src="https://images.unsplash.com/photo-1529255484355-cb73c33c04bb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTh8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+    <img src="https://images.unsplash.com/photo-1529255484355-cb73c33c04bb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTh8fGJsYWNrJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
     <h2>Talking About <span>Vulnerability</span> During Quarantine</h2>
     <div class="blog-detail">
      <span>By Tom Hiddleston</span>
@@ -81,11 +81,11 @@
   </div>
   <div class="blog-header">
     <div class="blog-article header-article">
-     <div class="blog-big__title">Code</div>
+     <div class="blog-big__title">Art</div>
      <div class="blog-menu small-title date">12.06.2021</div>
     </div>
     <div class="blog-article">
-     <img src="https://images.unsplash.com/photo-1529255484355-cb73c33c04bb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTh8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+     <img src="https://images.unsplash.com/photo-1529255484355-cb73c33c04bb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTh8fGJsYWNrJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
      <h2>Talking About <span>Vulnerability</span> During Quarantine</h2>
      <div class="blog-detail">
       <span>5 Min Read</span>
@@ -102,7 +102,7 @@
    </div>
   <div class="blog-header">
    <div class="blog-article header-article">
-    <div class="blog-big__title">Control</div>
+    <div class="blog-big__title">Spirit</div>
     <div class="blog-menu small-title date">12.06.2021</div>
    </div>
    <div class="blog-article">
@@ -192,6 +192,119 @@
  </div>
 </div>
 <!-- partial -->
-  
+<script>
+// Add this script before closing body tag
+document.addEventListener('DOMContentLoaded', () => {
+  // Smooth scroll for article links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Add intersection observer for animation triggers
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe all blog articles
+  document.querySelectorAll('.blog-article').forEach(article => {
+    article.style.opacity = '0';
+    article.style.transform = 'translateY(20px)';
+    observer.observe(article);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Update all dates with current date
+  const currentDate = new Date();
+  const dateString = currentDate.toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+
+  document.querySelectorAll('.date').forEach(dateElement => {
+    dateElement.textContent = dateString;
+  });
+
+  // Infinite scroll functionality
+  const container = document.querySelector('.blog-header-container');
+  let isScrolling = false;
+  let lastScrollTop = 0;
+  const scrollThreshold = container.scrollHeight * 0.75;
+
+  container.addEventListener('scroll', () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        const currentScrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+
+        // Check if we're near the bottom
+        if (currentScrollTop + clientHeight >= scrollHeight - 100) {
+          // Smoothly scroll back to top
+          isScrolling = true;
+          container.style.scrollBehavior = 'auto';
+          container.scrollTop = 1; // Small offset to trigger scroll events
+          
+          setTimeout(() => {
+            container.style.scrollBehavior = 'smooth';
+            isScrolling = false;
+          }, 50);
+        }
+
+        lastScrollTop = currentScrollTop;
+      });
+    }
+  });
+
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      } else {
+        entry.target.style.opacity = '0';
+        entry.target.style.transform = 'translateY(20px)';
+      }
+    });
+  }, {
+    threshold: 0.1,
+    root: container
+  });
+
+  // Observe all blog articles for smooth animations
+  document.querySelectorAll('.blog-article').forEach(article => {
+    article.style.opacity = '0';
+    article.style.transform = 'translateY(20px)';
+    observer.observe(article);
+  });
+
+  // Optional: Add touch handling for mobile
+  let touchStart = 0;
+  container.addEventListener('touchstart', (e) => {
+    touchStart = e.touches[0].pageY;
+  });
+
+  container.addEventListener('touchmove', (e) => {
+    const touchEnd = e.touches[0].pageY;
+    const diff = touchStart - touchEnd;
+
+    if (Math.abs(diff) > 100) { // Threshold for touch scroll
+      touchStart = touchEnd;
+    }
+  });
+});
+</script>
 </body>
 </html>

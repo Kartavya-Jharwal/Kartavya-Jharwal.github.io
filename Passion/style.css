@@ -54,6 +54,7 @@ body {
     grid-template-columns: 25% 75%;
     width: 100%;
     max-width: none;
+    padding: 20px 4px;
   }
 }
 @media screen and (max-width: 560px) {
@@ -74,6 +75,7 @@ body {
   display: flex;
   letter-spacing: -0.5px;
   align-items: center;
+  transition: all 0.3s ease;
 }
 @media screen and (max-width: 1260px) {
   .blog-menu {
@@ -139,6 +141,9 @@ body {
   letter-spacing: -5px;
   line-height: 1;
   margin-bottom: 6px;
+  animation: fadeInUp 0.8s ease-out;
+  animation-fill-mode: both;
+  transition: transform 0.3s ease;
 }
 @media screen and (max-width: 1400px) {
   .blog-big__title {
@@ -157,12 +162,26 @@ body {
     margin-bottom: 12px;
   }
 }
+.blog-big__title:hover {
+  transform: translateX(10px);
+}
 .blog-header {
   display: flex;
   flex-direction: column;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100%;
+  transition: transform 0.3s ease;
 }
 .blog-article {
   padding: 0 20px;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+@media screen and (max-width: 768px) {
+  .blog-article {
+    animation-duration: 0.4s;
+  }
 }
 .blog-article img {
   height: 260px;
@@ -236,10 +255,14 @@ body {
   margin-top: auto;
   border-top: 1px solid #94918f;
   padding-top: 14px;
+  transition: all 0.3s ease;
 }
 .blog-article a svg {
   width: 26px;
   margin-right: 10px;
+}
+.blog-article a:hover {
+  transform: translateX(8px);
 }
 
 .blog-detail {
@@ -261,11 +284,18 @@ body {
   -ms-scroll-snap-type: y mandatory;
       scroll-snap-type: y mandatory;
   border-right: 1px solid #94918f;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 @media screen and (max-width: 768px) {
   .blog-header-container {
     border-right: 0;
+    scroll-snap-type: none;
   }
+}
+.blog-header-container::-webkit-scrollbar {
+  display: none;
 }
 .blog-header-container > * {
   flex-shrink: 0;
@@ -409,6 +439,8 @@ marquee span:before {
   padding: 20px;
   text-align: center;
   margin-top: 40px;
+  transform-origin: center;
+  transition: transform 0.4s ease, background-color 0.3s ease;
 }
 .circle-title {
   font-size: 24px;
@@ -431,9 +463,36 @@ marquee span:before {
   font-family: "Playfair Display", serif;
   font-size: 30px;
 }
+.circle:hover {
+  transform: scale(1.05);
+  background-color: #1a1f25;
+}
 
 @media screen and (max-width: 560px) {
   .blog-is-sticky {
     display: none;
+  }
+}
+
+/* Enhanced animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .blog-article,
+  .blog-big__title,
+  .blog-menu,
+  .circle {
+    animation: none;
+    transition: none;
   }
 }

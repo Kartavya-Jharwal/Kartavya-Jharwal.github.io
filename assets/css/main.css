@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
 @import url("fontawesome-all.min.css");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 /*
 	Aerial by HTML5 UP
@@ -85,6 +86,13 @@ input, select, textarea {
 	body {
 		background: #fff;
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		padding: 0 1em;
+		box-sizing: border-box;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -233,6 +241,8 @@ input, select, textarea {
 		opacity: 1;
 		position: fixed;
 		top: 0;
+		background-size: 2250px auto;
+		width: 6750px;
 	}
 
 	@-moz-keyframes bg {
@@ -302,6 +312,18 @@ input, select, textarea {
 	#bg {
 		background-size: 2250px auto;
 		width: 6750px;
+	}
+
+	/* Translucent overlay */
+	#bg::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+		z-index: 1;
 	}
 
 /* Overlay */
@@ -551,6 +573,9 @@ input, select, textarea {
 		top: -1em;
 		vertical-align: middle;
 		width: 90%;
+		width: 100%;
+		max-width: 1200px;
+		padding: 1em;
 	}
 
 		#header h1 {
@@ -558,6 +583,13 @@ input, select, textarea {
 			font-weight: 900;
 			letter-spacing: -0.035em;
 			line-height: 1em;
+			font-size: 2.5em;
+			font-weight: 700;
+			letter-spacing: 0.03em;
+			text-transform: uppercase;
+			margin-bottom: 0.3em;
+			text-shadow: 0 2px 4px var(--shadow-color);
+			animation: fadeIn 0.8s ease-out;
 		}
 
 		#header p {
@@ -667,6 +699,7 @@ input, select, textarea {
 				-webkit-touch-callout: none;
 				border: 0;
 				display: inline-block;
+				box-shadow: none;
 			}
 
 				#header nav a:before {
@@ -688,6 +721,7 @@ input, select, textarea {
 
 				#header nav a:hover {
 					font-size: 1.1em;
+					box-shadow: none;
 				}
 
 					#header nav a:hover:before {
@@ -698,6 +732,7 @@ input, select, textarea {
 				#header nav a:active {
 					font-size: 0.95em;
 					background: none;
+					box-shadow: none;
 				}
 
 					#header nav a:active:before {
@@ -712,10 +747,6 @@ input, select, textarea {
 /* Footer */
 
 	#footer {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
-		background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.5) 75%);
 		bottom: 0;
 		cursor: default;
 		height: 6em;
@@ -1078,4 +1109,81 @@ input, select, textarea {
 
 		#header nav {
 			padding: 0 1em;
-		} }
+			}
+		}
+
+/* New styles from index.html */
+.new-feature {
+    color: blue;
+    font-size: 20px;
+}
+.another-feature {
+    background-color: yellow;
+    padding: 10px;
+}
+
+#theme-toggle {
+	position: fixed;
+	top: 15px;
+	right: 15px;
+	width: 35px;
+	height: 35px;
+	border-radius: 8px;
+	background: var(--bg-color);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2em;
+	box-shadow: none;
+	transition: all 0.3s ease;
+	z-index: 1000;
+}
+
+#theme-toggle:hover {
+	transform: translateY(-1px);
+	box-shadow: none;
+}
+
+#theme-toggle:active {
+	transform: translateY(1px);
+	box-shadow: none;
+}
+
+#theme-toggle i {
+	transition: all 0.3s ease;
+}
+
+/* Light theme */
+[data-theme="light"] {
+	--ctp-base: hsl(220, 23%, 95%);
+	--ctp-surface0: hsl(220, 23%, 97%);
+	--ctp-surface1: hsl(220, 23%, 99%);
+	--ctp-text: hsl(234, 16%, 35%);
+	--ctp-subtext0: hsl(233, 12%, 50%);
+	--ctp-blue: hsl(220, 91%, 54%);
+	--ctp-lavender: hsl(231, 97%, 72%);
+	--ctp-overlay0: hsla(220, 23%, 95%, 0.95);
+	
+	/* Applied Colors */
+	--text-primary: var(--ctp-text);
+	--text-secondary: var(--ctp-subtext0);
+	--border-color: hsla(234, 16%, 35%, 0.1);
+	--shadow-color: hsla(220, 23%, 5%, 0.1);
+	--gradient-start: var(--ctp-base);
+	--gradient-end: var(--ctp-surface1);
+	--accent-color: var(--ctp-blue);
+	--logo-bg: var(--ctp-surface0);
+	--bg-color: var(--ctp-base);
+	--main-bg: var(--ctp-surface0);
+}
+
+[data-theme="light"] #theme-toggle {
+	background: var(--main-bg);
+}
+
+[data-theme="light"] #main {
+	background: var(--main-bg);
+}
