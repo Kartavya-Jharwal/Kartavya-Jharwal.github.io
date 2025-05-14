@@ -1,0 +1,337 @@
+/* ===============================
+   Business Card Enhancements
+   ===============================
+   Adds interactive elements and polish to the digital business card
+*/
+
+/* --------------------
+   Variables
+   -------------------- */
+:root {
+    --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
+    --modal-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+    --highlight-blue: #3b82f6;
+    --highlight-green: #10b981;
+    --highlight-pink: #ec4899;
+    --highlight-beige: #d8c4aa;
+    --highlight-brown: #8b5a2b;
+}
+
+/* --------------------
+   Background Enhancements
+   -------------------- */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(124, 177, 255, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.1) 0%, transparent 25%);
+    opacity: 0.6;
+    mix-blend-mode: screen;
+}
+
+/* Floating particles for visual interest */
+@keyframes float-particle {
+    0% { transform: translate(0, 0); opacity: 0; }
+    20% { opacity: 0.5; }
+    80% { opacity: 0.5; }
+    100% { transform: translate(var(--tx, 20px), var(--ty, -20px)); opacity: 0; }
+}
+
+.particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: float-particle 8s var(--animation-timing) infinite both;
+}
+
+/* --------------------
+   Polymath Modal
+   -------------------- */
+.polymath-definition {
+    border-left: 3px solid var(--highlight-blue);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.polymath-definition p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.polymath-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.polymath-area {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.polymath-area:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.polymath-area::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--area-color, var(--highlight-blue));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--animation-timing);
+}
+
+.polymath-area:hover::after {
+    transform: scaleX(1);
+}
+
+.polymath-area#tech::after { --area-color: var(--highlight-blue); }
+.polymath-area#business::after { --area-color: var(--highlight-green); }
+.polymath-area#creativity::after { --area-color: var(--highlight-pink); }
+
+.area-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--icon-color, var(--highlight-blue));
+}
+
+#tech .area-icon { --icon-color: var(--highlight-blue); }
+#business .area-icon { --icon-color: var(--highlight-green); }
+#creativity .area-icon { --icon-color: var(--highlight-pink); }
+
+.polymath-area h3 {
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+}
+
+.polymath-area p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    line-height: 1.5;
+}
+
+.polymath-summary {
+    text-align: center;
+    font-weight: 500;
+    margin: 1.5rem 0;
+    line-height: 1.6;
+}
+
+.polymath-quote {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.polymath-quote blockquote {
+    margin: 0;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.polymath-quote cite {
+    display: block;
+    text-align: right;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* --------------------
+   Skill Preview Tooltips
+   -------------------- */
+.skill-preview {
+    position: fixed;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1rem;
+    max-width: 300px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s var(--animation-timing);
+    top: calc(50% - 120px);
+    right: 10%;
+}
+
+.skill-preview.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.skill-preview h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.skill-preview h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 2px;
+    background: var(--preview-color, var(--highlight-blue));
+}
+
+#preview-entrepreneur h3::after { --preview-color: var(--highlight-blue); }
+#preview-education h3::after { --preview-color: var(--highlight-beige); }
+#preview-code h3::after { --preview-color: var(--highlight-green); }
+
+.skill-preview ul {
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+}
+
+.skill-preview li {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* On smaller screens, position the previews at the bottom */
+@media (max-width: 1024px) {
+    .skill-preview {
+        top: auto;
+        right: auto;
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%) translateY(20px);
+        max-width: 90%;
+        width: 300px;
+    }
+    
+    .skill-preview.active {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* --------------------
+   Context Popup
+   -------------------- */
+.context-popup {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s var(--animation-timing);
+}
+
+.context-popup.active {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.context-popup p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+/* --------------------
+   Easter Egg Animation
+   -------------------- */
+@keyframes rainbow-logo {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes pulse-scale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.easter-egg-mode .logo-img {
+    animation: rainbow-logo 2s linear infinite, pulse-scale 1s ease-in-out infinite;
+}
+
+.easter-egg-mode .business-card {
+    box-shadow: 0 0 50px rgba(124, 177, 255, 0.4);
+}
+
+/* --------------------
+   Responsive Design
+   -------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .polymath-area:hover {
+        transform: none;
+    }
+    
+    .polymath-area::after {
+        transition: none;
+    }
+    
+    .skill-preview {
+        transition: opacity 0.1s ease;
+    }
+    
+    .context-popup {
+        transition: opacity 0.1s ease;
+    }
+    
+    .easter-egg-mode .logo-img {
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .polymath-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .polymath-quote {
+        padding: 1rem;
+    }
+}

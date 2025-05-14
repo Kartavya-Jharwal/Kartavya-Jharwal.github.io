@@ -1,0 +1,587 @@
+/* ========================================
+   Enhanced Cursor System
+   ========================================
+   Combines SVG cursors and dynamic effects
+*/
+
+/* ------------------------
+   FEATURE DETECTION & SETUP
+   ------------------------ */
+:root {
+    /* Core cursor variables */
+    --cursor-dot-size: 36px; /* Tripled from 12px */
+    --cursor-ring-size: 120px; /* Tripled from 40px */
+    --cursor-animation-speed: 0.3s;
+    --cursor-animation-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --cursor-hover-scale: 1.3;
+    
+    /* Theme colors for cursors */
+    --cursor-color-primary: rgba(26, 43, 72, 0.7);
+    --cursor-color-glow: rgba(124, 177, 255, 0.4);
+    --cursor-color-professional: rgba(59, 130, 246, 0.7);
+    --cursor-color-contact: rgba(16, 185, 129, 0.7);
+    --cursor-color-personal: rgba(236, 72, 153, 0.7);
+}
+
+/* Only hide default cursor when dynamic cursors are enabled */
+body.use-dynamic-cursor {
+    cursor: none !important;
+}
+
+body.use-dynamic-cursor * {
+    cursor: none !important;
+}
+
+/* ------------------------
+   SVG CURSOR DEFINITIONS
+   ------------------------ */
+
+/* Default cursor - gradient sphere with small cursor icon - SOLID ON HOVER */
+body:not(.use-dynamic-cursor) {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3CradialGradient id='sphere-gradient' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%237cb1ff' stop-opacity='0.9'/%3E%3Cstop offset='60%25' stop-color='%235b8bd8' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%233b6ec7' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='24' cy='24' r='22' fill='url(%23sphere-gradient)' opacity='0.85' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cpath d='M16,16 L22,22 M28,16 L22,22 L22,32' stroke='%23ffffff' stroke-width='2.5' fill='none'/%3E%3C/svg%3E") 24 24, default;
+}
+
+/* Links and buttons - gradient sphere with pointer/hand icon */
+body:not(.use-dynamic-cursor) a,
+body:not(.use-dynamic-cursor) button,
+body:not(.use-dynamic-cursor) [role="button"], 
+body:not(.use-dynamic-cursor) input[type="submit"], 
+body:not(.use-dynamic-cursor) input[type="button"], 
+body:not(.use-dynamic-cursor) .btn, 
+body:not(.use-dynamic-cursor) .tagline-button {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='sphere-gradient' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%237cb1ff' stop-opacity='0.9'/%3E%3Cstop offset='60%25' stop-color='%235b8bd8' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%233b6ec7' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23sphere-gradient)' opacity='0.85' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cpath d='M18,28 L22,32 C23,33 23,35 23,36 L23,42 C23,43 24,44 25,44 L27,44 C28,44 29,43 29,42 L29,39 L31,39 L31,44 C31,45 32,46 33,46 L35,46 C36,46 37,45 37,44 L37,36 C37,35 37,33 36,32 L34,30 C36,28 36,24 34,22 L34,18 C34,16 32,15 30,16 C30,14 28,13 26,14 C24,13 22,14 22,16 L22,24 C20,24 18,26 18,28 Z' fill='%23ffffff' opacity='0.9'/%3E%3C/svg%3E") 15 15, pointer;
+}
+
+/* Links and buttons - solid color on hover */
+body:not(.use-dynamic-cursor) a:hover,
+body:not(.use-dynamic-cursor) button:hover,
+body:not(.use-dynamic-cursor) [role="button"]:hover, 
+body:not(.use-dynamic-cursor) input[type="submit"]:hover, 
+body:not(.use-dynamic-cursor) input[type="button"]:hover, 
+body:not(.use-dynamic-cursor) .btn:hover, 
+body:not(.use-dynamic-cursor) .tagline-button:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%233b6ec7' opacity='1' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cpath d='M18,28 L22,32 C23,33 23,35 23,36 L23,42 C23,43 24,44 25,44 L27,44 C28,44 29,43 29,42 L29,39 L31,39 L31,44 C31,45 32,46 33,46 L35,46 C36,46 37,45 37,44 L37,36 C37,35 37,33 36,32 L34,30 C36,28 36,24 34,22 L34,18 C34,16 32,15 30,16 C30,14 28,13 26,14 C24,13 22,14 22,16 L22,24 C20,24 18,26 18,28 Z' fill='%23ffffff' opacity='0.95'/%3E%3C/svg%3E") 15 15, pointer;
+}
+
+/* Text input cursor - gradient sphere with pencil/edit icon */
+body:not(.use-dynamic-cursor) input, 
+body:not(.use-dynamic-cursor) textarea, 
+body:not(.use-dynamic-cursor) select, 
+body:not(.use-dynamic-cursor) [contenteditable] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3CradialGradient id='sphere-gradient' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%237cb1ff' stop-opacity='0.9'/%3E%3Cstop offset='60%25' stop-color='%235b8bd8' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%233b6ec7' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='24' cy='24' r='22' fill='url(%23sphere-gradient)' opacity='0.85' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cpath d='M30,11 L16,25 L16,32 L23,32 L37,18 L30,11 Z M30,11 L37,18 M16,25 L23,32' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E") 16 16, text;
+}
+
+/* Disabled cursor - gradient sphere with no/forbidden icon */
+body:not(.use-dynamic-cursor) .disabled, 
+body:not(.use-dynamic-cursor) [disabled], 
+body:not(.use-dynamic-cursor) .no-action {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3CradialGradient id='sphere-gradient' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%23ff7c7c' stop-opacity='0.9'/%3E%3Cstop offset='60%25' stop-color='%23e53e3e' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%23c53030' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='24' cy='24' r='22' fill='url(%23sphere-gradient)' opacity='0.85' filter='drop-shadow(0 0 4px %23ff7c7c)'/%3E%3Ccircle cx='24' cy='24' r='16' stroke='%23ffffff' stroke-width='2.5' fill='none'/%3E%3Cline x1='14' y1='14' x2='34' y2='34' stroke='%23ffffff' stroke-width='2.5'/%3E%3C/svg%3E") 24 24, not-allowed;
+}
+
+/* Logo cursor - man with glasses/proper KJ icon */
+body:not(.use-dynamic-cursor) .logo {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='sphere-gradient' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%237cb1ff' stop-opacity='0.9'/%3E%3Cstop offset='60%25' stop-color='%235b8bd8' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%233b6ec7' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23sphere-gradient)' opacity='0.85' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Ctext x='30' y='36' font-family='Arial' font-weight='bold' font-size='24' fill='%23ffffff' text-anchor='middle'>KJ</text%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) .logo:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%233b6ec7' opacity='1' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Ctext x='30' y='36' font-family='Arial' font-weight='bold' font-size='24' fill='%23ffffff' text-anchor='middle'>KJ</text%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Professional icon cursor - LinkedIn cursor with professional/suit icon */
+body:not(.use-dynamic-cursor) #header nav li.professional a.fa-linkedin {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='prof-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%232563eb' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%231d4ed8' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23prof-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %233b82f6)'/%3E%3Crect x='17' y='25' width='6' height='15' fill='%23ffffff'/%3E%3Ccircle cx='20' cy='19' r='3' fill='%23ffffff'/%3E%3Cpath d='M27,25 L27,40 M27,33 C27,28 43,28 43,33 L43,40' stroke='%23ffffff' stroke-width='2.5' fill='none'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) #header nav li.professional a.fa-linkedin:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%232563eb' opacity='1' filter='drop-shadow(0 0 4px %233b82f6)'/%3E%3Cpath d='M20,25 L15,25 L15,45 L20,45 L20,25 Z M17.5,15 C15.57,15 14,16.57 14,18.5 C14,20.43 15.57,22 17.5,22 C19.43,22 21,20.43 21,18.5 C21,16.57 19.43,15 17.5,15 Z M40,25 C40,25 40,25 40,25 C37.5,25 35.27,26 34,28 L34,25 L29,25 L29,45 L34,45 L34,35 C34,35 34,30 38,30 C42,30 42,35 42,35 L42,45 L47,45 L47,33.5 C47,28 44,25 40,25 Z' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Professional icon cursor - GitHub cursor with coder/developer icon */
+body:not(.use-dynamic-cursor) #header nav li.professional a.fa-github {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='prof-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%232563eb' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%231d4ed8' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23prof-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %233b82f6)'/%3E%3Cpath d='M18,22 L42,22 L42,38 L18,38 Z' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3Cpath d='M22,26 L26,26 M22,30 L32,30 M22,34 L28,34' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='26' y='38' width='8' height='4' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) #header nav li.professional a.fa-github:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%232563eb' opacity='1' filter='drop-shadow(0 0 4px %233b82f6)'/%3E%3Cpath d='M30,15 C21.7,15 15,21.7 15,30 C15,36.6 19.3,42.2 25.5,44.3 C26.3,44.5 26.5,44 26.5,43.6 C26.5,43.2 26.5,42 26.5,40.5 C22.2,41.5 21.2,38.5 21.2,38.5 C20.5,36.6 19.4,36.1 19.4,36.1 C18,35.1 19.5,35.1 19.5,35.1 C21.1,35.2 21.9,36.8 21.9,36.8 C23.4,39.2 25.9,38.5 26.6,38.2 C26.7,37.2 27.1,36.5 27.5,36.1 C24,35.7 20.3,34.2 20.3,28.5 C20.3,26.7 20.9,25.2 21.9,24.1 C21.7,23.7 21.2,22 22.1,19.8 C22.1,19.8 23.5,19.3 26.5,21.3 C27.6,20.9 28.8,20.7 30,20.7 C31.2,20.7 32.4,20.9 33.5,21.3 C36.5,19.3 37.9,19.8 37.9,19.8 C38.8,22 38.3,23.7 38.1,24.1 C39.1,25.2 39.7,26.7 39.7,28.5 C39.7,34.2 36,35.7 32.5,36.1 C33.1,36.6 33.5,37.6 33.5,39.1 C33.5,41.2 33.5,43 33.5,43.6 C33.5,44 33.7,44.5 34.5,44.3 C40.7,42.2 45,36.6 45,30 C45,21.7 38.3,15 30,15 Z' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Contact icon cursor - Email with mail/envelope icon */
+body:not(.use-dynamic-cursor) #header nav li.contact a.fa-envelope {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='contact-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%2310b981' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%23059669' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%23047857' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23contact-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %2310b981)'/%3E%3Crect x='12' y='18' width='36' height='24' rx='2' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3Cpath d='M12,18 L30,30 L48,18' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) #header nav li.contact a.fa-envelope:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23059669' opacity='1' filter='drop-shadow(0 0 4px %2310b981)'/%3E%3Cpath d='M45,20 L15,20 C13.9,20 13,20.9 13,22 L13,38 C13,39.1 13.9,40 15,40 L45,40 C46.1,40 47,39.1 47,38 L47,22 C47,20.9 46.1,20 45,20 Z M45,24 L30,32 L15,24 L15,22 L30,30 L45,22 L45,24 Z' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Contact icon cursor - Telegram with paper plane icon */
+body:not(.use-dynamic-cursor) #header nav li.contact a.fa-paper-plane {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='contact-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%2310b981' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%23059669' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%23047857' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23contact-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %2310b981)'/%3E%3Cpath d='M45,15 L15,25 L25,30 L30,45 L45,15 Z' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3Cpath d='M25,30 L35,25' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) #header nav li.contact a.fa-paper-plane:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23059669' opacity='1' filter='drop-shadow(0 0 4px %2310b981)'/%3E%3Cpath d='M46,15 L14,25 L23,29.5 L35,21 L26,32 L37,45 L46,15 Z' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Personal icon cursor - Spotify with music icon */
+body:not(.use-dynamic-cursor) #header nav li.personal a.fa-spotify {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='personal-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%23ec4899' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%23db2777' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%23be185d' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23personal-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %23ec4899)'/%3E%3Ccircle cx='30' cy='30' r='16' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3Cpath d='M22,25 C28,20 38,24 38,25 M20,30 C26,26 40,28 40,30 M20,35 C26,31 40,33 40,35' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) #header nav li.personal a.fa-spotify:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23db2777' opacity='1' filter='drop-shadow(0 0 4px %23ec4899)'/%3E%3Cpath d='M30,15 C21.7,15 15,21.7 15,30 C15,38.3 21.7,45 30,45 C38.3,45 45,38.3 45,30 C45,21.7 38.3,15 30,15 Z M37.1,37.4 C36.7,38 36,38.2 35.4,37.8 C31.6,35.4 26.9,34.8 21.7,36.2 C21.1,36.3 20.5,36 20.3,35.4 C20.2,34.8 20.5,34.2 21.1,34 C27,32.5 32.2,33.2 36.6,36 C37.2,36.3 37.4,37 37.1,37.4 Z M38.9,32.8 C38.5,33.5 37.6,33.8 36.9,33.4 C32.5,30.7 26.1,29.7 21.4,31.4 C20.6,31.6 19.7,31.2 19.5,30.5 C19.3,29.7 19.7,28.8 20.4,28.6 C26,26.7 33.1,27.8 38.3,31 C39,31.3 39.3,32.2 38.9,32.8 Z M39.1,28.1 C33.8,24.9 25.7,24.6 21,26.2 C20.1,26.5 19.1,26 18.8,25.1 C18.5,24.2 19,23.1 19.9,22.9 C25.4,21 34.4,21.4 40.6,25.1 C41.4,25.5 41.7,26.6 41.3,27.4 C40.9,28.2 39.8,28.5 39.1,28.1 Z' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Polymath link - brain with connections icon */
+body:not(.use-dynamic-cursor) .tagline-button#polymath-link {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='poly-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%237cb1ff' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%235b8bd8' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%233b6ec7' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23poly-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cellipse cx='30' cy='30' rx='14' ry='18' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3Cpath d='M30,12 L30,48 M16,22 L44,22 M16,38 L44,38' stroke='%23ffffff' stroke-width='1.5'/%3E%3Ccircle cx='24' cy='18' r='3' fill='%23ffffff'/%3E%3Ccircle cx='38' cy='30' r='3' fill='%23ffffff'/%3E%3Ccircle cx='22' cy='30' r='2' fill='%23ffffff'/%3E%3Ccircle cx='36' cy='44' r='2.5' fill='%23ffffff'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) .tagline-button#polymath-link:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%233b6ec7' opacity='1' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cpath d='M30,12 C35,12 39,15 40,19 C44,20 46,23 46,27 C46,31 43,34 39,35 C38,39 34,42 30,42 C25,42 21,39 20,35 C16,34 13,31 13,27 C13,23 15,20 19,19 C20,15 24,12 30,12 Z M24,21 L19,25 M24,33 L19,29 M36,21 L41,25 M36,33 L41,29 M25,26 Q30,33 35,26 Q30,19 25,26 Z' stroke='%23ffffff' stroke-width='2' fill='none'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Custom Hult cursor with graduation cap icon and bluish beige color */
+body:not(.use-dynamic-cursor) .hult-role {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23d8c4aa' opacity='0.95' filter='drop-shadow(0 0 4px %23e8d6c2)'/%3E%3Cpath d='M15,32 L30,24 L45,32 L30,40 L15,32 Z' fill='%233E2723' stroke='%233E2723' stroke-width='1'/%3E%3Cpath d='M22,34 L22,42 C22,42 30,46 38,42 L38,34' stroke='%233E2723' stroke-width='1' fill='none'/%3E%3Cpath d='M30,40 L30,48 M42,32 L42,40 L39,42' stroke='%233E2723' stroke-width='1' fill='none'/%3E%3Crect x='28' y='19' width='4' height='4' fill='%233E2723'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+body:not(.use-dynamic-cursor) .hult-role:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23b19372' opacity='1' filter='drop-shadow(0 0 4px %23d8c4aa)'/%3E%3Cpath d='M15,32 L30,24 L45,32 L30,40 L15,32 Z' fill='%233E2723' stroke='%233E2723' stroke-width='1'/%3E%3Cpath d='M22,34 L22,42 C22,42 30,46 38,42 L38,34' stroke='%233E2723' stroke-width='1' fill='none'/%3E%3Cpath d='M30,40 L30,48 M42,32 L42,40 L39,42' stroke='%233E2723' stroke-width='1' fill='none'/%3E%3Crect x='28' y='19' width='4' height='4' fill='%233E2723'/%3E%3C/svg%3E") 30 30, pointer;
+}
+
+/* Loading state cursor - animated spinner */
+body:not(.use-dynamic-cursor).is-preload {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CradialGradient id='spinner-sphere' cx='40%25' cy='40%25' r='60%25' fx='40%25' fy='40%25'%3E%3Cstop offset='0%25' stop-color='%237cb1ff' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%235b8bd8' stop-opacity='0.7'/%3E%3Cstop offset='100%25' stop-color='%233b6ec7' stop-opacity='0.5'/%3E%3C/radialGradient%3E%3Cstyle%3E@keyframes spin %7B 0%25 %7B transform: rotate(0deg); transform-origin: center; %7D 100%25 %7B transform: rotate(360deg); transform-origin: center; %7D %7D .spinner %7B animation: spin 1.5s linear infinite; %7D%3C/style%3E%3Ccircle cx='30' cy='30' r='28' fill='url(%23spinner-sphere)' opacity='0.85' filter='drop-shadow(0 0 4px %237cb1ff)'/%3E%3Cg class='spinner'%3E%3Cpath d='M30,10 A20,20 0 1,1 10,30' stroke='%23ffffff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E") 30 30, wait;
+}
+
+/* ------------------------
+   DYNAMIC CURSOR ELEMENTS
+   ------------------------ */
+
+/* Custom cursor sphere - now much larger and with translucent gradient */
+.custom-cursor {
+    position: fixed;
+    width: var(--cursor-dot-size);
+    height: var(--cursor-dot-size);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width var(--cursor-animation-speed) var(--cursor-animation-easing),
+                height var(--cursor-animation-speed) var(--cursor-animation-easing),
+                opacity var(--cursor-animation-speed) var(--cursor-animation-easing),
+                background var(--cursor-animation-speed) var(--cursor-animation-easing);
+    mix-blend-mode: screen;
+    will-change: transform, width, height, opacity, background;
+    
+    /* Updated to gradient sphere - keep translucent by default */
+    background: radial-gradient(circle at 40% 40%, 
+                 rgba(124, 177, 255, 0.9) 0%, 
+                 rgba(91, 139, 216, 0.7) 60%, 
+                 rgba(59, 110, 199, 0.5) 100%);
+    box-shadow: 0 0 15px 2px rgba(124, 177, 255, 0.3);
+    opacity: 0.85;
+}
+
+/* Default cursor inner icon */
+.custom-cursor::after {
+    content: '\f245'; /* Default cursor icon from FontAwesome */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: calc(var(--cursor-dot-size) * 0.45);
+    opacity: 0.9;
+}
+
+/* Remove cursor ring since we're using a larger cursor with icon */
+.cursor-ring {
+    display: none;
+}
+
+/* ------------------------
+   CURSOR STATES
+   ------------------------ */
+
+/* Basic hover state */
+.cursor-hover {
+    width: calc(var(--cursor-dot-size) * var(--cursor-hover-scale));
+    height: calc(var(--cursor-dot-size) * var(--cursor-hover-scale));
+    /* Solid color with no transparency */
+    background: rgb(59, 110, 199);
+    box-shadow: 0 0 20px 5px rgba(124, 177, 255, 0.5);
+    opacity: 1;
+}
+
+/* Mouse down state */
+.cursor-down {
+    width: calc(var(--cursor-dot-size) * 0.9);
+    height: calc(var(--cursor-dot-size) * 0.9);
+    /* Solid color */
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
+    opacity: 1;
+}
+
+/* Professional element states */
+.cursor-professional {
+    background: radial-gradient(circle at 40% 40%, 
+                rgba(59, 130, 246, 0.9) 0%, 
+                rgba(37, 99, 235, 0.7) 60%, 
+                rgba(29, 78, 216, 0.5) 100%);
+    box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+}
+.cursor-professional.cursor-hover {
+    background: rgb(37, 99, 235);
+    opacity: 1;
+    box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.6);
+}
+
+/* Professional icons - change inner icon */
+.cursor-professional::after {
+    content: '\f0b1'; /* Briefcase icon instead of LinkedIn icon */
+}
+.cursor-professional.github::after {
+    content: '\f108'; /* Desktop icon instead of GitHub icon */
+}
+
+/* Contact element states */
+.cursor-contact {
+    background: radial-gradient(circle at 40% 40%, 
+                rgba(16, 185, 129, 0.9) 0%, 
+                rgba(5, 150, 105, 0.7) 60%, 
+                rgba(4, 120, 87, 0.5) 100%);
+    box-shadow: 0 0 15px 3px rgba(16, 185, 129, 0.4);
+}
+.cursor-contact.cursor-hover {
+    background: rgb(5, 150, 105);
+    opacity: 1;
+    box-shadow: 0 0 20px 5px rgba(16, 185, 129, 0.6);
+}
+
+/* Contact icons - change inner icon */
+.cursor-contact::after {
+    content: '\f0e0'; /* Email icon */
+}
+.cursor-contact.telegram::after {
+    content: '\f1d8'; /* Paper Plane icon */
+}
+
+/* Personal element states */
+.cursor-personal {
+    background: radial-gradient(circle at 40% 40%, 
+                rgba(236, 72, 153, 0.9) 0%, 
+                rgba(219, 39, 119, 0.7) 60%, 
+                rgba(190, 24, 93, 0.5) 100%);
+    box-shadow: 0 0 15px 3px rgba(236, 72, 153, 0.4);
+}
+.cursor-personal.cursor-hover {
+    background: rgb(219, 39, 119);
+    opacity: 1;
+    box-shadow: 0 0 20px 5px rgba(236, 72, 153, 0.6);
+}
+
+/* Personal icons - change inner icon */
+.cursor-personal::after {
+    content: '\f001'; /* Music note icon instead of Spotify icon */
+}
+
+/* Polymath cursor - change inner icon */
+.cursor-polymath::after {
+    content: '\f5dc'; /* Brain icon */
+}
+
+/* Logo cursor - change inner icon */
+.cursor-logo::after {
+    content: '\f508'; /* User-tie icon instead of User graduate icon */
+}
+
+/* Custom cursor for dynamic cursor mode */
+.cursor-hult {
+    background: #d8c4aa;
+    box-shadow: 0 0 15px 3px rgba(216, 196, 170, 0.5);
+    opacity: 0.9;
+}
+.cursor-hult.cursor-hover {
+    background: #b19372;
+    opacity: 1;
+    box-shadow: 0 0 20px 5px rgba(177, 147, 114, 0.6);
+}
+
+/* Hult cursor icon */
+.cursor-hult::after {
+    content: '\f19d'; /* Graduation cap icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #3E2723; /* Brownish-black color for the cap icon */
+}
+
+/* Special hover animation for Hult role */
+.hult-role::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 183, 141, 0.7), /* Pastel Orange */
+        rgba(255, 247, 174, 0.7), /* Pastel Yellow */
+        rgba(183, 255, 197, 0.7), /* Pastel Green */
+        rgba(170, 202, 255, 0.7), /* Pastel Blue */
+        rgba(198, 192, 255, 0.7), /* Pastel Purple */
+        rgba(255, 186, 254, 0.7), /* Pastel Pink */
+        rgba(255, 180, 180, 0.7)  /* Pastel Red */
+    );
+    background-size: 200%;
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* ------------------------
+   VISUAL CURSOR EFFECTS
+   ------------------------ */
+
+/* Cursor trail effect - larger and more translucent */
+.cursor-trail {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    mix-blend-mode: screen;
+    transition: opacity 0.2s ease;
+    transform: translate(-50%, -50%);
+    will-change: opacity, transform;
+    filter: blur(8px);
+    width: 90px; /* Larger trail */
+    height: 90px;
+}
+
+/* Trail type variations */
+.cursor-trail[data-type="professional"] {
+    background: radial-gradient(circle, var(--cursor-color-professional) 0%, rgba(59, 130, 246, 0) 70%);
+}
+
+.cursor-trail[data-type="contact"] {
+    background: radial-gradient(circle, var(--cursor-color-contact) 0%, rgba(16, 185, 129, 0) 70%);
+}
+
+.cursor-trail[data-type="personal"] {
+    background: radial-gradient(circle, var(--cursor-color-personal) 0%, rgba(236, 72, 153, 0) 70%);
+}
+
+.cursor-trail[data-type="tagline"] {
+    background: radial-gradient(circle, var(--cursor-color-glow) 0%, rgba(124, 177, 255, 0) 70%);
+    width: 70px;
+    height: 70px;
+}
+
+/* Click ripple effect */
+.cursor-ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(255, 255, 255, 0.1);
+    animation: rippleEffect 1s cubic-bezier(0, 0.55, 0.45, 1) forwards;
+    mix-blend-mode: overlay;
+    will-change: transform, opacity, width, height;
+}
+
+/* Ripple type variations */
+.cursor-ripple.professional {
+    border: 2px solid var(--cursor-color-professional);
+    background: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.cursor-ripple.contact {
+    border: 2px solid var(--cursor-color-contact);
+    background: rgba(16, 185, 129, 0.15);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.cursor-ripple.personal {
+    border: 2px solid var(--cursor-color-personal);
+    background: rgba(236, 72, 153, 0.15);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+/* ------------------------
+   ICON HOVER ANIMATIONS
+   ------------------------ */
+
+/* Base icon hover effects */
+#header nav a:before {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: visible;
+}
+
+/* Professional icon animation */
+#header nav li.professional a:before {
+    box-shadow: 0 0 0 0 var(--cursor-color-professional);
+}
+
+#header nav li.professional a:hover:before {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    animation: professionalPulse 1.5s infinite;
+}
+
+/* Contact icon animation */
+#header nav li.contact a:before {
+    box-shadow: 0 0 0 0 var(--cursor-color-contact);
+}
+
+#header nav li.contact a:hover:before {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+    animation: contactPulse 1.5s infinite;
+}
+
+/* Personal icon animation */
+#header nav li.personal a:before {
+    box-shadow: 0 0 0 0 var(--cursor-color-personal);
+}
+
+#header nav li.personal a:hover:before {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
+    animation: personalPulse 1.5s infinite;
+}
+
+/* ------------------------
+   ANIMATIONS
+   ------------------------ */
+
+/* Trail pulse animation */
+@keyframes pulseTrail {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+/* Ripple effect animation */
+@keyframes rippleEffect {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Icon pulse animations */
+@keyframes professionalPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+@keyframes contactPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+@keyframes personalPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(236, 72, 153, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0);
+    }
+}
+
+/* Enhanced trail animation */
+.cursor-trail.active {
+    animation: pulseTrail 2s infinite;
+}
+
+/* ------------------------
+   ACCESSIBILITY
+   ------------------------ */
+
+/* For reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    /* Disable animations */
+    #header nav a:hover:before {
+        animation: none !important;
+        transform: translateY(-2px) scale(1.05);
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    /* Hide dynamic cursor elements */
+    .cursor-trail, .cursor-ripple, .custom-cursor, .cursor-ring {
+        display: none !important;
+    }
+
+    /* Disable SVG animations */
+    [style*="@keyframes"] {
+        animation: none !important;
+    }
+    
+    /* Force normal browser cursors */
+    body.use-dynamic-cursor, 
+    body.use-dynamic-cursor * {
+        cursor: auto !important;
+    }
+    
+    body.use-dynamic-cursor .is-preload {
+        cursor: wait !important;
+    }
+}
+
+/* Mobile/touch devices */
+@media (pointer: coarse) {
+    /* Hide all custom cursor elements */
+    .cursor-trail, .cursor-ripple, .custom-cursor, .cursor-ring {
+        display: none !important;
+    }
+    
+    /* Force normal browser cursors */
+    body.use-dynamic-cursor, 
+    body.use-dynamic-cursor * {
+        cursor: auto !important;
+    }
+    
+    body.is-preload {
+        cursor: wait !important;
+    }
+}
