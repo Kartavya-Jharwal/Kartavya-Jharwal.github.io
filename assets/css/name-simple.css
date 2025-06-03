@@ -1,0 +1,91 @@
+/* Override styles for name element to make it simple and clean */
+#name {
+    /* Basic styling */
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 auto 0.8rem !important;
+    letter-spacing: -0.02em !important;
+    
+    /* Remove any fancy effects */
+    text-shadow: none !important;
+    opacity: 1 !important;
+    
+    /* Remove animations and transitions */
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    
+    /* Default cursor */
+    cursor: default !important;
+    
+    /* Remove any background styling/text effects */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: initial !important;
+    
+    /* Disable filters */
+    filter: none !important;
+    
+    /* Ensure visibility */
+    visibility: visible !important;
+    display: block !important;
+    
+    /* Ensure proper text wrapping */
+    white-space: normal !important;
+    
+    /* Text alignment */
+    text-align: center !important;
+}
+
+/* Ensure no special effects or animations on name spans or characters */
+#name span,
+#name .char {
+    /* Reset styles for spans within name */
+    display: inline !important;
+    
+    /* Make characters visible */
+    opacity: 1 !important;
+    
+    /* No animations or transformations */
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    
+    /* Default cursor */
+    cursor: default !important;
+    
+    /* Reset font and colors */
+    color: #ffffff !important;
+    font-weight: inherit !important;
+    
+    /* Remove any background or shadow effects */
+    background: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    
+    /* Remove any positioning */
+    position: static !important;
+}
+
+/* Make sure the name-and-title section is properly aligned */
+.name-and-title {
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+    position: relative !important;
+    display: block !important;
+    
+    /* Ensure no special effects or animations */
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Remove any pseudo-elements that might interfere */
+#name::before,
+#name::after,
+.name-and-title::before,
+.name-and-title::after {
+    display: none !important;
+    content: none !important;
+}

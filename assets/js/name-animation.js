@@ -1,33 +1,27 @@
 /**
- * Name Character Animation
- * Animates the name with character-by-character reveal
+ * Simple Name Display
+ * Ensures name is displayed without any animations or character splitting
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Setup name animation with characters
+    // Get the name element
     const nameElement = document.getElementById('name');
+    
+    // If the name element exists, ensure it's displayed properly
     if (nameElement) {
-        const name = nameElement.textContent;
-        nameElement.textContent = '';
-        nameElement.setAttribute('aria-label', name);
+        // Make sure the original text is preserved (no character splitting)
+        const originalText = nameElement.textContent || 'Kartavya Jharwal';
         
-        // Split name into individual characters with spans
-        for (let i = 0; i < name.length; i++) {
-            const char = name[i];
-            const span = document.createElement('span');
-            span.className = 'char';
-            span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space for spaces
-            span.style.setProperty('--delay', `${1.5 + (i * 0.05)}s`);
-            nameElement.appendChild(span);
-        }
+        // Remove any existing child elements that may have been created
+        nameElement.innerHTML = originalText;
         
-        // Remove JS animation class if reduced motion is preferred
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.querySelectorAll('.char').forEach(char => {
-                char.style.opacity = '1';
-                char.style.transform = 'none';
-                char.style.animationDelay = '0s';
-            });
-        }
+        // Apply direct styling to ensure visibility
+        nameElement.style.opacity = '1';
+        nameElement.style.color = '#ffffff';
+        nameElement.style.visibility = 'visible';
+        nameElement.style.display = 'block';
+        
+        // Remove any animation classes that might be present
+        nameElement.classList.remove('typing-animation', 'char-animation', 'animated', 'animate');
     }
 });
