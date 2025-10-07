@@ -3,140 +3,29 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
 @import url("fontawesome-all.min.css");
 
-/* =======================
-   FONT OPTIMIZATION
-   ======================= */
-
-/* Font face declarations for Satoshi */
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../webfonts/Satoshi-Regular.woff2') format('woff2'),
-         url('../webfonts/Satoshi-Regular.woff') format('woff'),
-         url('../webfonts/Satoshi-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../webfonts/Satoshi-Medium.woff2') format('woff2'),
-         url('../webfonts/Satoshi-Medium.woff') format('woff'),
-         url('../webfonts/Satoshi-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../webfonts/Satoshi-Bold.woff2') format('woff2'),
-         url('../webfonts/Satoshi-Bold.woff') format('woff'),
-         url('../webfonts/Satoshi-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../webfonts/Satoshi-Light.woff2') format('woff2'),
-         url('../webfonts/Satoshi-Light.woff') format('woff'),
-         url('../webfonts/Satoshi-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Font stack */
-:root {
-    --font-primary: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-}
-
-/* Font weight classes */
-.font-light { font-weight: 300; }
-.font-regular { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-bold { font-weight: 700; }
-
-/* FontAwesome optimization */
-.fa, .fas, .far, .fal, .fab {
-    font-display: swap;
-}
-
-/* Performance optimization for icons */
-i[class*="fa-"], .fa {
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-/* =======================
-   NAME SIMPLE STYLES
-   ======================= */
-
-/* Override styles for name element to make it simple and clean */
-#name {
-    /* Basic styling */
-    font-size: 2.5rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    margin: 0 auto 0.8rem !important;
-    letter-spacing: -0.02em !important;
-    
-    /* Remove any fancy effects */
-    text-shadow: none !important;
-    opacity: 1 !important;
-    
-    /* Remove animations and transitions */
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    
-    /* Remove any background styling/text effects */
-    background: none !important;
-    -webkit-background-clip: initial !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background-clip: initial !important;
-    
-    /* Disable filters */
-    filter: none !important;
-    
-    /* Ensure visibility */
-    visibility: visible !important;
-    display: block !important;
-    
-    /* Ensure proper text wrapping */
-    white-space: normal !important;
-    
-    /* Text alignment */
-    text-align: center !important;
-}
-
-/* Ensure no special effects or animations on name spans or characters */
-#name span,
-#name .char {
-    /* Reset styles for spans within name */
-    display: inline !important;
-    
-    /* Make characters visible */
-    opacity: 1 !important;
-    
-    /* Remove animations */
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    
-    /* Ensure consistent styling */
-    color: inherit !important;
-    font-size: inherit !important;
-    font-weight: inherit !important;
-}
-
 /*
 	Aerial by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
+/* Custom Cursor Styles */
+:root {
+    cursor: default;
+}
+
+a, button, [role="button"], input[type="submit"], input[type="button"], .btn, .tagline-button {
+    cursor: pointer;
+}
+
+input, textarea, select {
+    cursor: text;
+}
+
+/* When loading, use wait cursor */
+.is-preload {
+    cursor: wait;
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -230,7 +119,7 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #fff8f1;
-		font-family: var(--font-primary);
+		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 15pt;
 		font-weight: 300 !important;
 		letter-spacing: -0.025em;
@@ -273,8 +162,7 @@ input, select, textarea {
 		}
 
 		.icon > .label {
-			/* display: visible; removed as invalid */
-			display: none; /* labels are hidden; screen readers use aria-label */
+			display: visible;
 		}
 
 		.icon.solid:before {
@@ -715,7 +603,7 @@ input, select, textarea {
 				position: relative;
 				top: 0;
 				width: 5.35em;
-				animation: popIn 0.5s var(--animation-timing) backwards;
+				animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 				animation-delay: calc(2.5s + (0.25s * var(--index, 0)));
 			}
 
@@ -848,7 +736,7 @@ input, select, textarea {
     width: 90vw;
     max-width: 90vw;
     min-height: 60vh;
-    padding: 3vw;
+    padding: 5vw;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -859,13 +747,13 @@ input, select, textarea {
     height: auto;
     min-height: auto; /* remove fixed height to allow growth */
     max-width: 600px;
-    margin: 1rem auto;
-    padding: 1.5rem;
+    margin: 2rem auto;
+    padding: 2rem;
 }
 
 /* Vertical Business Card - Base Mobile */
 .business-card.vertical {
-    padding: 1rem 1rem;
+    padding: 1.5rem 1.2rem;
     min-height: 22rem; /* Shorter for mobile */
     display: flex;
     flex-direction: column;
@@ -873,7 +761,7 @@ input, select, textarea {
     align-items: center;
     text-align: center;
     max-width: 600px;
-    margin: 1rem auto;
+    margin: 2rem auto;
     align-items: center;
     justify-content: center;
 }
@@ -959,7 +847,7 @@ input, select, textarea {
     justify-content: center;
     align-items: center;
     gap: 0.8rem; /* Increased gap to prevent overlap */
-    margin: var(--spacing-xs) 0 var(--spacing-md);
+    margin: var(--spacing-sm) 0 var(--spacing-lg);
     width: 100%;
 }
 
@@ -971,25 +859,6 @@ input, select, textarea {
     display: inline-flex;
     align-items: center;
     animation: fadeSlideIn 0.5s ease-out backwards;
-}
-
-/* Locations section */
-.locations {
-    margin: var(--spacing-xs) 0;
-}
-
-.locations-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.8rem;
-    width: 100%;
-}
-
-.locations-container .role-text {
-    font-size: 0.9rem;
-    opacity: 0.8;
 }
 
 .role-text:nth-child(1) { animation-delay: 3.6s; }
@@ -1012,16 +881,49 @@ input, select, textarea {
     justify-content: center;
 }
 
-/* Media query adjustments - removed conflicting rules, handled in mobile-optimizations.css */
+/* Media query adjustments */
 @media screen and (max-width: 736px) {
+    #header nav a:before {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem; /* Adjusted width */
+        height: 3.5rem; /* Adjusted height */
+        font-size: 2.5rem; /* Adjusted font size */
+        border-radius: 100%; /* Circular shape */
+        border: solid 1px #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        background-color: transparent;
+        color: #fff;
+        text-align: center;
+        line-height: 3.5rem;
+    }
+    
     .business-card.vertical {
-        padding: 1.5rem 1rem;
-        min-height: auto;
+        padding: 2em 1.2em;
+        aspect-ratio: 1.9 / 2.3;
     }
     
     .business-card h1 {
-        font-size: 2.2rem !important;
-        margin-bottom: 0.6rem;
+        font-size: 2.5em !important;
+        margin-bottom: 0.5em;
+    }
+    
+    .role-badge {
+        margin: 0.6em 0 1.2em;
+        font-size: 0.85em;
+    }
+    
+    .tagline {
+        font-size: 1em !important;
+        margin-bottom: 1.5em !important;
+        margin-top: 0.8em !important;
+    }
+    
+    .vertical .social-links {
+        padding-top: 2em;
     }
 }
 
@@ -1056,33 +958,12 @@ input, select, textarea {
 /* Enhanced Social Links with Grid Layout - Fixed Sizing with reduced spacing */
 .social-links {
     display: grid;
-    grid-template-columns: repeat(6, minmax(5.6rem, 1fr));
+    grid-template-columns: repeat(5, minmax(5.6rem, 1fr));
     gap: 0.1rem;
     width: 100%;
     justify-content: center;
     padding: 0.5rem 0;
     margin: 0 auto;
-}
-
-/* Mobile social links override */
-@media (max-width: 768px) {
-    .social-links {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        grid-gap: 1rem !important;
-        justify-items: center !important;
-        align-items: center !important;
-        width: 100% !important;
-        max-width: 300px !important;
-        margin: 0 auto !important;
-        padding: 0 !important;
-    }
-    
-    #header nav {
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-    }
 }
 
 #header nav li {
@@ -1286,7 +1167,7 @@ body.modal-open {
                 0 0 0 1px rgba(255, 255, 255, 0.1);
     overflow: hidden;
     transform: scale(0.95) translateY(10px);
-    transition: transform 0.4s var(--animation-timing);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid rgba(255, 255, 255, 0.15);
     will-change: transform;
 }
@@ -2195,7 +2076,7 @@ button, #theme-toggle {
 /* Landscape orientation */
 @media screen and (orientation: landscape) and (max-height: 36rem) {
     .social-links {
-               grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
     }
     
     .vertical .social-links-wrapper {
@@ -2361,7 +2242,7 @@ button, #theme-toggle {
 /* Social Icons Pop Animation */
 #header nav li {
     /* ... existing properties ... */
-    animation: popIn 0.5s var(--animation-timing) backwards;
+    animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 @keyframes popIn {
@@ -2454,6 +2335,25 @@ button, #theme-toggle {
     }
 }
 
+/* Custom Cursors */
+:root {
+    cursor: default;
+}
+
+/* Primary interaction elements */
+a, button, [role="button"], .social-links a {
+    cursor: pointer;
+}
+
+.tagline-button {
+    cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='white' d='M14 5l7 7-7 7'/></svg>") 12 12, pointer;
+}
+
+/* Form elements */
+input, textarea, select {
+    cursor: text;
+}
+
 /* Visual Hierarchy & Spacing */
 .business-card {
     min-height: 32rem;
@@ -2480,7 +2380,7 @@ button, #theme-toggle {
 /* Content spacing */
 .content-wrapper {
     display: grid;
-    gap: 1rem;
+    gap: 2.5rem;
     place-items: center;
 }
 
@@ -2488,7 +2388,7 @@ button, #theme-toggle {
 .tagline-button {
     width: 16rem;
     height: 4rem;
-    margin: 0.75rem auto;
+    margin: 2rem auto;
     font-size: 1.4rem;
     background: rgba(124, 177, 255, 0.15);
     border: 1px solid rgba(124, 177, 255, 0.3);
@@ -2596,7 +2496,7 @@ button, #theme-toggle {
 /* Name and Title Section - Enhanced */
 .name-and-title {
     text-align: center;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     position: relative;
 }
 
@@ -2827,14 +2727,6 @@ button, #theme-toggle {
     transition: background 0.3s, color 0.3s;
 }
 
-.role-text.storyteller-role {
-    position: relative;
-}
-
-.role-text.entrepreneur-role {
-    position: relative;
-}
-
-.role-text.engineer-role {
+.role-text.hult-role {
     position: relative;
 }

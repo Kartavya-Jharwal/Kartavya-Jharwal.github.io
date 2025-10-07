@@ -41,16 +41,9 @@
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
   --shadow-glow: 0 0 15px rgba(124, 177, 255, 0.5);
   
-  /* Animation timing */
-  --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
-  --animation-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --animation-duration-fast: 0.2s;
-  --animation-duration-normal: 0.3s;
-  --animation-duration-slow: 0.5s;
-  
   /* Typography */
-  --font-primary: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-primary: 'Source Sans Pro', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Source Sans Pro', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
   
   /* Spacing - updated for modern rem-based scale */
@@ -59,65 +52,13 @@
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
   
-  /* Mobile responsive variables */
-  --mobile-padding: 1rem;
-  --tablet-padding: 2rem;
-  --desktop-padding: 3rem;
-  
-  --mobile-font-scale: 0.9;
-  --tablet-font-scale: 1;
-  --desktop-font-scale: 1.1;
-  
-  /* Mobile viewport height fix */
-  --vh: 1vh;
-}
-
-/* Apply fonts to all text elements */
-body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select {
-    font-family: var(--font-primary);
-}
-
-/* Text rendering optimizations */
-body {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-kerning: normal;
-}
-
-/* Responsive font scaling */
-@media (max-width: 480px) {
-    :root {
-        font-size: 16px;
-    }
-    
-    body, input, select, textarea {
-        font-size: 16px !important;
-    }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    :root {
-        font-size: 15px;
-    }
-    
-    body, input, select, textarea {
-        font-size: 15px !important;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    :root {
-        font-size: 15px;
-    }
-}
-
-@media (min-width: 1025px) {
-    :root {
-        font-size: 16px;
-    }
+  /* Logo */
+  --bg-color: rgba(15, 23, 42, 0.5);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.25);
 }
 
 /* Dark theme (default) */
