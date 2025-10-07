@@ -74,8 +74,22 @@
                     if (target.matches(':hover')) {
                         cursor.classList.add('cursor-hover');
                     }
-                } else if (target.closest('.hult-role')) {
-                    cursor.classList.add('cursor-hult');
+                } else if (target.closest('.storyteller-role')) {
+                    cursor.classList.add('cursor-storyteller');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('.entrepreneur-role')) {
+                    cursor.classList.add('cursor-entrepreneur');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('.engineer-role')) {
+                    cursor.classList.add('cursor-engineer');
                     
                     // Add hover state when hovering
                     if (target.matches(':hover')) {
