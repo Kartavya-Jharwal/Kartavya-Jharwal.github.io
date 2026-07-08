@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "canonical": "https://polymath.dev/resume.json",
+    "lastModified": "2026-07-08"
+  },
+  "basics": {
+    "name": "Alex Polymath",
+    "label": "Master of All Traits",
+    "image": "",
+    "email": "alex@polymath.io",
+    "phone": "+1 (555) 123-4567",
+    "url": "https://polymath.dev",
+    "summary": "A multi-disciplinary professional operating at the intersection of systems engineering, product strategy, and economic theory.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "New York",
+      "countryCode": "US",
+      "region": "NY"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "alexpolymath",
+        "url": "https://linkedin.com/in/alexpolymath"
+      },
+      {
+        "network": "GitHub",
+        "username": "alexpolymath",
+        "url": "https://github.com/alexpolymath"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "NeoBank Global",
+      "position": "Senior Product Manager",
+      "url": "https://neobank.example",
+      "startDate": "2020-01-01",
+      "endDate": "",
+      "summary": "Led product strategy for core banking infrastructure serving 1M+ users.",
+      "highlights": [
+        {
+          "text": "Led the redesign of the core ledger system, reducing transaction latency by 40 percent and increasing throughput by 3×.",
+          "variants": ["pm-fintech", "consult-fintech", "all"]
+        },
+        {
+          "text": "Orchestrated the launch of the B2B payments API, generating $12 million in ARR within the first 18 months.",
+          "variants": ["pm-fintech", "consult-fintech", "all"]
+        },
+        {
+          "text": "Managed a cross-functional team of 15 engineers and designers across 3 timezones to deliver a compliant KYC flow.",
+          "variants": ["pm-fintech", "all"]
+        }
+      ],
+      "keywords": ["Product Management", "FinTech", "Payments", "Ledger Systems", "KYC", "Compliance"]
+    },
+    {
+      "name": "EtherLayer",
+      "position": "Core Engineer",
+      "url": "https://etherlayer.example",
+      "startDate": "2021-01-01",
+      "endDate": "",
+      "summary": "Built low-level infrastructure for Ethereum L2 scaling solutions.",
+      "highlights": [
+        {
+          "text": "Implemented a novel state-compression algorithm reducing node storage requirements by 60 percent.",
+          "variants": ["swe-web3", "all"]
+        },
+        {
+          "text": "Developed a Rust-based ZK-rollup prover that increased transaction finality speed by 2.5×.",
+          "variants": ["swe-web3", "all"]
+        },
+        {
+          "text": "Authored 4 EIPs focused on gas optimization and account abstraction.",
+          "variants": ["swe-web3", "all"]
+        }
+      ],
+      "keywords": ["Rust", "Ethereum", "ZK-Proofs", "EVM", "Systems Engineering", "Web3"]
+    },
+    {
+      "name": "DeFiPortal",
+      "position": "Head of Product",
+      "url": "https://defiportal.example",
+      "startDate": "2021-06-01",
+      "endDate": "",
+      "summary": "Product leadership for consumer-facing DeFi wallet platform.",
+      "highlights": [
+        {
+          "text": "Launched a self-custody wallet reaching 250k MAU with a 4.8 app-store rating.",
+          "variants": ["pm-web3", "all"]
+        },
+        {
+          "text": "Designed the token incentive model that grew TVL from $2 million to $180 million in 9 months.",
+          "variants": ["pm-web3", "all"]
+        },
+        {
+          "text": "Shipped a gasless swap experience that lifted conversion by 34 percent.",
+          "variants": ["pm-web3", "all"]
+        }
+      ],
+      "keywords": ["Product Management", "Web3", "DeFi", "Wallet", "Tokenomics", "UX"]
+    },
+    {
+      "name": "MBB Consulting",
+      "position": "Engagement Manager",
+      "url": "https://mbb.example",
+      "startDate": "2019-01-01",
+      "endDate": "",
+      "summary": "Strategy consulting for Fortune 500 healthcare and financial services clients.",
+      "highlights": [
+        {
+          "text": "Led a digital transformation for a Top 5 US hospital system, reducing OpEx by $40 million annually.",
+          "variants": ["consult-health", "all"]
+        },
+        {
+          "text": "Designed a patient-centric care model that increased NPS from 42 to 78 across 12 clinics.",
+          "variants": ["consult-health", "all"]
+        },
+        {
+          "text": "Built a predictive staffing model using ML, reducing nurse burnout rates by 20 percent.",
+          "variants": ["consult-health", "all"]
+        },
+        {
+          "text": "Built the digital lending strategy for a top-10 US bank, unlocking $75 million in incremental revenue.",
+          "variants": ["consult-fintech", "all"]
+        },
+        {
+          "text": "Restructured a fintech GTM motion, cutting CAC by 28 percent across three markets.",
+          "variants": ["consult-fintech", "all"]
+        },
+        {
+          "text": "Advised a regulator-facing compliance overhaul across 6 product lines.",
+          "variants": ["consult-fintech", "all"]
+        }
+      ],
+      "keywords": ["Strategy", "Consulting", "Healthcare", "FinTech", "Digital Transformation", "Operations"]
+    },
+    {
+      "name": "QuantEdge Trading",
+      "position": "Product Analyst",
+      "url": "https://quantedge.example",
+      "startDate": "2017-01-01",
+      "endDate": "2020-12-31",
+      "summary": "Product and strategy work for institutional trading desk.",
+      "highlights": [
+        {
+          "text": "Optimized order routing algorithms, resulting in a 15 bps reduction in slippage for institutional clients.",
+          "variants": ["pm-fintech", "all"]
+        },
+        {
+          "text": "Built a real-time risk monitoring dashboard used by the trading desk to manage $500 million AUM.",
+          "variants": ["pm-fintech", "all"]
+        },
+        {
+          "text": "Modeled market-structure changes affecting $500 million AUM institutional flow.",
+          "variants": ["consult-fintech", "all"]
+        },
+        {
+          "text": "Delivered a pricing strategy that improved net margins by 210 bps.",
+          "variants": ["consult-fintech", "all"]
+        }
+      ],
+      "keywords": ["Trading", "Quantitative Analysis", "Risk Management", "Algorithms", "FinTech"]
+    },
+    {
+      "name": "ChainScale",
+      "position": "Backend Engineer",
+      "url": "https://chainscale.example",
+      "startDate": "2018-01-01",
+      "endDate": "2021-05-31",
+      "summary": "Backend infrastructure for blockchain indexing and data availability.",
+      "highlights": [
+        {
+          "text": "Built a high-throughput indexing engine processing 10k events/sec with sub-100 ms latency.",
+          "variants": ["swe-web3", "all"]
+        },
+        {
+          "text": "Reduced RPC overhead by 30 percent through custom caching layers.",
+          "variants": ["swe-web3", "all"]
+        },
+        {
+          "text": "Owned the developer platform roadmap serving 3k+ integrated dApps.",
+          "variants": ["pm-web3", "all"]
+        },
+        {
+          "text": "Reduced onboarding time for new dApps from 2 weeks to 2 days.",
+          "variants": ["pm-web3", "all"]
+        }
+      ],
+      "keywords": ["Backend", "Web3", "Infrastructure", "Blockchain", "Developer Platform"]
+    },
+    {
+      "name": "HealthStrat Group",
+      "position": "Associate",
+      "url": "https://healthstrat.example",
+      "startDate": "2016-01-01",
+      "endDate": "2018-12-31",
+      "summary": "Strategy consulting for pharmaceutical and healthcare provider clients.",
+      "highlights": [
+        {
+          "text": "Conducted market entry analysis for a pharmaceutical giant entering the APAC market.",
+          "variants": ["consult-health", "all"]
+        },
+        {
+          "text": "Built financial models to evaluate the ROI of a $200 million EHR implementation.",
+          "variants": ["consult-health", "all"]
+        }
+      ],
+      "keywords": ["Strategy", "Healthcare", "Market Analysis", "Financial Modeling", "Pharmaceuticals"]
+    },
+    {
+      "name": "Various Ventures",
+      "position": "Founder / Consultant",
+      "url": "https://polymath.dev",
+      "startDate": "2015-01-01",
+      "endDate": "",
+      "summary": "Cross-domain advisory and execution for early-stage ventures.",
+      "highlights": [
+        {
+          "text": "Delivered high-impact results across FinTech, Web3, Healthcare, and consumer sectors.",
+          "variants": ["all"]
+        },
+        {
+          "text": "Bridged technical execution and business strategy for multiple seed-stage startups.",
+          "variants": ["all"]
+        },
+        {
+          "text": "Developed a framework for cross-domain knowledge transfer to accelerate product development.",
+          "variants": ["all"]
+        }
+      ],
+      "keywords": ["Entrepreneurship", "Advisory", "Multi-disciplinary", "Startups", "Strategy"]
+    }
+  ],
+  "volunteer": [],
+  "education": [
+    {
+      "institution": "Stanford University",
+      "url": "https://stanford.edu",
+      "area": "Computer Science",
+      "studyType": "Master of Science",
+      "startDate": "2015-09-01",
+      "endDate": "2017-06-01",
+      "score": "",
+      "courses": [],
+      "summary": "Distributed Systems"
+    },
+    {
+      "institution": "MIT",
+      "url": "https://mit.edu",
+      "area": "Economics",
+      "studyType": "Bachelor of Science",
+      "startDate": "2011-09-01",
+      "endDate": "2015-06-01",
+      "score": "",
+      "courses": [],
+      "summary": "Minor, Mathematics"
+    }
+  ],
+  "awards": [],
+  "certificates": [],
+  "publications": [],
+  "skills": [
+    {
+      "name": "Product Management",
+      "level": "Expert",
+      "keywords": ["Product Strategy", "Roadmapping", "Stakeholder Management", "Agile", "Scrum"],
+      "variants": ["pm-fintech", "pm-web3", "consult-fintech", "all"]
+    },
+    {
+      "name": "Technical Skills",
+      "level": "Expert",
+      "keywords": ["SQL", "Python", "Rust", "Solidity", "Go", "TypeScript"],
+      "variants": ["swe-web3", "pm-fintech", "pm-web3", "all"]
+    },
+    {
+      "name": "Systems Engineering",
+      "level": "Expert",
+      "keywords": ["Distributed Systems", "Linux Kernel", "Cryptography", "Kubernetes", "Performance Optimization"],
+      "variants": ["swe-web3", "all"]
+    },
+    {
+      "name": "FinTech Expertise",
+      "level": "Expert",
+      "keywords": ["API Design", "PCI-DSS", "Payments", "Regulatory Compliance", "Trading Systems"],
+      "variants": ["pm-fintech", "consult-fintech", "all"]
+    },
+    {
+      "name": "Web3 Expertise",
+      "level": "Expert",
+      "keywords": ["Tokenomics", "DAO Governance", "Wallet UX", "EVM", "ZK-Proofs", "DeFi"],
+      "variants": ["swe-web3", "pm-web3", "all"]
+    },
+    {
+      "name": "Strategy & Consulting",
+      "level": "Expert",
+      "keywords": ["Financial Modeling", "Operational Excellence", "Market Sizing", "GTM Strategy", "Lean Six Sigma"],
+      "variants": ["consult-health", "consult-fintech", "all"]
+    },
+    {
+      "name": "Healthcare Domain",
+      "level": "Advanced",
+      "keywords": ["Digital Transformation", "Value-Based Care", "EHR Systems", "Healthcare Operations"],
+      "variants": ["consult-health", "all"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [],
+  "references": [],
+  "projects": []
+}

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Polymath Static Resume Engine — a hyper-specialized, recruiter-facing adaptive resume. Master of All Traits.">
+<title>The Polymath Static Resume Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* =================================================================
+   RESET
+   ================================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+button, select { font-family: inherit; }
+
+/* =================================================================
+   DESIGN TOKENS — ONE BASE UNIT SYSTEM
+   Every vertical dimension derives from --u (1 leading = base font × --lh)
+   This is the prerequisite for baseline grid locking.
+   ================================================================= */
+:root {
+  /* ---- base font and leading ---- */
+  --bf: clamp(9px, 1.25vh, 16px);
+  --lh: 1.3;                    /* coupled to narrow measure (~55-70 chars) */
+  --u:  calc(var(--bf) * var(--lh));
+
+  /* ---- modular scale (minor third 1.2) — only 3 sizes ---- */
+  --s0: var(--bf);               /* 1.000× body */
+  --s1: calc(var(--bf) * 1.2);   /* 1.200× labels */
+  --s2: calc(var(--bf) * 1.44);   /* 1.440× name */
+
+  /* ---- tracking: inverse relationship to size ---- */
+  --tr-display: -0.025em;        /* tight at display size */
+  --tr-label:   0.06em;           /* open at small size */
+  --tr-body:    0;
+
+  /* ---- spacing: strict integer multiples of 1u ---- */
+  --sp-section: calc(var(--u) * 2.25);
+  --sp-item:    calc(var(--u) * 1.5);
+  --sp-tight:   calc(var(--u) * 0.4);
+
+  /* ---- surfaces ---- */
+  --bg:    #0a0a0a;
+  --panel: #0d0d0d;
+  --line:  #262626;
+  --muted: #737373;
+  --muted2:#525252;
+  --white: #fafafa;
+
+  /* ---- fonts with optical-size axis ---- */
+  --sans:  'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+}
+
+/* =================================================================
+   TYPOGRAPHIC ENGINE — BOOK-LEVEL RIGOR ON A SINGLE PAGE
+   ================================================================= */
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--white);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;           /* OpenType GPOS kerning pairs activated */
+}
+::selection { background: var(--white); color: #000; }
+
+/* ============================================================
+   AMBIENT GLOWS — brutalist wrapper pulling focus
+   ============================================================ */
+.glow {
+  position: fixed;
+  width: 38vw; height: 38vw;
+  background: rgba(255,255,255,0.04);
+  filter: blur(130px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.glow.tl { top: -12%; left: -12%; }
+.glow.br { bottom: -12%; right: -12%; }
+
+/* ============================================================
+   APP LAYOUT — strict 100vh/100vw, no scroll
+   ============================================================ */
+.app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ---- sidebars ---- */
+.aside {
+  width: 280px;
+  flex-shrink: 0;
+  height: 100%;
+  padding: 32px;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+}
+.aside.l { border-right: 1px solid var(--line); justify-content: space-between; }
+.aside.r { border-left: 1px solid var(--line); }
+
+/* ---- main stage ---- */
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+/* ---- brand mark with div glow ---- */
+.brand {
+  width: 40px; height: 40px;
+  background: var(--white);
+  color: #000;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 20px;
+  border-radius: 2px;
+  box-shadow: 0 0 18px rgba(255,255,255,0.3);
+  margin-bottom: 40px;
+}
+
+/* ============================================================
+   A4 SHEET WRAPPER — 1:√2 aspect ratio
+   ============================================================ */
+.wrap {
+  aspect-ratio: 1 / 1.4142857;
+  height: 92vh;
+  max-width: 100%;
+  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.7);
+  transition: opacity .28s ease, transform .28s ease;
+}
+.wrap.swap { opacity: 0; transform: translateY(5px); }
+
+/* ============================================================
+   A4 SHEET — VAN DE GRAAF CANON MARGINS + BASELINE GRID
+   A4: 210mm × 297mm (aspect 0.707)
+   Canon-derived margins: left=42mm, right=21mm, top=28mm, bottom=21mm
+   These are geometric functions of the page, not arbitrary inches.
+   ============================================================ */
+.sheet {
+  background: #fff;
+  color: #111;
+  width: 100%; height: 100%;
+  /* Van de Graaf canon margins for A4 */
+  padding: calc(1.06 * var(--u)) calc(1.85 * var(--u)) calc(1.06 * var(--u)) calc(2.97 * var(--u));
+  font-family: var(--serif);
+  font-size: var(--s0);
+  line-height: var(--lh);
+  font-optical-sizing: auto;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: proportional-nums oldstyle-nums;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+/* ---- header ---- */
+.r-hdr {
+  text-align: center;
+  padding-bottom: calc(var(--u) * 0.6);
+  margin-bottom: var(--sp-section);
+  border-bottom: 1.5px solid #111;
+}
+
+/* Name: balanced wrap + kerning + tight tracking */
+.r-name {
+  font-family: var(--sans);
+  font-size: var(--s2);
+  font-weight: 400;
+  letter-spacing: var(--tr-display);
+  line-height: 1.05;
+  margin-bottom: calc(var(--u) * 0.3);
+  text-wrap: balance;               /* balances multi-line name */
+}
+
+.r-ctc {
+  font-family: var(--sans);
+  font-size: calc(var(--s0) * 0.82);
+  color: #555;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.r-ctc .bar { margin: 0 0.55em; color: #bbb; font-weight: 300; }
+
+/* ---- section labels: true small caps, open tracking ---- */
+.r-lbl {
+  font-family: var(--sans);
+  font-size: var(--s1);
+  font-weight: 400;
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--tr-label);
+  border-bottom: 0.75px solid #ccc;
+  padding-bottom: calc(var(--u) * 0.15);
+  margin-bottom: calc(var(--u) * 0.55);
+}
+
+/* ---- sections ---- */
+.r-sec { margin-bottom: var(--sp-section); }
+.r-sec:last-child { margin-bottom: 0; }
+
+.r-sum { text-align: justify; hyphens: auto; text-wrap: pretty; }
+
+/* ---- experience / education items ---- */
+.r-it { margin-bottom: var(--sp-item); }
+.r-it:last-child { margin-bottom: 0; }
+
+.r-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1em;
+}
+
+/* Company: weight 500 only (one variable for hierarchy) */
+.r-co {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.r-dt {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums lining-nums;
+  white-space: nowrap;
+  text-align: right;
+  color: #444;
+}
+
+.r-role { font-style: italic; margin-top: calc(var(--u) * 0.1); margin-bottom: calc(var(--u) * 0.3); }
+
+.r-det { text-align: right; color: #555; }
+
+/* ---- bullets: optical hanging punctuation ---- */
+/* Bullets hang negative so the geometric dash doesn't register as an indent.
+   Hand-tuned for Source Serif 4 / Inter. This approximates protrusion. */
+.r-ul {
+  list-style: none;
+  padding-left: 1.1em;
+  margin: 0;
+}
+.r-ul li {
+  position: relative;
+  text-align: justify;
+  hyphens: auto;
+  text-wrap: pretty;
+  margin-bottom: calc(var(--u) * 0.2);
+}
+.r-ul li::before {
+  content: '\2013';
+  position: absolute;
+  left: -1.1em;
+  color: #777;
+}
+
+/* ---- skills ---- */
+.r-sk { text-align: justify; hyphens: auto; }
+.r-sk b { font-family: var(--sans); font-weight: 500; }
+
+/* ============================================================
+   MATRIX CONTROLS — neumorphic (soft inset/outset depth)
+   ============================================================ */
+.mtx { display: flex; flex-direction: column; gap: 14px; }
+.mtx.hd { margin-bottom: 6px; }
+.mtx-row { display: flex; align-items: center; gap: 10px; }
+.mtx-pfx { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.neu {
+  flex: 1;
+  background: #171717;
+  color: var(--white);
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  box-shadow: 3px 3px 0 0 #000;
+  transition: transform 75ms, box-shadow 75ms;
+}
+.neu:active { transform: translate(2px,2px); box-shadow: none; }
+.neu:focus { border-color: #444; }
+.mtx-link {
+  margin-top: 12px;
+  background: none; border: none;
+  color: var(--muted); font-size: 11px;
+  text-align: left; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 4px;
+  transition: color .2s;
+}
+.mtx-link:hover { color: var(--white); }
+
+.sd-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* ============================================================
+   METRICS — odometer roll animation
+   ============================================================ */
+.metrics { display: flex; flex-direction: column; }
+.metric { margin-bottom: 28px; }
+.metric:last-child { margin-bottom: 0; }
+.metric .k {
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.metric .v {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  height: 28px;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.metric .v span { display: block; }
+.roll { animation: roll .35s cubic-bezier(.2,.7,.2,1); }
+@keyframes roll {
+  0%   { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+/* ============================================================
+   DOWNLOAD BUTTON
+   ============================================================ */
+.dl {
+  margin-top: auto;
+  display: block; width: 100%;
+  text-align: center; text-decoration: none;
+  padding: 14px;
+  font-size: 10px; font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.16em;
+  background: var(--white); color: #000;
+  box-shadow: 3px 3px 0 0 rgba(255,255,255,0.15);
+  transition: transform 75ms, box-shadow 75ms, background .2s;
+}
+.dl:hover { background: #e5e5e5; }
+.dl:active { transform: translate(2px,2px); box-shadow: none; }
+
+.audio {
+  margin-top: 20px;
+  border: 1px dashed var(--line);
+  border-radius: 5px;
+  padding: 10px 12px;
+  display: flex; align-items: center; gap: 8px;
+  color: var(--muted2);
+  font-size: 9px;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+}
+.audio .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted2); flex-shrink: 0; }
+
+.foot {
+  font-size: 9px;
+  color: var(--muted2);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.14em;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   MOBILE SPLASH BLOCKER
+   ============================================================ */
+.splash {
+  position: fixed; inset: 0; z-index: 50;
+  background: var(--bg);
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 32px;
+}
+.splash.on { display: flex; }
+.splash .brand { margin-bottom: 28px; width: 56px; height: 56px; font-size: 26px; box-shadow: 0 0 22px rgba(255,255,255,0.3); }
+.splash h1 { font-size: 22px; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 12px; }
+.splash p { color: var(--muted); font-size: 14px; max-width: 300px; line-height: 1.6; margin-bottom: 36px; }
+.splash button {
+  padding: 14px 28px; font-weight: 700; font-size: 10px;
+  font-variant-caps: all-small-caps; letter-spacing: 0.16em;
+  background: var(--white); color: #000; border: none; cursor: pointer;
+  box-shadow: 3px 3px 0 0 rgba(255,255,255,0.15);
+  transition: transform 75ms, box-shadow 75ms;
+}
+.splash button:active { transform: translate(2px,2px); box-shadow: none; }
+
+/* ============================================================
+   MOBILE DRAGGABLE DRAWER
+   ============================================================ */
+.drawer {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+  border-radius: 14px 14px 0 0;
+  padding: 6px 20px 20px;
+  transform: translateY(calc(100% - 52px));
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  touch-action: none;
+}
+.drawer.open { transform: translateY(0); }
+.drawer.drag { transition: none; }
+.grip {
+  width: 40px; height: 4px; border-radius: 2px;
+  background: var(--muted2);
+  margin: 6px auto 12px; cursor: grab;
+}
+.drawer .peek {
+  text-align: center; font-size: 10px;
+  font-variant-caps: all-small-caps; letter-spacing: 0.12em;
+  color: var(--muted); margin-bottom: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1023px) {
+  body { overflow: auto; }
+  .aside { display: none; }
+  .app { flex-direction: column; height: auto; min-height: 100vh; }
+  .stage { padding: 12px 10px 130px; align-items: flex-start; }
+  .wrap { height: auto; aspect-ratio: auto; width: 100%; }
+  .sheet {
+    height: auto;
+    /* Mobile margins are relaxed but still maintain rhythm */
+    padding: calc(0.8 * var(--u)) calc(1.5 * var(--u));
+  }
+  .sheet { font-size: 13px; line-height: 1.55; }
+  .r-name { font-size: 22px; letter-spacing: -0.01em; }
+  .r-ctc { font-size: 11px; }
+  .r-lbl { font-size: 11.5px; letter-spacing: 0.05em; }
+  .r-co { font-size: 13px; }
+  .r-dt { font-size: 12px; }
+  .r-role { font-size: 13px; }
+  .r-ul li { font-size: 13px; }
+  .r-sum { font-size: 13px; }
+  .r-sk { font-size: 13px; }
+  .r-ul { padding-left: 1.1em; }
+  .r-ul li::before { left: -1.1em; }
+}
+@media (min-width: 1024px) { .drawer { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="glow tl"></div>
+<div class="glow br"></div>
+
+<!-- MOBILE SPLASH BLOCKER -->
+<div class="splash" id="splash">
+  <div class="brand">P</div>
+  <h1>The Polymath Engine</h1>
+  <p>A hyper-specialized, adaptive resume experience. An A4 document renders best on wider viewports — enter the portal to view the mobile-optimized profile.</p>
+  <button id="enterBtn">Enter Experience</button>
+</div>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- LEFT: brand + matrix -->
+  <aside class="aside l">
+    <div>
+      <div class="brand">P</div>
+      <div class="mtx" id="mxD"></div>
+    </div>
+    <div class="foot">&copy;&nbsp;2026 Alex Polymath<br>Static Engine &middot; v1.0.4</div>
+  </aside>
+
+  <!-- CENTER: A4 stage -->
+  <main class="stage">
+    <div class="wrap" id="wrap">
+      <div class="sheet" id="sheet"></div>
+    </div>
+  </main>
+
+  <!-- RIGHT: metrics + download -->
+  <aside class="aside r">
+    <div class="sd-lbl" style="margin-bottom:32px">Performance Metrics</div>
+    <div class="metrics" id="met"></div>
+    <a class="dl" id="dlD" href="#" download>Download PDF</a>
+    <div class="audio"><span class="dot"></span>Soundtrack &middot; Phase&nbsp;II</div>
+  </aside>
+
+</div>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <div class="grip" id="grip"></div>
+  <div class="peek">Specialization Matrix &amp; Downloads</div>
+  <div class="mtx" id="mxM"></div>
+  <a class="dl" id="dlM" href="#" download>Download PDF</a>
+</div>
+
+<script>
+/* =================================================================
+   DATA LAYER — extended JSON Resume / curated Set Pairs
+   All dates use en dashes (– U+2013), not hyphens.
+   ================================================================= */
+var P = [
+  {
+    id:'pm-fintech', role:'Product Manager', industry:'FinTech', tgt:true,
+    m:{ Experience:'8+ Yrs', Projects:'12+', Impact:'$50M+', Specialization:'High' },
+    d:{
+      name:'Alex Polymath',
+      ctc:{ loc:'New York, NY', em:'alex@polymath.io', ph:'+1\u00a0(555)\u00a0123\u20134567', lk:'in/alexpolymath' },
+      sum:'Strategic Product Leader with a track record of scaling FinTech platforms from 0\u00a0to\u00a01\u00a0million+ users. Expert in regulatory compliance, payment orchestration, and high-frequency trading systems.',
+      exp:[
+        { co:'NeoBank Global', role:'Senior Product Manager', dt:'2020\u2013Present', bl:[
+          'Led the redesign of the core ledger system, reducing transaction latency by 40\u00a0percent and increasing throughput by 3\u00d7.',
+          'Orchestrated the launch of the B2B payments API, generating $12\u00a0million in ARR within the first 18\u00a0months.',
+          'Managed a cross-functional team of 15\u00a0engineers and designers across 3\u00a0timezones to deliver a compliant KYC flow.'
+        ]},
+        { co:'QuantEdge Trading', role:'Product Analyst', dt:'2017\u20132020', bl:[
+          'Optimized order routing algorithms, resulting in a 15\u00a0bps reduction in slippage for institutional clients.',
+          'Built a real-time risk monitoring dashboard used by the trading desk to manage $500\u00a0million AUM.'
+        ]}
+      ],
+      edu:[
+        { sch:'Stanford University', deg:'MS, Computer Science', dt:'2015\u20132017', det:'Distributed Systems' },
+        { sch:'MIT', deg:'BS, Economics', dt:'2011\u20132015', det:'Minor, Mathematics' }
+      ],
+      sk:['Product Strategy','SQL / Python','API Design','PCI-DSS','Agile / Scrum','Market Analysis']
+    }
+  },
+  {
+    id:'swe-web3', role:'Systems Engineer', industry:'Web3', tgt:true,
+    m:{ Experience:'6+ Yrs', Projects:'20+', Impact:'100k TVL', Specialization:'Expert' },
+    d:{
+      name:'Alex Polymath',
+      ctc:{ loc:'Remote / SF', em:'alex@polymath.io', ph:'+1\u00a0(555)\u00a0123\u20134567', lk:'gh/alexpolymath' },
+      sum:'Low-level systems engineer specializing in EVM optimization, ZK-proofs, and high-performance Rust implementation for decentralized infrastructure.',
+      exp:[
+        { co:'EtherLayer', role:'Core Engineer', dt:'2021\u2013Present', bl:[
+          'Implemented a novel state-compression algorithm reducing node storage requirements by 60\u00a0percent.',
+          'Developed a Rust-based ZK-rollup prover that increased transaction finality speed by 2.5\u00d7.',
+          'Authored 4\u00a0EIPs focused on gas optimization and account abstraction.'
+        ]},
+        { co:'ChainScale', role:'Backend Engineer', dt:'2018\u20132021', bl:[
+          'Built a high-throughput indexing engine processing 10k\u00a0events/sec with sub-100\u00a0ms latency.',
+          'Reduced RPC overhead by 30\u00a0percent through custom caching layers.'
+        ]}
+      ],
+      edu:[
+        { sch:'Stanford University', deg:'MS, Computer Science', dt:'2015\u20132017', det:'Distributed Systems' }
+      ],
+      sk:['Rust','Solidity','Go','Linux Kernel','Cryptography','Kubernetes']
+    }
+  },
+  {
+    id:'consult-health', role:'Strategy Consultant', industry:'Healthcare', tgt:true,
+    m:{ Experience:'5+ Yrs', Projects:'30+', Impact:'$100M OpEx', Specialization:'Master' },
+    d:{
+      name:'Alex Polymath',
+      ctc:{ loc:'Boston, MA', em:'alex@polymath.io', ph:'+1\u00a0(555)\u00a0123\u20134567', lk:'in/alexpolymath' },
+      sum:'Results-driven strategist with expertise in digital transformation for Tier\u00a01 healthcare providers. Specialized in operational efficiency and value-based care models.',
+      exp:[
+        { co:'MBB Consulting', role:'Engagement Manager', dt:'2019\u2013Present', bl:[
+          'Led a digital transformation for a Top\u00a05 US hospital system, reducing OpEx by $40\u00a0million annually.',
+          'Designed a patient-centric care model that increased NPS from 42\u00a0to\u00a078 across 12\u00a0clinics.',
+          'Built a predictive staffing model using ML, reducing nurse burnout rates by 20\u00a0percent.'
+        ]},
+        { co:'HealthStrat Group', role:'Associate', dt:'2016\u20132019', bl:[
+          'Conducted market entry analysis for a pharmaceutical giant entering the APAC market.',
+          'Built financial models to evaluate the ROI of a $200\u00a0million EHR implementation.'
+        ]}
+      ],
+      edu:[
+        { sch:'MIT', deg:'BS, Economics', dt:'2011\u20132015', det:'Minor, Mathematics' }
+      ],
+      sk:['Financial Modeling','Operational Excellence','Stakeholder Mgmt','Market Sizing','Lean Six Sigma']
+    }
+  },
+  {
+    id:'pm-web3', role:'Product Manager', industry:'Web3', tgt:false,
+    m:{ Experience:'7+ Yrs', Projects:'15+', Impact:'250k Users', Specialization:'High' },
+    d:{
+      name:'Alex Polymath',
+      ctc:{ loc:'Remote', em:'alex@polymath.io', ph:'+1\u00a0(555)\u00a0123\u20134567', lk:'in/alexpolymath' },
+      sum:'Crypto-native product leader translating complex on-chain mechanics into intuitive consumer experiences. Expert in tokenomics, DAO governance, and wallet UX.',
+      exp:[
+        { co:'DeFiPortal', role:'Head of Product', dt:'2021\u2013Present', bl:[
+          'Launched a self-custody wallet reaching 250k\u00a0MAU with a 4.8\u00a0app-store rating.',
+          'Designed the token incentive model that grew TVL from $2\u00a0million to $180\u00a0million in 9\u00a0months.',
+          'Shipped a gasless swap experience that lifted conversion by 34\u00a0percent.'
+        ]},
+        { co:'ChainScale', role:'Product Manager', dt:'2018\u20132021', bl:[
+          'Owned the developer platform roadmap serving 3k+\u00a0integrated dApps.',
+          'Reduced onboarding time for new dApps from 2\u00a0weeks to 2\u00a0days.'
+        ]}
+      ],
+      edu:[
+        { sch:'Stanford University', deg:'MS, Computer Science', dt:'2015\u20132017', det:'Distributed Systems' }
+      ],
+      sk:['Tokenomics','DAO Governance','Wallet UX','Product Strategy','Solidity Basics','Growth']
+    }
+  },
+  {
+    id:'consult-fintech', role:'Strategy Consultant', industry:'FinTech', tgt:false,
+    m:{ Experience:'6+ Yrs', Projects:'22+', Impact:'$75M Rev', Specialization:'Master' },
+    d:{
+      name:'Alex Polymath',
+      ctc:{ loc:'New York, NY', em:'alex@polymath.io', ph:'+1\u00a0(555)\u00a0123\u20134567', lk:'in/alexpolymath' },
+      sum:'Financial services strategist advising banks and fintechs on digital P&L, go-to-market, and regulatory strategy. Fluent in payments, lending, and wealth management.',
+      exp:[
+        { co:'MBB Consulting', role:'Engagement Manager', dt:'2019\u2013Present', bl:[
+          'Built the digital lending strategy for a top-10 US bank, unlocking $75\u00a0million in incremental revenue.',
+          'Restructured a fintech GTM motion, cutting CAC by 28\u00a0percent across three markets.',
+          'Advised a regulator-facing compliance overhaul across 6\u00a0product lines.'
+        ]},
+        { co:'QuantEdge Trading', role:'Strategy Associate', dt:'2016\u20132019', bl:[
+          'Modeled market-structure changes affecting $500\u00a0million AUM institutional flow.',
+          'Delivered a pricing strategy that improved net margins by 210\u00a0bps.'
+        ]}
+      ],
+      edu:[
+        { sch:'MIT', deg:'BS, Economics', dt:'2011\u20132015', det:'Minor, Mathematics' }
+      ],
+      sk:['Financial Modeling','Payments','Regulatory Strategy','GTM','Market Sizing','P&L Ownership']
+    }
+  },
+  {
+    id:'all', role:'Polymath', industry:'Universal', tgt:false, fb:true,
+    m:{ Experience:'10+ Yrs', Projects:'50+', Impact:'Multi-Domain', Specialization:'Omni' },
+    d:{
+      name:'Alex Polymath',
+      ctc:{ loc:'Global', em:'alex@polymath.io', ph:'+1\u00a0(555)\u00a0123\u20134567', lk:'in/alexpolymath' },
+      sum:'A multi-disciplinary professional operating at the intersection of systems engineering, product strategy, and economic theory. A Master of All Traits navigating high-complexity environments across diverse sectors.',
+      exp:[
+        { co:'Various Ventures', role:'Founder / Consultant', dt:'2015\u2013Present', bl:[
+          'Delivered high-impact results across FinTech, Web3, Healthcare, and consumer sectors.',
+          'Bridged technical execution and business strategy for multiple seed-stage startups.',
+          'Developed a framework for cross-domain knowledge transfer to accelerate product development.'
+        ]}
+      ],
+      edu:[
+        { sch:'Stanford University', deg:'MS, Computer Science', dt:'2015\u20132017', det:'Distributed Systems' },
+        { sch:'MIT', deg:'BS, Economics', dt:'2011\u20132015', det:'Mathematics' }
+      ],
+      sk:['Systems Design','Strategic Planning','Econometrics','Rapid Prototyping','Technical Leadership','Storytelling']
+    }
+  }
+];
+
+/* =================================================================
+   UTILITIES
+   ================================================================= */
+var H = { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' };
+function esc(s) { return String(s).replace(/[&<>"]/g, function(c){ return H[c]; }); }
+
+/* Non-breaking space between number and unit (micro-typography) */
+function nb(s) { return s.replace(/(\d)\s+(?=[A-Za-z%$€£])/g, '$1\u00a0'); }
+
+function slug(s) { return s.replace(/\s+/g,'_').replace(/[^\w]/g,''); }
+function pdfName(p) { return 'Alex_Polymath_Resume_'+slug(p.role)+'_'+slug(p.industry)+'.pdf'; }
+function pdfHref(p) { return '/resumes/'+pdfName(p); }
+function track(ev, obj) { try { console.log('[telemetry]', ev, obj); } catch(e){} }
+
+/* =================================================================
+   STATE
+   ================================================================= */
+var cur = null;
+
+function byId(id) {
+  for (var i=0;i<P.length;i++) if(P[i].id===id) return P[i];
+  return null;
+}
+
+function roles() {
+  var seen={}, out=[];
+  for (var i=0;i<P.length;i++) if(!seen[P[i].role]) { seen[P[i].role]=1; out.push(P[i].role); }
+  return out;
+}
+
+function industries(role) {
+  var out=[];
+  for (var i=0;i<P.length;i++) if(P[i].role===role) out.push(P[i].industry);
+  return out;
+}
+
+function pickInit() {
+  var sp = new URLSearchParams(location.search);
+  var r = sp.get('role'), in_ = sp.get('industry');
+  if (r && in_) {
+    for (var i=0;i<P.length;i++) {
+      if (P[i].role.toLowerCase()===r.toLowerCase() && P[i].industry.toLowerCase()===in_.toLowerCase()) {
+        track('deeplink',{pair:P[i].id});
+        return P[i];
+      }
+    }
+  }
+  var tgt=[];
+  for (var i=0;i<P.length;i++) if(P[i].tgt) tgt.push(P[i]);
+  var pick = tgt[Math.floor(Math.random()*tgt.length)];
+  track('cold_visit',{pair:pick.id});
+  return pick;
+}
+
+/* =================================================================
+   RENDER — A4 RESUME (Van de Graaf + Baseline Grid + Hanging Punctuation)
+   ================================================================= */
+function renderSheet(p) {
+  var d = p.d;
+  var ctc = [d.ctc.loc, d.ctc.em, d.ctc.ph, d.ctc.lk].map(esc).join('<span class="bar">\u007c</span>');
+
+  var exp = d.exp.map(function(e){
+    var bl = e.bl.map(function(b){ return '<li>'+nb(esc(b))+'</li>'; }).join('');
+    return '<div class="r-it"><div class="r-row"><span class="r-co">'+esc(e.co)+'</span><span class="r-dt">'+esc(e.dt)+'</span></div>'
+      +'<div class="r-role">'+esc(e.role)+'</div>'
+      +'<ul class="r-ul">'+bl+'</ul></div>';
+  }).join('');
+
+  var edu = d.edu.map(function(e){
+    return '<div class="r-it"><div class="r-row"><span class="r-co">'+esc(e.sch)+'</span><span class="r-dt">'+esc(e.dt)+'</span></div>'
+      +'<div class="r-row"><span class="r-role">'+esc(e.deg)+'</span><span class="r-det">'+esc(e.det)+'</span></div></div>';
+  }).join('');
+
+  return '<div class="r-hdr"><div class="r-name">'+esc(d.name)+'</div><div class="r-ctc">'+ctc+'</div></div>'
+    +'<div class="r-sec"><div class="r-lbl">Professional Summary</div><p class="r-sum">'+nb(esc(d.sum))+'</p></div>'
+    +'<div class="r-sec"><div class="r-lbl">Professional Experience</div>'+exp+'</div>'
+    +'<div class="r-sec"><div class="r-lbl">Education</div>'+edu+'</div>'
+    +'<div class="r-sec"><div class="r-lbl">Technical Skills &amp; Interests</div><p class="r-sk"><b>Skills: </b>'+esc(d.sk.join(', '))+'</p></div>';
+}
+
+/* =================================================================
+   RENDER — METRICS (odometer roll)
+   ================================================================= */
+function renderMet(p) {
+  var el = document.getElementById('met');
+  var html = '';
+  for (var k in p.m) {
+    html += '<div class="metric"><div class="k">'+esc(k)+'</div><div class="v"><span class="roll">'+esc(p.m[k])+'</span></div></div>';
+  }
+  el.innerHTML = html;
+}
+
+/* =================================================================
+   RENDER — MATRIX (Pentagram-style)
+   ================================================================= */
+function renderMx(id) {
+  var el = document.getElementById(id);
+  var rs = roles(), ins = industries(cur.role);
+  var html = '<div class="sd-lbl mtx-hd">Specialization Matrix</div>'
+    +'<div class="mtx-row"><span class="mtx-pfx">I am a</span><select class="neu" data-k="role">'
+    +rs.map(function(r){ return '<option value="'+esc(r)+'"'+(r===cur.role?' selected':'')+'>'+esc(r)+'</option>'; }).join('')
+    +'</select></div>'
+    +'<div class="mtx-row"><span class="mtx-pfx">for</span><select class="neu" data-k="ind">'
+    +ins.map(function(i){ return '<option value="'+esc(i)+'"'+(i===cur.industry?' selected':'')+'>'+esc(i)+'</option>'; }).join('')
+    +'</select></div>'
+    +'<button class="mtx-link" data-k="fb">View Full Polymath Profile</button>';
+  el.innerHTML = html;
+  el.querySelector('[data-k="role"]').addEventListener('change', function(e){
+    var r = e.target.value, i = industries(r)[0];
+    for (var j=0;j<P.length;j++) { if(P[j].role===r && P[j].industry===i) { sel(P[j].id); break; } }
+  });
+  el.querySelector('[data-k="ind"]').addEventListener('change', function(e){
+    for (var j=0;j<P.length;j++) { if(P[j].role===cur.role && P[j].industry===e.target.value) { sel(P[j].id); break; } }
+  });
+  el.querySelector('[data-k="fb"]').addEventListener('click', function(){
+    for (var j=0;j<P.length;j++) { if(P[j].fb) { sel(P[j].id); break; } }
+  });
+}
+
+/* =================================================================
+   RENDER — DOWNLOAD
+   ================================================================= */
+function renderDl(p) {
+  [document.getElementById('dlD'), document.getElementById('dlM')].forEach(function(a){
+    if (!a) return;
+    a.setAttribute('href', pdfHref(p));
+    a.setAttribute('download', pdfName(p));
+    a.onclick = function(){ track('download',{pair:p.id,file:pdfName(p)}); };
+  });
+}
+
+/* =================================================================
+   SELECT / SWAP
+   ================================================================= */
+function sel(id, skipHist) {
+  var p = byId(id); if (!p) return;
+  cur = p;
+  track('view_pair',{pair:p.id});
+  if (!skipHist) {
+    var u = new URL(location.href);
+    u.searchParams.set('role',p.role); u.searchParams.set('industry',p.industry);
+    history.pushState({},'',u);
+  }
+  var w = document.getElementById('wrap');
+  w.classList.add('swap');
+  setTimeout(function(){
+    document.getElementById('sheet').innerHTML = renderSheet(p);
+    renderMet(p); renderMx('mxD'); renderMx('mxM'); renderDl(p);
+    w.classList.remove('swap');
+  }, 160);
+}
+
+/* =================================================================
+   MOBILE: splash + draggable drawer
+   ================================================================= */
+function initMobile() {
+  var isMob = window.matchMedia('(max-width:1023px)').matches;
+  var splash = document.getElementById('splash');
+  if (isMob) splash.classList.add('on');
+  document.getElementById('enterBtn').addEventListener('click', function(){
+    splash.classList.remove('on');
+    document.getElementById('drawer').classList.add('open');
+    setTimeout(function(){ document.getElementById('drawer').classList.remove('open'); }, 1400);
+  });
+
+  var dr = document.getElementById('drawer'), grip = document.getElementById('grip');
+  var sy=0, so=false, dragging=false;
+  function onStart(y) { dragging=true; sy=y; so=dr.classList.contains('open'); dr.classList.add('drag'); }
+  function onMove(y) {
+    if (!dragging) return;
+    var dy=y-sy, base=so?0:dr.offsetHeight-52, next=Math.min(Math.max(base+dy,0),dr.offsetHeight-52);
+    dr.style.transform='translateY('+next+'px)';
+  }
+  function onEnd() {
+    if (!dragging) return;
+    dragging=false; dr.classList.remove('drag'); dr.style.transform=''; dr.classList.toggle('open');
+  }
+  grip.addEventListener('touchstart',function(e){onStart(e.touches[0].clientY);},{passive:true});
+  window.addEventListener('touchmove',function(e){onMove(e.touches[0].clientY);},{passive:true});
+  window.addEventListener('touchend',onEnd);
+  grip.addEventListener('mousedown',function(e){onStart(e.clientY);e.preventDefault();});
+  window.addEventListener('mousemove',function(e){onMove(e.clientY);});
+  window.addEventListener('mouseup',onEnd);
+  grip.addEventListener('click',function(){dr.classList.toggle('open');});
+}
+
+/* =================================================================
+   BOOT
+   ================================================================= */
+window.addEventListener('popstate', function(){ var p=pickInit(); sel(p.id,true); });
+
+cur = pickInit();
+document.getElementById('sheet').innerHTML = renderSheet(cur);
+renderMet(cur); renderMx('mxD'); renderMx('mxM'); renderDl(cur);
+initMobile();
+</script>
+</body>
+</html>

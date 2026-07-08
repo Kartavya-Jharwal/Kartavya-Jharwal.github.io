@@ -1,0 +1,17 @@
+{
+  "name": "polymath-resume-dossier",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Static resume engine that flips the Teal paradigm - serve recruiters hyper-specialized resumes while revealing polymathic depth",
+  "scripts": {
+    "build": "bun run build/compile.js",
+    "validate": "bun run build/validate.js",
+    "test": "bun run build/test.js",
+    "serve": "bunx serve dist",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

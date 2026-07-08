@@ -1,0 +1,148 @@
+{
+  "variants": [
+    {
+      "id": "pm-fintech",
+      "role": "Product Manager",
+      "industry": "FinTech",
+      "targeted": true,
+      "weight": 30,
+      "description": "Strategic Product Leader with a track record of scaling FinTech platforms from 0 to 1 million+ users. Expert in regulatory compliance, payment orchestration, and high-frequency trading systems.",
+      "location": "New York, NY",
+      "metrics": {
+        "Experience": "8+ Yrs",
+        "Projects": "12+",
+        "Impact": "$50M+",
+        "Specialization": "High"
+      },
+      "requiredKeywords": [
+        "Product Strategy",
+        "FinTech",
+        "Payments",
+        "API Design",
+        "Regulatory Compliance",
+        "Agile"
+      ],
+      "pdfFilename": "Alex_Polymath_Resume_Product_Manager_FinTech.pdf"
+    },
+    {
+      "id": "swe-web3",
+      "role": "Systems Engineer",
+      "industry": "Web3",
+      "targeted": true,
+      "weight": 30,
+      "description": "Low-level systems engineer specializing in EVM optimization, ZK-proofs, and high-performance Rust implementation for decentralized infrastructure.",
+      "location": "Remote / SF",
+      "metrics": {
+        "Experience": "6+ Yrs",
+        "Projects": "20+",
+        "Impact": "100k TVL",
+        "Specialization": "Expert"
+      },
+      "requiredKeywords": [
+        "Rust",
+        "Solidity",
+        "Distributed Systems",
+        "Cryptography",
+        "EVM",
+        "ZK-Proofs"
+      ],
+      "pdfFilename": "Alex_Polymath_Resume_Systems_Engineer_Web3.pdf"
+    },
+    {
+      "id": "consult-health",
+      "role": "Strategy Consultant",
+      "industry": "Healthcare",
+      "targeted": true,
+      "weight": 30,
+      "description": "Results-driven strategist with expertise in digital transformation for Tier 1 healthcare providers. Specialized in operational efficiency and value-based care models.",
+      "location": "Boston, MA",
+      "metrics": {
+        "Experience": "5+ Yrs",
+        "Projects": "30+",
+        "Impact": "$100M OpEx",
+        "Specialization": "Master"
+      },
+      "requiredKeywords": [
+        "Strategy",
+        "Healthcare",
+        "Digital Transformation",
+        "Financial Modeling",
+        "Operational Excellence",
+        "Value-Based Care"
+      ],
+      "pdfFilename": "Alex_Polymath_Resume_Strategy_Consultant_Healthcare.pdf"
+    },
+    {
+      "id": "pm-web3",
+      "role": "Product Manager",
+      "industry": "Web3",
+      "targeted": false,
+      "weight": 3.33,
+      "description": "Crypto-native product leader translating complex on-chain mechanics into intuitive consumer experiences. Expert in tokenomics, DAO governance, and wallet UX.",
+      "location": "Remote",
+      "metrics": {
+        "Experience": "7+ Yrs",
+        "Projects": "15+",
+        "Impact": "250k Users",
+        "Specialization": "High"
+      },
+      "requiredKeywords": [
+        "Product Management",
+        "Web3",
+        "Tokenomics",
+        "DAO Governance",
+        "Wallet UX",
+        "DeFi"
+      ],
+      "pdfFilename": "Alex_Polymath_Resume_Product_Manager_Web3.pdf"
+    },
+    {
+      "id": "consult-fintech",
+      "role": "Strategy Consultant",
+      "industry": "FinTech",
+      "targeted": false,
+      "weight": 3.33,
+      "description": "Financial services strategist advising banks and fintechs on digital P&L, go-to-market, and regulatory strategy. Fluent in payments, lending, and wealth management.",
+      "location": "New York, NY",
+      "metrics": {
+        "Experience": "6+ Yrs",
+        "Projects": "22+",
+        "Impact": "$75M Rev",
+        "Specialization": "Master"
+      },
+      "requiredKeywords": [
+        "Strategy",
+        "FinTech",
+        "Financial Modeling",
+        "GTM Strategy",
+        "Regulatory Strategy",
+        "Payments"
+      ],
+      "pdfFilename": "Alex_Polymath_Resume_Strategy_Consultant_FinTech.pdf"
+    },
+    {
+      "id": "all",
+      "role": "Polymath",
+      "industry": "Universal",
+      "targeted": false,
+      "weight": 0,
+      "description": "A multi-disciplinary professional operating at the intersection of systems engineering, product strategy, and economic theory. A Master of All Traits navigating high-complexity environments across diverse sectors.",
+      "location": "Global",
+      "metrics": {
+        "Experience": "10+ Yrs",
+        "Projects": "50+",
+        "Impact": "Multi-Domain",
+        "Specialization": "Omni"
+      },
+      "requiredKeywords": [
+        "Multi-disciplinary",
+        "Strategy",
+        "Systems Engineering",
+        "Product Management",
+        "Cross-domain"
+      ],
+      "pdfFilename": "Alex_Polymath_Resume_Polymath_Universal.pdf",
+      "fallback": true
+    }
+  ]
+}
