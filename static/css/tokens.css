@@ -1,0 +1,38 @@
+/**
+ * Design Tokens
+ * ONE BASE UNIT SYSTEM: All vertical spacing derives from --u (baseFont × lineHeight)
+ */
+
+:root {
+  /* Base font and leading */
+  --bf: clamp(9px, 1.25vh, 16px);
+  --lh: 1.3;  /* Coupled to narrow measure (~55-70 chars) */
+  --u:  calc(var(--bf) * var(--lh));
+
+  /* Modular scale (minor third 1.2) */
+  --s0: var(--bf);               /* 1.000× body */
+  --s1: calc(var(--bf) * 1.2);   /* 1.200× labels */
+  --s2: calc(var(--bf) * 1.44);  /* 1.440× name */
+
+  /* Tracking: inverse relationship to size */
+  --tr-display: -0.025em;  /* Tight at display size */
+  --tr-label:   0.06em;    /* Open at small size */
+  --tr-body:    0;
+
+  /* Spacing: strict integer multiples of 1u */
+  --sp-section: calc(var(--u) * 2.25);
+  --sp-item:    calc(var(--u) * 1.5);
+  --sp-tight:   calc(var(--u) * 0.4);
+
+  /* Surface colors */
+  --bg:    #0a0a0a;
+  --panel: #0d0d0d;
+  --line:  #262626;
+  --muted: #737373;
+  --muted2:#525252;
+  --white: #fafafa;
+
+  /* Fonts with optical-size axis */
+  --sans:  'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+}

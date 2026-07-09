@@ -1,0 +1,73 @@
+/**
+ * Motion CSS Animations
+ * Smooth transitions for content updates using View Transitions API
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* View Transition names for smooth morphing */
+  .resume-sheet {
+    view-transition-name: resume-sheet;
+  }
+
+  .metric-value {
+    view-transition-name: metric-value;
+  }
+
+  /* Fade transition for text content */
+  .resume-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .resume-content.updating {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  /* Metric odometer roll */
+  @keyframes roll-in {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .metric-roll {
+    animation: roll-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* Canvas scale animation on variant switch */
+  @keyframes canvas-scale {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.98);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .canvas-transition {
+    animation: canvas-scale 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Loading skeleton pulse */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton {
+  background: var(--line);
+  animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
