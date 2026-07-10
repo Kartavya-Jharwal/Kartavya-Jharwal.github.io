@@ -2,6 +2,8 @@
 
 This document covers the technical decisions behind the system — not just what it does, but why it is built the way it is. It is a living reference for Kartavya and any contributors who need to understand the reasoning before touching the code.
 
+> **Typesetting decisions** — the base unit system, type scale, margin derivation, baseline grid, figure treatment, hanging punctuation, and tracking — are specified in full in [`TYPESETTING.md`](./TYPESETTING.md). This document references that spec where relevant but does not repeat it. If a CSS token or spacing value in the code looks arbitrary, the derivation is in TYPESETTING.md.
+
 ---
 
 ## First Principles
@@ -144,6 +146,8 @@ Variant switch → diff previous vs. next
 
 The A4 sheet fades out slightly during the transition via a CSS class toggle, then fades back in after the new content is written. The total transition takes ~280ms.
 
+All text injected into the DOM goes through the `nb()` micro-typography utility before insertion, which enforces non-breaking spaces between numbers and their following units (per [TYPESETTING.md §9](./TYPESETTING.md#9-micro-typography-floor-correctness-not-taste)). En dashes in date ranges are stored as `\u2013` in the data layer — never as hyphen-minus.
+
 ### The redact mode
 
 The right sidebar includes a redact toggle. When active, it replaces the candidate's personal contact details (email, phone, LinkedIn, WhatsApp) with redacted blocks — visually rendered as black bars in the style of a declassified document. This lets Kartavya share the live URL in contexts where he doesn't want contact information publicly indexed or visible at first glance, while keeping the full resume content readable.
@@ -158,20 +162,22 @@ Browser zoom and document zoom are decoupled by design.
 
 **The solution:**
 
-The A4 canvas is sized using a JavaScript `ResizeObserver` on the stage container, not via viewport units or CSS alone. The observer calculates the maximum height that fits within the stage at the current layout, derives the correct width from the `1:√2` aspect ratio, and applies those as explicit pixel values via inline style. This calculation is viewport-agnostic — it responds to the *container* dimensions, not the window.
+The A4 canvas is sized using a JavaScript `ResizeObserver` on the stage container, not via viewport units or CSS alone. The observer calculates the maximum height that fits within the stage at the current layout, derives the correct width from the `1:√2` aspect ratio (per [TYPESETTING.md §3](./TYPESETTING.md#3-page-construction--margins-derived-not-chosen)), and applies those as explicit pixel values via inline style. This calculation is viewport-agnostic — it responds to the *container* dimensions, not the window.
 
 ```js
 // Concept
 const observer = new ResizeObserver(() => {
   const h = stage.clientHeight * 0.94;
-  const w = h / Math.SQRT2;
+  const w = h / Math.SQRT2;        // 1:√2 — A4 aspect ratio
   wrap.style.height = h + 'px';
   wrap.style.width  = w + 'px';
 });
 observer.observe(stage);
 ```
 
-On top of this, a `±` zoom control in the right sidebar applies an independent `transform: scale()` to the sheet contents only — not the wrapper. This lets the recruiter zoom in on bullet text without triggering reflow or changing any layout geometry.
+A critical side effect of this approach: because the wrapper dimensions are fixed in absolute pixels, the internal CSS token `--bf` (which drives the entire type scale via `clamp(9px, 1.25vh, 16px)`) continues resolving relative to the *viewport height*, not the wrapper. This means browser zoom changes the type scale slightly while the canvas dimensions stay fixed. The `±` zoom control in the right sidebar compensates for this by applying an independent `transform: scale()` to the sheet contents only — not the wrapper — letting the recruiter adjust text size without triggering reflow or breaking the canvas geometry.
+
+The full type scale derivation and the relationship between `--bf`, `--u`, and the spacing tokens is in [TYPESETTING.md §1–2](./TYPESETTING.md#1-the-base-unit-u).
 
 ---
 
@@ -212,7 +218,7 @@ The obvious approach is Puppeteer or Playwright running headlessly to print the 
 
 2. **Build complexity.** Puppeteer requires a Chromium binary (~280MB). That is a dependency that needs versioning, caching, and maintenance. For six PDFs that change a few times a year, this is unjustifiable overhead.
 
-3. **Font fidelity.** The A4 document uses Source Serif 4 with optical sizing and specific OpenType feature settings. Print-to-PDF from a real browser with the fonts loaded produces a higher-fidelity output than any headless renderer.
+3. **Font fidelity.** The A4 document uses Source Serif 4 with optical sizing (`font-optical-sizing: auto`, `opsz` axis) and specific OpenType feature settings — true small caps, oldstyle figures in prose, tabular lining figures in date columns (per [TYPESETTING.md §6](./TYPESETTING.md#6-figure-treatment-tabular-vs-oldstyle) and [§11](./TYPESETTING.md#11-typeface-selection-criteria)). Print-to-PDF from a real browser with the fonts loaded and the OpenType features resolved produces a higher-fidelity output than any headless renderer.
 
 ### The manual workflow
 
@@ -233,7 +239,8 @@ Kartavya_Jharwal_Resume_Systems_Engineer_Web3.pdf
 - The download link carries a descriptive `aria-label` that includes the variant name
 - Motion respects `prefers-reduced-motion` — transitions are skipped, odometers snap rather than roll
 - Color contrast in the dashboard UI meets WCAG AA (muted text on dark background is the only borderline case, reviewed manually)
-- The A4 document interior is WCAG AAA — black text on white
+- The A4 document interior is WCAG AAA — black `#111` on white `#fff`
+- True small caps are used for section labels (font's own `smcp` glyphs via `font-variant-caps: all-small-caps`) — never scaled capitals, which thin out under magnification and produce visible stroke-weight mismatch (per [TYPESETTING.md §9](./TYPESETTING.md#9-micro-typography-floor-correctness-not-taste))
 
 ---
 
@@ -249,6 +256,26 @@ Key signals tracked:
 - Which variants they explored beyond the initial one
 - Whether they downloaded a PDF and which variant it was for
 - Time-on-page proxied via a `beforeunload` event payload
+
+---
+
+## Document Typesetting
+
+The internal layout of the A4 canvas — base unit derivation, type scale, margin construction, baseline grid, hanging punctuation, figure treatment, tracking, ink density, and typeface selection — is specified in full in [`TYPESETTING.md`](./TYPESETTING.md).
+
+The short version of the decisions made there and how they surface in code:
+
+| Decision | Where specified | CSS token / rule |
+|----------|----------------|-----------------|
+| Base unit `u = 12pt` | [TYPESETTING.md §1](./TYPESETTING.md#1-the-base-unit-u) | `--u: calc(var(--bf) * var(--lh))` |
+| Type scale r = 1.2, 3 sizes only | [TYPESETTING.md §2](./TYPESETTING.md#2-the-modular-type-scale) | `--s0`, `--s1`, `--s2` |
+| A4 margins, n = 12 divisor | [TYPESETTING.md §3](./TYPESETTING.md#3-page-construction--margins-derived-not-chosen) | `.sheet { padding: ... }` |
+| Baseline grid, name forced to 2u | [TYPESETTING.md §4](./TYPESETTING.md#4-baseline-grid-lock) | `.r-name { line-height: calc(var(--u) * 2) }` |
+| Hanging punctuation, 1.1em calibration | [TYPESETTING.md §5](./TYPESETTING.md#5-optical-alignment-hanging-punctuation) | `.r-ul { padding-left: 1.1em }` |
+| Tabular figures in date columns | [TYPESETTING.md §6](./TYPESETTING.md#6-figure-treatment-tabular-vs-oldstyle) | `.r-dt { font-variant-numeric: tabular-nums lining-nums }` |
+| Tracking per size band | [TYPESETTING.md §7](./TYPESETTING.md#7-tracking-as-a-function-of-size) | `--tr-display`, `--tr-label`, `--tr-body` |
+| One lever per hierarchy transition | [TYPESETTING.md §8](./TYPESETTING.md#8-hierarchy-one-variable-per-transition) | `.r-lbl` (case+tracking only), `.r-co` (weight only) |
+| En dash, NBSP, true small caps | [TYPESETTING.md §9](./TYPESETTING.md#9-micro-typography-floor-correctness-not-taste) | `nb()` utility, `\u2013` in data layer |
 
 ---
 
@@ -273,3 +300,8 @@ To be explicit about scope:
 
 *Last updated: 2026-07-09*
 *Author: Kartavya Jharwal*
+
+---
+
+*For typographic decisions (type scale, margins, baseline grid, figure treatment, hanging punctuation, ink density), see [`TYPESETTING.md`](./TYPESETTING.md).*
+*For adding new Set Pairs, editing bullets, and commit conventions, see [`CONTRIBUTING.md`](./CONTRIBUTING.md).*

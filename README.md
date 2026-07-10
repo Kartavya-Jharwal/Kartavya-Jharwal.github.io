@@ -176,12 +176,17 @@ The UI runs on a deliberate visual tension: a brutalist high-contrast dashboard 
 - Quantitative odometer metrics in the right sidebar that roll on variant switch
 
 **Inside (A4 document):**
-- White `#fff` canvas, `1:√2` aspect ratio, Van de Graaf canon margins
-- Source Serif 4 optical-size for body, Inter for headers and contact line
-- No color, no tags, no icons — pure typography hierarchy
+- White `#fff` canvas, `1:√2` aspect ratio, margins derived geometrically from page proportions (not arbitrary values)
+- Source Serif 4 optical-size axis for body text, Inter for the dashboard UI and document headers
+- Three type sizes only — body (9.5 pt), labels (11.4 pt), name (13.68 pt) — on a minor-third scale (r = 1.2)
+- Every vertical spacing value is an integer or simple-fraction multiple of the base unit `u = 12 pt`
+- No color, no tags, no icons inside the document — pure typographic hierarchy, one lever changed per transition
 - All bullet points follow Action → Context → Result structure with quantified outcomes
+- En dashes for date ranges, true small caps for section labels, tabular figures in date columns, oldstyle figures in prose
 
-**Scaling:** The A4 canvas scales to fit within the available stage height using a JS resize observer. Browser zoom does not affect the document zoom — they are decoupled. A separate `±` zoom control in the right sidebar lets the recruiter zoom the document independently without triggering browser-level reflow.
+The full derivation — base unit, type scale, margin construction, baseline grid lock, hanging punctuation calibration, figure treatment, tracking heuristics, ink density procedure, and typeface selection criteria — is formally specified in [`TYPESETTING.md`](./TYPESETTING.md).
+
+**Scaling:** The A4 canvas is sized by a `ResizeObserver` on the stage container, making it immune to browser zoom. A `±` control in the right sidebar applies an independent `transform: scale()` to the document contents only, so the recruiter can zoom text without touching the canvas geometry. The full technical explanation is in [`ARCHITECTURE.md — Zoom Architecture`](./ARCHITECTURE.md#zoom-architecture).
 
 ---
 
@@ -233,6 +238,17 @@ Mobile viewports show a splash blocker screen first — an A4 document is unread
 | CLS | 0 |
 | JS payload (no libs) | < 20KB |
 | JS payload (with Three.js) | < 150KB |
+
+---
+
+## Documentation Map
+
+| Document | What it covers |
+|---|---|
+| `README.md` | Overview, deployments, Set Pairs, commands, PDF workflow, design summary, contact |
+| [`TYPESETTING.md`](./TYPESETTING.md) | Full typesetting specification — base unit, type scale, margin derivation, baseline grid, hanging punctuation, figure treatment, tracking, ink density, typeface selection, reference CSS |
+| [`ARCHITECTURE.md`](./ARCHITECTURE.md) | Technical decisions — deployment model, data layer, rendering, zoom decoupling, animation stack, PDF rationale, accessibility, telemetry |
+| [`CONTRIBUTING.md`](./CONTRIBUTING.md) | Adding Set Pairs, editing bullets, MBB bullet format, CSS conventions, commit style, hard do-not-do list |
 
 ---
 
