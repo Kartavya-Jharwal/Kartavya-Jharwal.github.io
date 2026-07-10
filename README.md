@@ -1,185 +1,253 @@
 # Polymath Resume Dossier
 
-**The anti-Teal**: A static resume engine that serves recruiters hyper-specialized profiles while revealing polymathic depth.
+> *"Not a jack of all trades — a budding master of all traits."*
 
-## Architecture
+A recruiter-facing adaptive resume engine built for **Kartavya Jharwal**. Every cold visit to the domain resolves to a hyper-specialized profile tuned for the exact role and industry the recruiter is hiring for — surrounded by a dashboard UI that makes it unmistakably clear this depth of specialization is just one active node inside a much larger polymathic operating system.
 
-**Pure separation**: HTML, CSS, and JavaScript in separate files. Bun only populates data during build.
-
-```
-┌─────────────────────────────────────────────────────────┐
-│  Build Time (Bun)                                       │
-│  ├─ Validate JSON Resume schema                         │
-│  ├─ Compile variant-filtered content                    │
-│  └─ Inject data into static/data.js                     │
-└─────────────────────────┬───────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│  Runtime (Pure Vanilla JS)                              │
-│  ├─ Targeted DOM updates on variant switch              │
-│  ├─ Anime.js for vector animations                      │
-│  ├─ Three.js for center canvas glow                     │
-│  └─ Motion CSS for content transitions                  │
-└─────────────────────────────────────────────────────────┘
-```
-
-## File Structure
-
-```
-polymath-resume-dossier/
-├── build/
-│   ├── validate.js         # Schema validation
-│   ├── compile.js          # Data compilation (outputs static/data.js)
-│   └── test.js             # Build tests
-├── data/
-│   ├── resume.json         # JSON Resume with variant tags
-│   └── variants.json       # Set Pair definitions
-├── static/
-│   ├── css/
-│   │   ├── reset.css       # CSS reset
-│   │   ├── tokens.css      # Design tokens (colors, spacing)
-│   │   ├── layout.css      # Grid system
-│   │   ├── typography.css  # A4 document styles
-│   │   └── animations.css  # Motion CSS transitions
-│   ├── js/
-│   │   ├── data.js         # Compiled variant data (generated)
-│   │   ├── state.js        # State management
-│   │   ├── render.js       # Targeted DOM updates
-│   │   └── animations.js   # Anime.js + Three.js setup
-│   └── lib/
-│       ├── anime.min.js    # Anime.js (vector animations)
-│       └── three.min.js    # Three.js (canvas glow)
-├── public/
-│   └── resumes/            # Pre-made PDFs
-├── index.html              # Clean HTML structure only
-└── package.json
-```
-
-## Key Principles
-
-### 1. Bun for Build Only
-- **Validates** JSON schema
-- **Compiles** variant data
-- **Generates** `static/data.js`
-- **Copies** files to `dist/`
-
-### 2. Targeted DOM Updates
-No full re-renders. On variant switch:
-```javascript
-// Only update what changed
-updateName(newVariant.d.name);
-updateSummary(newVariant.d.sum);
-updateExperience(newVariant.d.exp);  // Diff and patch
-updateMetrics(newVariant.m);         // Odometer animation
-```
-
-### 3. Animation Stack
-- **Anime.js**: Vector animations (logo glow, metric rollers)
-- **Three.js**: 3D canvas glow effect behind A4 sheet
-- **Motion CSS**: Content fade/slide transitions on update
-
-### 4. Set Pairs (6 curated combinations)
-
-| ID | Role | Industry | Weight |
-|----|------|----------|--------|
-| `pm-fintech` | Product Manager | FinTech | 30% |
-| `swe-web3` | Systems Engineer | Web3 | 30% |
-| `consult-health` | Strategy Consultant | Healthcare | 30% |
-| `pm-web3` | Product Manager | Web3 | 3.33% |
-| `consult-fintech` | Strategy Consultant | FinTech | 3.33% |
-| `all` | Polymath | Universal | 0% (UI only) |
-
-## Commands
-
-```bash
-# Validate JSON schema + keywords
-bun run validate
-
-# Build static site (generates static/data.js + copies to dist/)
-bun run build
-
-# Run tests
-bun run test
-
-# Serve locally
-bun run serve
-
-# Clean build artifacts
-bun run clean
-```
-
-## Deep Linking
-
-Direct link to specific variants:
-```
-https://resume.kartavya.tech/?role=Product+Manager&industry=FinTech
-```
-
-Tracked via Google Analytics 4:
-```javascript
-track('deeplink', {pair: 'pm-fintech', source: 'email'});
-```
-
-## Animation Details
-
-### Anime.js (Vector Animations)
-- Logo ambient glow pulse
-- Metric odometer rolling on variant switch
-- Smooth dropdown morph transitions
-
-### Three.js (Center Glow)
-- Radial gradient shader behind A4 canvas
-- Subtle parallax on mouse move
-- Color shifts based on active variant
-
-### Motion CSS (Content Transitions)
-```css
-@media (prefers-reduced-motion: no-preference) {
-  .resume-content {
-    view-transition-name: resume-content;
-  }
-}
-```
-
-## Deployment
-
-**Primary**: `kartavya.tech`  
-**Subdomain**: `resume.kartavya.tech`
-
-Deploy via:
-- GitHub Pages
-- Netlify
-- Vercel (static)
-- Any CDN
-
-## PDF Workflow
-
-PDFs are **manually created** (no Puppeteer):
-
-1. Open `dist/index.html` in browser
-2. Select variant from dropdown
-3. Print to PDF (Ctrl+P, margins: none)
-4. Save to `public/resumes/[Name]_[Role]_[Industry].pdf`
-
-The download button auto-links to the correct PDF.
-
-## Performance
-
-- **Build time**: ~50ms
-- **Bundle size**: ~120KB (with anime.js/three.js)
-- **FCP**: <1s
-- **No layout shift**: Motion CSS view transitions
-- **Target**: Lighthouse 100/100
-
-## License
-
-Private project. Resume content © Kartavya Jain
+This flips the Teal / Resume.io paradigm on its head. Those tools are *internally* focused — you build and manage resumes for yourself. This is *externally* focused — the resume finds the recruiter, reads the context, and presents exactly what they need to see.
 
 ---
 
-**Tech Stack**: Vanilla JS, CSS, JSON Resume, Bun (build only)  
-**Animation**: Anime.js, Three.js, Motion CSS  
-**Deployment**: kartavya.tech / resume.kartavya.tech
+## Live Deployments
 
+| Context | URL |
+|---|---|
+| Primary portfolio | `kartavya.tech` |
+| Resume subdomain | `resume.kartavya.tech` |
+| GitHub Pages slug | `kartavya-jharwal.github.io/polymath-resume-dossier` |
 
+### Deep Link Syntax
+
+For direct applications, cold outreach, and recruiter emails — bypass the randomizer entirely and lock a specific variant:
+
+```
+https://resume.kartavya.tech/?role=Product+Manager&industry=FinTech
+https://resume.kartavya.tech/?role=Systems+Engineer&industry=Web3
+https://resume.kartavya.tech/?role=Strategy+Consultant&industry=Healthcare
+```
+
+Every deep link is tracked as a named GA4 event so you can see exactly which variant a recruiter opened, how long they stayed, and whether they downloaded.
+
+---
+
+## The Core Mechanic
+
+### Set Pairs — not arbitrary mixing
+
+Roles and industries are **not** combined dynamically. That would produce incoherent resumes. Instead the system runs on a strictly curated list of Set Pairs — each one is a hand-crafted persona with its own summary, filtered experience bullets, skill emphasis, and performance metrics.
+
+| ID | Role | Industry | Targeted | Traffic Weight |
+|---|---|---|---|---|
+| `pm-fintech` | Product Manager | FinTech | ✓ | 30% |
+| `swe-web3` | Systems Engineer | Web3 | ✓ | 30% |
+| `consult-health` | Strategy Consultant | Healthcare | ✓ | 30% |
+| `pm-web3` | Product Manager | Web3 | | 3.33% |
+| `consult-fintech` | Strategy Consultant | FinTech | | 3.33% |
+| `all` | Polymath | Universal | | UI only |
+
+The three targeted pairs absorb 90% of cold traffic. The remaining pairs are reachable via the dropdown. The `all` (Polymath / Universal) pair is the only one that shows the full cross-domain picture — it is never randomly served, only deliberately selected.
+
+The number of pairs is not fixed. The engine scales up or down to any count without structural changes — add a new object to `data/variants.json`, tag the relevant bullets in `data/resume.json`, drop a PDF in `resumes/`, rebuild.
+
+### Weighted Randomization
+
+Cold visits to the root domain run through a client-side weighted selector on page load. No server, no database, no cookies required. The three targeted pairs each carry a 30% probability. Once a variant is served, the dropdown reorders itself so related roles cluster near the top — a PM/FinTech visitor sees other commercial roles first, not infra engineering roles.
+
+---
+
+## Project Structure
+
+```
+polymath-resume-dossier/
+│
+├── index.html          ← the entire front-end lives here (HTML + CSS + JS)
+│
+├── data/
+│   ├── resume.json     ← JSON Resume standard, extended with variant tags
+│   └── variants.json   ← Set Pair definitions, weights, metrics, PDF names
+│
+├── bun/
+│   └── src/            ← build scripts (validate, compile, minify → root)
+│
+├── assets/
+│   ├── img/            ← logo PNG at 1×, 2×, 3× density
+│   └── fonts/          ← self-hosted font fallbacks if needed
+│
+├── resumes/            ← pre-built ATS-compliant PDFs, manually placed
+│   └── Kartavya_Jharwal_Resume_[Role]_[Industry].pdf
+│
+├── package.json
+├── bun.lock
+├── .gitignore
+├── README.md           ← you are here
+└── CONTRIBUTING.md
+```
+
+**GitHub Pages serves from root.** The `index.html` at root is the production file. Bun's job is to take the source template in `bun/src/`, inject the compiled data payload, minify, and write the output back to `index.html` at root.
+
+---
+
+## Data Schema
+
+Built on the open-source [JSON Resume](https://jsonresume.org/schema/) standard, extended with a `variants` tag array on every highlight and skill entry.
+
+```jsonc
+// data/resume.json (abbreviated)
+{
+  "basics": {
+    "name": "Kartavya Jharwal",
+    "email": "KartavyaJharwal@gmail.com",
+    "location": { "city": "London" }
+  },
+  "work": [
+    {
+      "name": "Company Name",
+      "position": "Role Title",
+      "highlights": [
+        {
+          "text": "Shipped X, which achieved Y, measured by Z.",
+          "variants": ["pm-fintech", "consult-fintech", "all"]
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Domain Cluster",
+      "keywords": ["Skill A", "Skill B"],
+      "variants": ["pm-fintech", "all"]
+    }
+  ]
+}
+```
+
+The `variants` array on each bullet is the entire filtering mechanism. When the engine compiles variant `pm-fintech`, it walks every job's highlights and only keeps bullets that include `"pm-fintech"` or `"all"` in their tag list. Jobs with zero matching bullets are dropped entirely. The result is a resume that reads like it was written exclusively for that role.
+
+---
+
+## Bun Build Pipeline
+
+Bun handles three things and nothing else:
+
+1. **Validate** — parses `data/resume.json` against the JSON Resume schema, checks that every variant reference points to a defined pair, runs ATS keyword compliance checks for each targeted variant, and exits non-zero on any hard error.
+
+2. **Compile** — walks the data, applies variant filters, formats dates with proper en dashes, resolves PDF filenames, and produces a minified data payload.
+
+3. **Populate** — injects the compiled payload into the source HTML template and writes the minified output to `index.html` at root, ready for GitHub Pages.
+
+```bash
+bun run validate   # schema check + keyword compliance
+bun run build      # validate → compile → write root index.html
+bun run test       # assertion suite on data integrity
+```
+
+**PDF generation never runs in this pipeline.** PDFs are authored locally, placed in `resumes/`, and committed. CI never touches them.
+
+---
+
+## PDF Workflow
+
+PDFs are ATS-compliant, vector-text documents. They are built once locally and committed as static assets.
+
+**Naming convention:**
+```
+Kartavya_Jharwal_Resume_[Role]_[Industry].pdf
+```
+
+**Local generation steps:**
+1. Run `bun run build` to get the latest compiled HTML
+2. Open in Chrome/Arc, select the target variant from the dropdown
+3. `Ctrl+P` → Save as PDF → Margins: None → Background graphics: On
+4. Save to `resumes/` using the naming convention above
+5. Commit
+
+The download button on the right sidebar dynamically resolves its `href` to the correct filename based on the active variant. Recruiters get a file named after the exact role they're viewing, not a generic `resume.pdf`.
+
+---
+
+## Design System
+
+The UI runs on a deliberate visual tension: a brutalist high-contrast dashboard wrapped around a mathematically pristine A4 document.
+
+**Outside (dashboard):**
+- Pitch black `#0a0a0a` background with hard `1px solid #262626` grid borders
+- Neumorphic controls — `box-shadow: 3px 3px 0 0 #000` outset, collapses to inset on press
+- Ambient div glows at top-left and bottom-right corners to pull focus toward center
+- Quantitative odometer metrics in the right sidebar that roll on variant switch
+
+**Inside (A4 document):**
+- White `#fff` canvas, `1:√2` aspect ratio, Van de Graaf canon margins
+- Source Serif 4 optical-size for body, Inter for headers and contact line
+- No color, no tags, no icons — pure typography hierarchy
+- All bullet points follow Action → Context → Result structure with quantified outcomes
+
+**Scaling:** The A4 canvas scales to fit within the available stage height using a JS resize observer. Browser zoom does not affect the document zoom — they are decoupled. A separate `±` zoom control in the right sidebar lets the recruiter zoom the document independently without triggering browser-level reflow.
+
+---
+
+## Animation Stack (wired, partially active)
+
+| Library | Role | Status |
+|---|---|---|
+| CSS transitions | Sheet fade/slide on variant switch | ✓ Active |
+| CSS `@keyframes` | Metric odometer roll | ✓ Active |
+| Anime.js | Logo glow pulse, dropdown morphs | Scaffolded |
+| Three.js | Radial glow shader behind A4 canvas | Scaffolded |
+
+The Three.js canvas sits behind the A4 sheet as a fixed `<canvas id="three-canvas">`. It renders a soft radial gradient shader that breathes on a sine wave and shifts subtly on mouse move. Color temperature shifts slightly between variants. The canvas is pointer-events-none so it never interferes with document interaction.
+
+---
+
+## Analytics
+
+Static site, no backend. All telemetry is client-side GA4 events.
+
+| Event | Fired When | Payload |
+|---|---|---|
+| `cold_visit` | Random variant served on load | `{pair}` |
+| `deeplink` | URL param variant resolved | `{pair, role, industry}` |
+| `variant_switch` | Dropdown changed | `{from, to}` |
+| `pdf_download` | Download button clicked | `{variant}` |
+| `splash_dismissed` | Mobile splash closed | `{device}` |
+
+Privacy: no PII, no cookies, no consent banner needed for GA4 in analytics-only mode.
+
+---
+
+## Mobile
+
+Mobile viewports show a splash blocker screen first — an A4 document is unreadable at 390px width without forcing pinch-to-zoom on every line of text. The splash is a deliberate gate, not an apology. Once dismissed, the document reflows into a single-column readable layout. All controls (matrix dropdowns, download, metrics) collapse into a draggable bottom drawer with two magnetic snap points: a peek state at 15vh showing the active pair and download button, and an expanded state at 80vh showing the full matrix.
+
+---
+
+## Performance Budget
+
+| Metric | Target |
+|---|---|
+| Lighthouse Performance | 100 |
+| Lighthouse Accessibility | 100 |
+| Lighthouse Best Practices | 100 |
+| Lighthouse SEO | 100 |
+| FCP | < 1.0s |
+| LCP | < 1.5s |
+| CLS | 0 |
+| JS payload (no libs) | < 20KB |
+| JS payload (with Three.js) | < 150KB |
+
+---
+
+## Contact
+
+**Kartavya Jharwal**  
+London, UK · Jaipur, India · Open to relocation
+
+[linkedin.com/in/kartavyajharwal](https://www.linkedin.com/in/kartavyajharwal/) ·
+[github.com/Kartavya-Jharwal](https://github.com/Kartavya-Jharwal) ·
+[KartavyaJharwal@gmail.com](mailto:KartavyaJharwal@gmail.com) ·
+Kjharwal@student.hult.edu ·
+WhatsApp [@KartavyaJharwal](https://wa.me/KartavyaJharwal)
+
+---
+
+*Built with vanilla JS, CSS, JSON Resume, and Bun. Deployed to GitHub Pages.*
+*Resume content © Kartavya Jharwal. All rights reserved.*
