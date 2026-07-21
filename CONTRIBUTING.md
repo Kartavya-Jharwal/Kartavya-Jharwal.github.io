@@ -9,14 +9,14 @@ This is a personal project. The guidelines here are primarily for Kartavya's own
 **1. Root is production.**
 `index.html` at root is what GitHub Pages serves. Never treat it as a draft. Every commit to main that touches `index.html` is a live deployment.
 
-**2. Bun populates, it does not architect.**
-The build script rewrites the data block inside `<script>`. It does not restructure the HTML, reorganize the CSS, or change any rendering logic. Those live in `index.html` and are edited directly.
+**2. Bun compiles data, it does not architect the UI.**
+The build writes `public/data.js`. It does not restructure `index.html`, `assets/css/style.css`, or `assets/js/app.js`.
 
 **3. PDFs are hand-built, never auto-generated.**
 No Puppeteer. No headless Chrome. No CI PDF step. See the PDF workflow in the README.
 
-**4. No runtime dependencies.**
-The browser loads one file. External libraries (Three.js, Anime.js) are the only permitted exceptions, and they must load with `defer`, have CDN fallbacks considered, and degrade gracefully when absent.
+**4. Keep runtime dependencies deliberate.**
+Browser code is plain JavaScript with a small vendored state helper. Any external asset must degrade cleanly when unavailable.
 
 ---
 
@@ -73,7 +73,7 @@ Run `bun run validate` after tagging. It will catch missing keyword coverage and
 bun run build
 ```
 
-This validates, compiles, and writes the updated data payload to `index.html`. Open the file in a browser, switch the dropdown to the new pair, and verify the resume looks correct.
+This validates the source and writes the updated payload to `public/data.js`. Open the site through a local server, switch to the new pair, and verify the resume looks correct.
 
 ### Step 4 — Create the PDF
 
@@ -103,11 +103,9 @@ The build validator checks for numeric metrics (`%`, `$`, `×`, `bps`, `k`, `mil
 
 ## Editing the UI
 
-The UI is in `index.html`. CSS is in the `<style>` block. JS is in the `<script>` block. There are no separate files at runtime.
+The semantic shell is `index.html`, CSS is in `assets/css/style.css`, and browser logic is in `assets/js/app.js`.
 
-The source template for editing is also `index.html` (the same file). After editing, run `bun run build` to re-inject the current compiled data payload on top of your changes, then commit.
-
-**Do not edit the data block inside `<script>` by hand.** It begins with the comment `/* DATA — compiled by bun run build */` and ends before the utility functions. Bun owns that section. Any manual edits will be overwritten on the next build.
+**Do not edit `public/data.js` by hand.** Bun owns that generated file, and the next build will overwrite manual changes.
 
 ---
 

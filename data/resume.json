@@ -1,318 +1,2386 @@
 {
   "meta": {
     "version": "1.0.0",
-    "canonical": "https://polymath.dev/resume.json",
-    "lastModified": "2026-07-08"
+    "canonical": "https://kartavya.tech/data/resume.json",
+    "lastModified": "2026-07-21"
+  },
+  "custom": {
+    "limits": {
+      "experience": 6,
+      "projects": 8
+    }
   },
   "basics": {
-    "name": "Alex Polymath",
-    "label": "Master of All Traits",
+    "name": "Kartavya Jharwal",
+    "label": "Systems Builder, Operator, and Technical Generalist",
     "image": "",
-    "email": "alex@polymath.io",
-    "phone": "+1 (555) 123-4567",
-    "url": "https://polymath.dev",
-    "summary": "A multi-disciplinary professional operating at the intersection of systems engineering, product strategy, and economic theory.",
+    "email": "KartavyaJharwal@gmail.com",
+    "phone": "",
+    "url": "",
+    "summary": "Systems builder working across AI, software, operations, analytics, and venture-facing problem solving.",
+    "workAuthorization": "United Kingdom, eligible to work part-time up to 20 hours/week under current visa status. India, eligible to work full-time. Open to relocation and sponsorship for full-time roles elsewhere.",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "New York",
-      "countryCode": "US",
-      "region": "NY"
+      "city": "London, UK / Jaipur, India",
+      "countryCode": "UK",
+      "region": ""
     },
     "profiles": [
       {
         "network": "LinkedIn",
-        "username": "alexpolymath",
-        "url": "https://linkedin.com/in/alexpolymath"
+        "username": "linkedin.com/in/kartavyajharwal",
+        "url": "https://linkedin.com/in/kartavyajharwal"
       },
       {
         "network": "GitHub",
-        "username": "alexpolymath",
-        "url": "https://github.com/alexpolymath"
+        "username": "github.com/Kartavya-Jharwal",
+        "url": "https://github.com/Kartavya-Jharwal"
       }
     ]
   },
   "work": [
     {
-      "name": "NeoBank Global",
-      "position": "Senior Product Manager",
-      "url": "https://neobank.example",
-      "startDate": "2020-01-01",
+      "name": "Margadarshaka",
+      "position": "Co-Founder, AI Systems",
+      "url": "",
+      "startDate": "2025-01-01",
       "endDate": "",
-      "summary": "Led product strategy for core banking infrastructure serving 1M+ users.",
+      "summary": "Leads technical architecture for a real-time AI voice platform delivering career and life counseling in Indian regional languages. Alternate framing: Founding Engineer for product-track applications; AI Operations Lead or Responsible AI Lead for governance-track applications.",
       "highlights": [
         {
-          "text": "Led the redesign of the core ledger system, reducing transaction latency by 40 percent and increasing throughput by 3×.",
-          "variants": ["pm-fintech", "consult-fintech", "all"]
+          "text": "Constrained the entire technical architecture to a sub-50-rupee cost ceiling per call by designing a low-latency, real-time voice pipeline around that budget from day one.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "forward-deployed-innovator-defensetech",
+            "forward-deployed-innovator-spacetech",
+            "forward-deployed-innovator-enterprise-ai",
+            "agentic-systems-architect-autonomous-ai-labs",
+            "agentic-systems-architect-fintech-automation",
+            "agentic-systems-architect-rpa-enterprise-tech",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "ai-governance-ethics-officer-medtech",
+            "ai-governance-ethics-officer-govtech",
+            "ai-governance-ethics-officer-regulated-decentralized-finance",
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "all"
+          ]
         },
         {
-          "text": "Orchestrated the launch of the B2B payments API, generating $12 million in ARR within the first 18 months.",
-          "variants": ["pm-fintech", "consult-fintech", "all"]
+          "text": "Reduced unmanaged risk in AI-handled counseling sessions by building a mandatory human-counsellor handoff after every call, passing a structured dossier to preserve full context.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "forward-deployed-innovator-defensetech",
+            "forward-deployed-innovator-spacetech",
+            "forward-deployed-innovator-enterprise-ai",
+            "agentic-systems-architect-autonomous-ai-labs",
+            "agentic-systems-architect-fintech-automation",
+            "agentic-systems-architect-rpa-enterprise-tech",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "ai-governance-ethics-officer-medtech",
+            "ai-governance-ethics-officer-govtech",
+            "ai-governance-ethics-officer-regulated-decentralized-finance",
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "all"
+          ]
         },
         {
-          "text": "Managed a cross-functional team of 15 engineers and designers across 3 timezones to deliver a compliant KYC flow.",
-          "variants": ["pm-fintech", "all"]
+          "text": "Avoided committing capital or engineering time to a flawed model by running an adversarial feasibility teardown pre-build, surfacing payer-user misalignment and liability exposure as the two most consequential risks.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "forward-deployed-innovator-defensetech",
+            "forward-deployed-innovator-spacetech",
+            "forward-deployed-innovator-enterprise-ai",
+            "agentic-systems-architect-autonomous-ai-labs",
+            "agentic-systems-architect-fintech-automation",
+            "agentic-systems-architect-rpa-enterprise-tech",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "ai-governance-ethics-officer-medtech",
+            "ai-governance-ethics-officer-govtech",
+            "ai-governance-ethics-officer-regulated-decentralized-finance",
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Product Management", "FinTech", "Payments", "Ledger Systems", "KYC", "Compliance"]
+      "keywords": [
+        "AI systems",
+        "real-time voice AI",
+        "founding engineer",
+        "AI operations",
+        "responsible AI",
+        "product architecture",
+        "counseling platform"
+      ]
     },
     {
-      "name": "EtherLayer",
-      "position": "Core Engineer",
-      "url": "https://etherlayer.example",
+      "name": "AstroPatshala",
+      "position": "Founding Operator and Systems Architect",
+      "url": "",
       "startDate": "2021-01-01",
       "endDate": "",
-      "summary": "Built low-level infrastructure for Ethereum L2 scaling solutions.",
+      "summary": "Runs day-to-day operations for a dual-track astrology consulting and education venture while the venture's lead astrologer handles direct client consultation. Alternate framing: Business Development Lead or Growth/Marketing Lead for GTM-track applications; Systems Designer or Fractional COO for operations/strategy-track applications.",
       "highlights": [
         {
-          "text": "Implemented a novel state-compression algorithm reducing node storage requirements by 60 percent.",
-          "variants": ["swe-web3", "all"]
+          "text": "Stood up the venture's business model, pricing/licensing structure, and marketing strategy from founding through present.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "all"
+          ]
         },
         {
-          "text": "Developed a Rust-based ZK-rollup prover that increased transaction finality speed by 2.5×.",
-          "variants": ["swe-web3", "all"]
+          "text": "Built and maintained the venture's production technical platform across two live repositories (AstroPatshala, astropatshala-web).",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "all"
+          ]
         },
         {
-          "text": "Authored 4 EIPs focused on gas optimization and account abstraction.",
-          "variants": ["swe-web3", "all"]
+          "text": "Ran continuous content and delivery experiments across Vedic and Bhrigu Nadi astrology offerings, generating most of the venture's applied research output to date.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Rust", "Ethereum", "ZK-Proofs", "EVM", "Systems Engineering", "Web3"]
+      "keywords": [
+        "operations",
+        "systems architecture",
+        "business development",
+        "growth",
+        "marketing strategy",
+        "pricing",
+        "venture operations"
+      ]
     },
     {
-      "name": "DeFiPortal",
-      "position": "Head of Product",
-      "url": "https://defiportal.example",
-      "startDate": "2021-06-01",
+      "name": "Hult AI Collective",
+      "position": "Founder and Lead Systems Architect",
+      "url": "https://kartavya.tech/HAC",
+      "startDate": "2025-01-01",
       "endDate": "",
-      "summary": "Product leadership for consumer-facing DeFi wallet platform.",
+      "summary": "Leads a student-run AI organization from founding through live event execution.",
       "highlights": [
         {
-          "text": "Launched a self-custody wallet reaching 250k MAU with a 4.8 app-store rating.",
-          "variants": ["pm-web3", "all"]
+          "text": "Built a student AI organization from zero to a public launch event, establishing programming, outreach, and technical infrastructure from scratch.",
+          "variants": [
+            "innovation-ecosystem-architect-startup-accelerators",
+            "innovation-ecosystem-architect-university-innovation-hubs",
+            "innovation-ecosystem-architect-corporate-venture-labs",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
         },
         {
-          "text": "Designed the token incentive model that grew TVL from $2 million to $180 million in 9 months.",
-          "variants": ["pm-web3", "all"]
+          "text": "Ran the HAC x HFL Hackathon end to end: event dossier, external speaker outreach, and on-site logistics.",
+          "variants": [
+            "innovation-ecosystem-architect-startup-accelerators",
+            "innovation-ecosystem-architect-university-innovation-hubs",
+            "innovation-ecosystem-architect-corporate-venture-labs",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
         },
         {
-          "text": "Shipped a gasless swap experience that lifted conversion by 34 percent.",
-          "variants": ["pm-web3", "all"]
+          "text": "Delivered the closing AI workshop personally after confirmed external speakers fell through, keeping the event on schedule.",
+          "variants": [
+            "innovation-ecosystem-architect-startup-accelerators",
+            "innovation-ecosystem-architect-university-innovation-hubs",
+            "innovation-ecosystem-architect-corporate-venture-labs",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
+        },
+        {
+          "text": "Delivered a guest lecture on agentic AI workflows and applied vibe-coding methodology to the wider student body.",
+          "variants": [
+            "innovation-ecosystem-architect-startup-accelerators",
+            "innovation-ecosystem-architect-university-innovation-hubs",
+            "innovation-ecosystem-architect-corporate-venture-labs",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
+        },
+        {
+          "text": "Built and maintained event and treasury infrastructure published at kartavya.tech/HAC.",
+          "variants": [
+            "innovation-ecosystem-architect-startup-accelerators",
+            "innovation-ecosystem-architect-university-innovation-hubs",
+            "innovation-ecosystem-architect-corporate-venture-labs",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Product Management", "Web3", "DeFi", "Wallet", "Tokenomics", "UX"]
+      "keywords": [
+        "community building",
+        "AI education",
+        "event operations",
+        "systems architect",
+        "hackathon",
+        "outreach",
+        "agentic AI"
+      ]
     },
     {
-      "name": "MBB Consulting",
-      "position": "Engagement Manager",
-      "url": "https://mbb.example",
-      "startDate": "2019-01-01",
-      "endDate": "",
-      "summary": "Strategy consulting for Fortune 500 healthcare and financial services clients.",
+      "name": "SRBS / Hotel Savi",
+      "position": "Operations and Finance Lead",
+      "url": "",
+      "startDate": "2021-01-01",
+      "endDate": "2026-07-01",
+      "summary": "Held direct financial and operational responsibility for a boutique hospitality property, reporting to family ownership, from 2021 through the role's conclusion. Alternate framing: Operations Associate for operations/strategy-track applications; Financial Systems Consultant for finance-track applications; Infrastructure/IT Lead for tech-track applications.",
       "highlights": [
         {
-          "text": "Led a digital transformation for a Top 5 US hospital system, reducing OpEx by $40 million annually.",
-          "variants": ["consult-health", "all"]
+          "text": "Replaced manual daily transaction cross-referencing by designing and building a 14-sheet financial reconciliation system in openpyxl, covering all front desk cash and shift activity.",
+          "variants": [
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
         },
         {
-          "text": "Designed a patient-centric care model that increased NPS from 42 to 78 across 12 clinics.",
-          "variants": ["consult-health", "all"]
+          "text": "Preserved business continuity during an active operational disruption by managing account access and connectivity across visa-linked institutional accounts.",
+          "variants": [
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
         },
         {
-          "text": "Built a predictive staffing model using ML, reducing nurse burnout rates by 20 percent.",
-          "variants": ["consult-health", "all"]
-        },
-        {
-          "text": "Built the digital lending strategy for a top-10 US bank, unlocking $75 million in incremental revenue.",
-          "variants": ["consult-fintech", "all"]
-        },
-        {
-          "text": "Restructured a fintech GTM motion, cutting CAC by 28 percent across three markets.",
-          "variants": ["consult-fintech", "all"]
-        },
-        {
-          "text": "Advised a regulator-facing compliance overhaul across 6 product lines.",
-          "variants": ["consult-fintech", "all"]
+          "text": "Drafted a Supreme Court legal addendum for a related family matter under time pressure.",
+          "variants": [
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Strategy", "Consulting", "Healthcare", "FinTech", "Digital Transformation", "Operations"]
+      "keywords": [
+        "operations",
+        "finance",
+        "hospitality",
+        "openpyxl",
+        "reconciliation",
+        "business continuity",
+        "infrastructure"
+      ]
     },
     {
-      "name": "QuantEdge Trading",
-      "position": "Product Analyst",
-      "url": "https://quantedge.example",
-      "startDate": "2017-01-01",
-      "endDate": "2020-12-31",
-      "summary": "Product and strategy work for institutional trading desk.",
+      "name": "Siya The Restaurant, SRBS Group",
+      "position": "Menu Engineering Consultant",
+      "url": "",
+      "startDate": "2025-01-01",
+      "endDate": "2026-01-01",
+      "summary": "Analyzed menu-level financial performance for a restaurant property within the family business group.",
       "highlights": [
         {
-          "text": "Optimized order routing algorithms, resulting in a 15 bps reduction in slippage for institutional clients.",
-          "variants": ["pm-fintech", "all"]
+          "text": "Repriced and repositioned a 191-item menu by building a margin-times-velocity classification matrix to guide pricing, placement, and pruning decisions.",
+          "variants": [
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "all"
+          ]
         },
         {
-          "text": "Built a real-time risk monitoring dashboard used by the trading desk to manage $500 million AUM.",
-          "variants": ["pm-fintech", "all"]
+          "text": "Created the property's first digital consumption dataset by OCR-digitizing two years of handwritten kitchen registers.",
+          "variants": [
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "all"
+          ]
         },
         {
-          "text": "Modeled market-structure changes affecting $500 million AUM institutional flow.",
-          "variants": ["consult-fintech", "all"]
-        },
-        {
-          "text": "Delivered a pricing strategy that improved net margins by 210 bps.",
-          "variants": ["consult-fintech", "all"]
+          "text": "Delivered the pricing model in auditable, formula-driven Excel usable directly by non-technical restaurant staff.",
+          "variants": [
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Trading", "Quantitative Analysis", "Risk Management", "Algorithms", "FinTech"]
+      "keywords": [
+        "menu engineering",
+        "hospitality analytics",
+        "pricing",
+        "excel",
+        "OCR",
+        "restaurant operations"
+      ]
     },
     {
-      "name": "ChainScale",
-      "position": "Backend Engineer",
-      "url": "https://chainscale.example",
-      "startDate": "2018-01-01",
-      "endDate": "2021-05-31",
-      "summary": "Backend infrastructure for blockchain indexing and data availability.",
+      "name": "Independent Client, Restaurant",
+      "position": "Full Stack Developer and Core Engineer",
+      "url": "",
+      "startDate": "2025-01-01",
+      "endDate": "2025-03-01",
+      "summary": "Delivered a full-stack restaurant management system for a small independent restaurant, then transitioned into an ongoing technical advisory relationship with the owner.",
       "highlights": [
         {
-          "text": "Built a high-throughput indexing engine processing 10k events/sec with sub-100 ms latency.",
-          "variants": ["swe-web3", "all"]
+          "text": "Built a full-stack reservation, menu, staff cashiering/POS, and inventory management system for a small restaurant.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-fintech-platforms",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "all"
+          ]
         },
         {
-          "text": "Reduced RPC overhead by 30 percent through custom caching layers.",
-          "variants": ["swe-web3", "all"]
+          "text": "Converted an initial paid build into a technical mentorship arrangement after the client requested to learn the codebase directly, then became the project's core engineer.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-fintech-platforms",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "all"
+          ]
         },
         {
-          "text": "Owned the developer platform roadmap serving 3k+ integrated dApps.",
-          "variants": ["pm-web3", "all"]
-        },
-        {
-          "text": "Reduced onboarding time for new dApps from 2 weeks to 2 days.",
-          "variants": ["pm-web3", "all"]
+          "text": "Integrated menu design decisions directly into the system architecture.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-fintech-platforms",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Backend", "Web3", "Infrastructure", "Blockchain", "Developer Platform"]
+      "keywords": [
+        "full stack",
+        "restaurant tech",
+        "POS",
+        "inventory management",
+        "mentorship",
+        "system architecture"
+      ]
     },
     {
-      "name": "HealthStrat Group",
-      "position": "Associate",
-      "url": "https://healthstrat.example",
-      "startDate": "2016-01-01",
-      "endDate": "2018-12-31",
-      "summary": "Strategy consulting for pharmaceutical and healthcare provider clients.",
+      "name": "Independent Client, Healthcare",
+      "position": "Technology Consultant, Web and Strategy",
+      "url": "",
+      "startDate": "2024-06-01",
+      "endDate": "2024-08-31",
+      "summary": "Delivered strategy and market research for a healthcare-industry client sourced through a family referral, ahead of an initial product build.",
       "highlights": [
         {
-          "text": "Conducted market entry analysis for a pharmaceutical giant entering the APAC market.",
-          "variants": ["consult-health", "all"]
+          "text": "Delivered a strategy document and post-discovery market research report for a healthcare-industry client.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "behavioral-product-manager-consumer-social-apps",
+            "behavioral-product-manager-gamified-edtech",
+            "behavioral-product-manager-digital-wellness",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "all"
+          ]
         },
         {
-          "text": "Built financial models to evaluate the ROI of a $200 million EHR implementation.",
-          "variants": ["consult-health", "all"]
+          "text": "Built an initial MVP website ahead of planned engagement continuation.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "behavioral-product-manager-consumer-social-apps",
+            "behavioral-product-manager-gamified-edtech",
+            "behavioral-product-manager-digital-wellness",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "all"
+          ]
         }
       ],
-      "keywords": ["Strategy", "Healthcare", "Market Analysis", "Financial Modeling", "Pharmaceuticals"]
-    },
-    {
-      "name": "Various Ventures",
-      "position": "Founder / Consultant",
-      "url": "https://polymath.dev",
-      "startDate": "2015-01-01",
-      "endDate": "",
-      "summary": "Cross-domain advisory and execution for early-stage ventures.",
-      "highlights": [
-        {
-          "text": "Delivered high-impact results across FinTech, Web3, Healthcare, and consumer sectors.",
-          "variants": ["all"]
-        },
-        {
-          "text": "Bridged technical execution and business strategy for multiple seed-stage startups.",
-          "variants": ["all"]
-        },
-        {
-          "text": "Developed a framework for cross-domain knowledge transfer to accelerate product development.",
-          "variants": ["all"]
-        }
-      ],
-      "keywords": ["Entrepreneurship", "Advisory", "Multi-disciplinary", "Startups", "Strategy"]
+      "keywords": [
+        "consulting",
+        "healthcare",
+        "market research",
+        "MVP website",
+        "strategy",
+        "web development"
+      ]
     }
   ],
-  "volunteer": [],
-  "education": [
+  "volunteer": [
     {
-      "institution": "Stanford University",
-      "url": "https://stanford.edu",
-      "area": "Computer Science",
-      "studyType": "Master of Science",
-      "startDate": "2015-09-01",
-      "endDate": "2017-06-01",
-      "score": "",
-      "courses": [],
-      "summary": "Distributed Systems"
+      "organization": "Hult Founders Lab (HFL) Entrepreneurship Club",
+      "position": "Active Member and Informal Mentor",
+      "url": "",
+      "startDate": "2024-01-01",
+      "endDate": "",
+      "summary": "Active member since 2024. Speaks regularly at club events and functions as an informal mentor to other members on venture and technical questions.",
+      "variants": [
+        "innovation-ecosystem-architect-startup-accelerators",
+        "innovation-ecosystem-architect-university-innovation-hubs",
+        "innovation-ecosystem-architect-corporate-venture-labs",
+        "open-source-community-lead-open-source-foundations",
+        "open-source-community-lead-web3-layer-1s",
+        "open-source-community-lead-developer-api-startups",
+        "experiential-event-producer-esports-events",
+        "experiential-event-producer-brand-activations",
+        "experiential-event-producer-tech-conferences",
+        "all"
+      ]
     },
     {
-      "institution": "MIT",
-      "url": "https://mit.edu",
-      "area": "Economics",
-      "studyType": "Bachelor of Science",
-      "startDate": "2011-09-01",
-      "endDate": "2015-06-01",
+      "organization": "Peer Instruction",
+      "position": "Student Instructor",
+      "url": "",
+      "startDate": "2021-01-01",
+      "endDate": "2021-12-31",
+      "summary": "Taught sorting algorithms, hash functions, and software architecture fundamentals to junior-year students, building inventory management platforms and single-page web apps with students as teaching-oriented capstones.",
+      "variants": [
+        "innovation-ecosystem-architect-startup-accelerators",
+        "innovation-ecosystem-architect-university-innovation-hubs",
+        "innovation-ecosystem-architect-corporate-venture-labs",
+        "ux-research-translation-lead-govtech",
+        "ux-research-translation-lead-edtech",
+        "ux-research-translation-lead-civic-tech-platforms",
+        "open-source-community-lead-open-source-foundations",
+        "open-source-community-lead-web3-layer-1s",
+        "open-source-community-lead-developer-api-startups",
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "all"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Hult International Business School",
+      "url": "",
+      "area": "Entrepreneurship and Design (Double Major)",
+      "studyType": "Bachelor of Business Administration",
+      "startDate": "2024-09-01",
+      "endDate": "2027-06-01",
       "score": "",
       "courses": [],
-      "summary": "Minor, Mathematics"
+      "summary": "Expected 2027. Dean's List, consecutive terms."
     }
   ],
   "awards": [],
-  "certificates": [],
+  "certificates": [
+    {
+      "name": "PitchBook Certification Suite",
+      "date": "",
+      "issuer": "PitchBook",
+      "url": "",
+      "variants": [
+        "all"
+      ]
+    },
+    {
+      "name": "Coursera certifications across multiple fields represented in this document",
+      "date": "",
+      "issuer": "Coursera",
+      "url": "",
+      "variants": [
+        "all"
+      ]
+    }
+  ],
   "publications": [],
   "skills": [
     {
-      "name": "Product Management",
-      "level": "Expert",
-      "keywords": ["Product Strategy", "Roadmapping", "Stakeholder Management", "Agile", "Scrum"],
-      "variants": ["pm-fintech", "pm-web3", "consult-fintech", "all"]
-    },
-    {
-      "name": "Technical Skills",
-      "level": "Expert",
-      "keywords": ["SQL", "Python", "Rust", "Solidity", "Go", "TypeScript"],
-      "variants": ["swe-web3", "pm-fintech", "pm-web3", "all"]
-    },
-    {
-      "name": "Systems Engineering",
-      "level": "Expert",
-      "keywords": ["Distributed Systems", "Linux Kernel", "Cryptography", "Kubernetes", "Performance Optimization"],
-      "variants": ["swe-web3", "all"]
-    },
-    {
-      "name": "FinTech Expertise",
-      "level": "Expert",
-      "keywords": ["API Design", "PCI-DSS", "Payments", "Regulatory Compliance", "Trading Systems"],
-      "variants": ["pm-fintech", "consult-fintech", "all"]
-    },
-    {
-      "name": "Web3 Expertise",
-      "level": "Expert",
-      "keywords": ["Tokenomics", "DAO Governance", "Wallet UX", "EVM", "ZK-Proofs", "DeFi"],
-      "variants": ["swe-web3", "pm-web3", "all"]
-    },
-    {
-      "name": "Strategy & Consulting",
-      "level": "Expert",
-      "keywords": ["Financial Modeling", "Operational Excellence", "Market Sizing", "GTM Strategy", "Lean Six Sigma"],
-      "variants": ["consult-health", "consult-fintech", "all"]
-    },
-    {
-      "name": "Healthcare Domain",
+      "name": "Backend and APIs",
       "level": "Advanced",
-      "keywords": ["Digital Transformation", "Value-Based Care", "EHR Systems", "Healthcare Operations"],
-      "variants": ["consult-health", "all"]
+      "keywords": [
+        "Python",
+        "Flask",
+        "Django",
+        "FastAPI",
+        "JavaScript",
+        "HTML/CSS",
+        "SQL",
+        "Git/GitHub"
+      ],
+      "variants": [
+        "customer-facing-founding-engineer-pre-seed-saas",
+        "customer-facing-founding-engineer-open-source-protocols",
+        "customer-facing-founding-engineer-developer-tooling",
+        "developer-experience-dx-evangelist-web3-infrastructure",
+        "developer-experience-dx-evangelist-api-first-saas",
+        "developer-experience-dx-evangelist-devtools",
+        "early-stage-operator-yc-alumni-startups",
+        "early-stage-operator-stealth-web3-protocols",
+        "early-stage-operator-boutique-saas",
+        "all"
+      ]
+    },
+    {
+      "name": "Data and Databases",
+      "level": "Advanced",
+      "keywords": [
+        "MySQL",
+        "PostgreSQL",
+        "SQLite",
+        "Redis",
+        "Excel",
+        "openpyxl",
+        "Power BI"
+      ],
+      "variants": [
+        "analytics-intelligence-lead-supply-chain-tech",
+        "analytics-intelligence-lead-e-commerce-logistics",
+        "analytics-intelligence-lead-hedge-funds",
+        "venture-diligence-analyst-pre-seed-funds",
+        "venture-diligence-analyst-family-offices",
+        "venture-diligence-analyst-deeptech-syndicates",
+        "investment-banking-analyst-bulge-bracket-investment-banks",
+        "investment-banking-analyst-boutique-ma-advisory",
+        "investment-banking-analyst-growth-equity",
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "all"
+      ]
+    },
+    {
+      "name": "AI and ML",
+      "level": "Intermediate to Advanced",
+      "keywords": [
+        "TensorFlow",
+        "PyTorch",
+        "Whisper",
+        "speech-model fine-tuning",
+        "real-time AI voice systems"
+      ],
+      "variants": [
+        "forward-deployed-innovator-defensetech",
+        "forward-deployed-innovator-spacetech",
+        "forward-deployed-innovator-enterprise-ai",
+        "agentic-systems-architect-autonomous-ai-labs",
+        "agentic-systems-architect-fintech-automation",
+        "agentic-systems-architect-rpa-enterprise-tech",
+        "core-ai-pipeline-engineer-quant-trading",
+        "core-ai-pipeline-engineer-biotech",
+        "core-ai-pipeline-engineer-high-frequency-trading",
+        "ai-governance-ethics-officer-medtech",
+        "ai-governance-ethics-officer-govtech",
+        "ai-governance-ethics-officer-regulated-decentralized-finance",
+        "all"
+      ]
+    },
+    {
+      "name": "Systems and DevOps",
+      "level": "Advanced",
+      "keywords": [
+        "Linux Systems Administration",
+        "Docker",
+        "network routing",
+        "firewall traversal",
+        "SSH deployment"
+      ],
+      "variants": [
+        "enterprise-resilience-engineer-insurtech",
+        "enterprise-resilience-engineer-healthtech",
+        "enterprise-resilience-engineer-managed-service-providers",
+        "tactical-it-systems-administrator-enterprise-data-centers",
+        "tactical-it-systems-administrator-local-government-it",
+        "tactical-it-systems-administrator-managed-service-providers",
+        "systems-qa-auditor-crypto-exchanges",
+        "systems-qa-auditor-tech-private-equity",
+        "systems-qa-auditor-fintech-infrastructure",
+        "core-ai-pipeline-engineer-quant-trading",
+        "core-ai-pipeline-engineer-biotech",
+        "core-ai-pipeline-engineer-high-frequency-trading",
+        "all"
+      ]
+    },
+    {
+      "name": "Product, Design, and Spatial Tools",
+      "level": "Intermediate",
+      "keywords": [
+        "Figma",
+        "Snaptrude",
+        "product strategy",
+        "systems design",
+        "service design"
+      ],
+      "variants": [
+        "behavioral-product-manager-consumer-social-apps",
+        "behavioral-product-manager-gamified-edtech",
+        "behavioral-product-manager-digital-wellness",
+        "strategic-interaction-designer-spatial-computing",
+        "strategic-interaction-designer-immersive-web",
+        "strategic-interaction-designer-gametech",
+        "design-systems-architect-enterprise-b2b-saas",
+        "design-systems-architect-complex-data-dashboards",
+        "design-systems-architect-fintech-platforms",
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "proptech-underwriter-designer-proptech",
+        "proptech-underwriter-designer-high-end-real-estate-pe",
+        "proptech-underwriter-designer-co-working-conglomerates",
+        "phygital-spatial-designer-luxury-retail-tech",
+        "phygital-spatial-designer-museumexpo-design",
+        "phygital-spatial-designer-spatial-computing-labs",
+        "ux-research-translation-lead-govtech",
+        "ux-research-translation-lead-edtech",
+        "ux-research-translation-lead-civic-tech-platforms",
+        "all"
+      ]
     }
   ],
   "languages": [
     {
       "language": "English",
-      "fluency": "Native speaker"
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Fluent"
     }
   ],
   "interests": [],
   "references": [],
-  "projects": []
+  "projects": [
+    {
+      "name": "Independent Software Development and Systems Engineering",
+      "description": "Self-directed technical foundation spanning software systems, infrastructure, and analytical problem solving.",
+      "url": "",
+      "variants": [
+        "customer-facing-founding-engineer-pre-seed-saas",
+        "customer-facing-founding-engineer-open-source-protocols",
+        "customer-facing-founding-engineer-developer-tooling",
+        "developer-experience-dx-evangelist-web3-infrastructure",
+        "developer-experience-dx-evangelist-api-first-saas",
+        "developer-experience-dx-evangelist-devtools",
+        "enterprise-resilience-engineer-insurtech",
+        "enterprise-resilience-engineer-healthtech",
+        "enterprise-resilience-engineer-managed-service-providers",
+        "tactical-it-systems-administrator-enterprise-data-centers",
+        "tactical-it-systems-administrator-local-government-it",
+        "tactical-it-systems-administrator-managed-service-providers",
+        "systems-qa-auditor-crypto-exchanges",
+        "systems-qa-auditor-tech-private-equity",
+        "systems-qa-auditor-fintech-infrastructure",
+        "core-ai-pipeline-engineer-quant-trading",
+        "core-ai-pipeline-engineer-biotech",
+        "core-ai-pipeline-engineer-high-frequency-trading",
+        "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+        "autodidact-skunkworks-researcher-corporate-rd-labs",
+        "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+        "open-source-community-lead-open-source-foundations",
+        "open-source-community-lead-web3-layer-1s",
+        "open-source-community-lead-developer-api-startups",
+        "all"
+      ],
+      "keywords": [
+        "software engineering",
+        "full stack",
+        "infrastructure",
+        "linux",
+        "algorithms",
+        "python",
+        "javascript"
+      ],
+      "highlights": [
+        {
+          "text": "Maintained 20-plus repositories spanning Python and JavaScript, with a project footprint of roughly 15.8GB and 367,000 files as of March 2026.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "enterprise-resilience-engineer-insurtech",
+            "enterprise-resilience-engineer-healthtech",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "all"
+          ]
+        },
+        {
+          "text": "Built and deployed a full-stack CRM, an e-commerce platform, a revenue management system, and a library management system using Flask, Django, and FastAPI.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "enterprise-resilience-engineer-insurtech",
+            "enterprise-resilience-engineer-healthtech",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "all"
+          ]
+        },
+        {
+          "text": "Achieved kernel-module-level Linux fluency across seven distributions, including advanced network routing, firewall traversal, SSH deployment, and OSI stack-level troubleshooting.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "enterprise-resilience-engineer-insurtech",
+            "enterprise-resilience-engineer-healthtech",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "all"
+          ]
+        },
+        {
+          "text": "Delivered small-scale infrastructure implementation and troubleshooting for friends, school events, and institutional environments.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "enterprise-resilience-engineer-insurtech",
+            "enterprise-resilience-engineer-healthtech",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "all"
+          ]
+        },
+        {
+          "text": "Revisited core data structures and algorithms deliberately as an adult, including Dijkstra's algorithm and heuristic search, with LeetCode-style practice.",
+          "variants": [
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "enterprise-resilience-engineer-insurtech",
+            "enterprise-resilience-engineer-healthtech",
+            "enterprise-resilience-engineer-managed-service-providers",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Culinary Stagiaire Rotation",
+      "description": "Informal hospitality placements across multiple London restaurants.",
+      "url": "",
+      "variants": [
+        "gastronomic-systems-operator-elite-hospitality-groups",
+        "gastronomic-systems-operator-culinary-consulting",
+        "gastronomic-systems-operator-luxury-travel",
+        "culinary-ops-hybrid-architect-b2b-foodtech",
+        "culinary-ops-hybrid-architect-airline-catering-logistics",
+        "culinary-ops-hybrid-architect-stadium-hospitality",
+        "operations-flow-manager-foodtech",
+        "operations-flow-manager-delivery-platforms",
+        "operations-flow-manager-ghost-kitchen-ecosystems",
+        "all"
+      ],
+      "keywords": [
+        "hospitality",
+        "culinary",
+        "service operations",
+        "restaurant"
+      ],
+      "highlights": [
+        {
+          "text": "Executed prep-station knife work and batch timing against live service windows.",
+          "variants": [
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "all"
+          ]
+        },
+        {
+          "text": "Managed saucier-station reductions and multi-sauce consistency and temperature control through service.",
+          "variants": [
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "all"
+          ]
+        },
+        {
+          "text": "Handled front-of-house order accuracy and service recovery under volume while shadowing FOH and maitre d' responsibilities.",
+          "variants": [
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "culinary-ops-hybrid-architect-b2b-foodtech",
+            "culinary-ops-hybrid-architect-airline-catering-logistics",
+            "culinary-ops-hybrid-architect-stadium-hospitality",
+            "operations-flow-manager-foodtech",
+            "operations-flow-manager-delivery-platforms",
+            "operations-flow-manager-ghost-kitchen-ecosystems",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BWC Investment Simulation",
+      "description": "Team-led investment simulation analysis published as a public case study microsite.",
+      "url": "",
+      "variants": [
+        "venture-diligence-analyst-pre-seed-funds",
+        "venture-diligence-analyst-family-offices",
+        "venture-diligence-analyst-deeptech-syndicates",
+        "investment-banking-analyst-bulge-bracket-investment-banks",
+        "investment-banking-analyst-boutique-ma-advisory",
+        "investment-banking-analyst-growth-equity",
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "analytics-intelligence-lead-supply-chain-tech",
+        "analytics-intelligence-lead-e-commerce-logistics",
+        "analytics-intelligence-lead-hedge-funds",
+        "all"
+      ],
+      "keywords": [
+        "investment analysis",
+        "finance",
+        "case study",
+        "interactive charts"
+      ],
+      "highlights": [
+        {
+          "text": "Led a team through a full-cycle investment simulation, producing a postmortem with institutional-grade performance ratios and market regime analysis.",
+          "variants": [
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "investment-banking-analyst-boutique-ma-advisory",
+            "investment-banking-analyst-growth-equity",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "all"
+          ]
+        },
+        {
+          "text": "Published the analysis as a public case study microsite with interactive charts, later folded into GANET.",
+          "variants": [
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "investment-banking-analyst-boutique-ma-advisory",
+            "investment-banking-analyst-growth-equity",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Danone YoPRO APEX Diagnostic",
+      "description": "Corporate entrepreneurship diagnostic translated into a client-facing HTML presentation.",
+      "url": "",
+      "variants": [
+        "management-consultant-mbb-standard-big-3-consulting",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "management-consultant-mbb-standard-corporate-turnarounds",
+        "executive-translation-lead-fortune-500-strategy",
+        "executive-translation-lead-private-equity-operations",
+        "executive-translation-lead-tech-conglomerates",
+        "behavioral-product-manager-consumer-social-apps",
+        "behavioral-product-manager-gamified-edtech",
+        "behavioral-product-manager-digital-wellness",
+        "all"
+      ],
+      "keywords": [
+        "corporate entrepreneurship",
+        "strategy",
+        "HTML presentation",
+        "client delivery"
+      ],
+      "highlights": [
+        {
+          "text": "Led a team producing a corporate entrepreneurship diagnostic for a global nutrition brand across multiple drafted iterations.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "behavioral-product-manager-consumer-social-apps",
+            "behavioral-product-manager-gamified-edtech",
+            "behavioral-product-manager-digital-wellness",
+            "all"
+          ]
+        },
+        {
+          "text": "Translated the written diagnostic into a client-facing HTML presentation.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "behavioral-product-manager-consumer-social-apps",
+            "behavioral-product-manager-gamified-edtech",
+            "behavioral-product-manager-digital-wellness",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IHCL/Taj Hotels Case Study Deep Dive (Project Bifocal)",
+      "description": "Solo hospitality-sector corporate entrepreneurship diagnostic and programmatic slide deck.",
+      "url": "",
+      "variants": [
+        "management-consultant-mbb-standard-big-3-consulting",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "management-consultant-mbb-standard-corporate-turnarounds",
+        "executive-translation-lead-fortune-500-strategy",
+        "executive-translation-lead-private-equity-operations",
+        "executive-translation-lead-tech-conglomerates",
+        "gastronomic-systems-operator-elite-hospitality-groups",
+        "gastronomic-systems-operator-culinary-consulting",
+        "gastronomic-systems-operator-luxury-travel",
+        "all"
+      ],
+      "keywords": [
+        "hospitality",
+        "corporate entrepreneurship",
+        "slide automation",
+        "analysis"
+      ],
+      "highlights": [
+        {
+          "text": "Completed a solo corporate entrepreneurship diagnostic for a hospitality-sector client end to end.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "all"
+          ]
+        },
+        {
+          "text": "Built a 20-slide deck generated programmatically rather than assembled manually.",
+          "variants": [
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NIRMANA Design Capstone",
+      "description": "Practitioner toolkit, microsite, and Snaptrude prototype for a design capstone.",
+      "url": "",
+      "variants": [
+        "strategic-interaction-designer-spatial-computing",
+        "strategic-interaction-designer-immersive-web",
+        "strategic-interaction-designer-gametech",
+        "design-systems-architect-enterprise-b2b-saas",
+        "design-systems-architect-complex-data-dashboards",
+        "design-systems-architect-fintech-platforms",
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "phygital-spatial-designer-luxury-retail-tech",
+        "phygital-spatial-designer-museumexpo-design",
+        "phygital-spatial-designer-spatial-computing-labs",
+        "all"
+      ],
+      "keywords": [
+        "design",
+        "microsite",
+        "snaptrude",
+        "toolkit",
+        "UX"
+      ],
+      "highlights": [
+        {
+          "text": "Designed a 25-card practitioner toolkit spanning five territories, reworked across four brief iterations before final submission.",
+          "variants": [
+            "strategic-interaction-designer-spatial-computing",
+            "strategic-interaction-designer-immersive-web",
+            "strategic-interaction-designer-gametech",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-fintech-platforms",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "phygital-spatial-designer-luxury-retail-tech",
+            "phygital-spatial-designer-museumexpo-design",
+            "phygital-spatial-designer-spatial-computing-labs",
+            "all"
+          ]
+        },
+        {
+          "text": "Built a companion microsite and a Snaptrude spatial prototype supporting the physical toolkit.",
+          "variants": [
+            "strategic-interaction-designer-spatial-computing",
+            "strategic-interaction-designer-immersive-web",
+            "strategic-interaction-designer-gametech",
+            "design-systems-architect-enterprise-b2b-saas",
+            "design-systems-architect-complex-data-dashboards",
+            "design-systems-architect-fintech-platforms",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "phygital-spatial-designer-luxury-retail-tech",
+            "phygital-spatial-designer-museumexpo-design",
+            "phygital-spatial-designer-spatial-computing-labs",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Value Creation Client Advisory: Drone Spinout and Tel Aviv Investor Memo",
+      "description": "Venture-readiness advisory and investor memo work for academic and fund stakeholders.",
+      "url": "",
+      "variants": [
+        "venture-diligence-analyst-pre-seed-funds",
+        "venture-diligence-analyst-family-offices",
+        "venture-diligence-analyst-deeptech-syndicates",
+        "investment-banking-analyst-bulge-bracket-investment-banks",
+        "investment-banking-analyst-boutique-ma-advisory",
+        "investment-banking-analyst-growth-equity",
+        "heavy-industry-value-engineer-climatetech",
+        "heavy-industry-value-engineer-heavy-manufacturing-tech",
+        "heavy-industry-value-engineer-agritech",
+        "forward-deployed-innovator-defensetech",
+        "forward-deployed-innovator-spacetech",
+        "forward-deployed-innovator-enterprise-ai",
+        "all"
+      ],
+      "keywords": [
+        "venture advisory",
+        "investor memo",
+        "fundraising",
+        "drone",
+        "spinout"
+      ],
+      "highlights": [
+        {
+          "text": "Advised a US-based academic client on venture readiness for a defense-connected drone technology academic spinout against KTH Innovation-style tiers.",
+          "variants": [
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "investment-banking-analyst-boutique-ma-advisory",
+            "investment-banking-analyst-growth-equity",
+            "heavy-industry-value-engineer-climatetech",
+            "heavy-industry-value-engineer-heavy-manufacturing-tech",
+            "heavy-industry-value-engineer-agritech",
+            "forward-deployed-innovator-defensetech",
+            "forward-deployed-innovator-spacetech",
+            "forward-deployed-innovator-enterprise-ai",
+            "all"
+          ]
+        },
+        {
+          "text": "Authored an investor memo for a Tel Aviv-based fund in early fundraising stages.",
+          "variants": [
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "investment-banking-analyst-boutique-ma-advisory",
+            "investment-banking-analyst-growth-equity",
+            "heavy-industry-value-engineer-climatetech",
+            "heavy-industry-value-engineer-heavy-manufacturing-tech",
+            "heavy-industry-value-engineer-agritech",
+            "forward-deployed-innovator-defensetech",
+            "forward-deployed-innovator-spacetech",
+            "forward-deployed-innovator-enterprise-ai",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Growth Hacking GTM Design (Pirate Funnel)",
+      "description": "Go-to-market strategy applying the AARRR framework to two live ventures.",
+      "url": "",
+      "variants": [
+        "zero-cost-growth-hacker-d2c-marketplaces",
+        "zero-cost-growth-hacker-creator-economy-startups",
+        "early-stage-operator-yc-alumni-startups",
+        "early-stage-operator-stealth-web3-protocols",
+        "early-stage-operator-boutique-saas",
+        "management-consultant-mbb-standard-big-3-consulting",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "management-consultant-mbb-standard-corporate-turnarounds",
+        "all"
+      ],
+      "keywords": [
+        "growth",
+        "GTM",
+        "AARRR",
+        "marketing strategy"
+      ],
+      "highlights": [
+        {
+          "text": "Designed go-to-market strategy applying the Pirate Funnel (AARRR) framework concurrently to two live ventures (AstroPatshala, Margadarshaka) within a single term.",
+          "variants": [
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jeki Guerrilla Campaign, AfroKids",
+      "description": "Client-facing guerrilla marketing campaign developed for AfroKids.",
+      "url": "",
+      "variants": [
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "zero-cost-growth-hacker-d2c-marketplaces",
+        "zero-cost-growth-hacker-creator-economy-startups",
+        "behavioral-product-manager-consumer-social-apps",
+        "behavioral-product-manager-gamified-edtech",
+        "behavioral-product-manager-digital-wellness",
+        "all"
+      ],
+      "keywords": [
+        "campaign design",
+        "guerrilla marketing",
+        "brand strategy"
+      ],
+      "highlights": [
+        {
+          "text": "Designed a guerrilla marketing campaign (Jeki) for AfroKids, an African children's charity, as a client-facing design brief.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "behavioral-product-manager-consumer-social-apps",
+            "behavioral-product-manager-gamified-edtech",
+            "behavioral-product-manager-digital-wellness",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Redshaw Carbon Credits Consultancy, Guerrilla Brand Kit and Strategy",
+      "description": "Solo client engagement combining ESG research, due diligence, and design work.",
+      "url": "",
+      "variants": [
+        "heavy-industry-value-engineer-climatetech",
+        "heavy-industry-value-engineer-heavy-manufacturing-tech",
+        "heavy-industry-value-engineer-agritech",
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "management-consultant-mbb-standard-big-3-consulting",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "management-consultant-mbb-standard-corporate-turnarounds",
+        "all"
+      ],
+      "keywords": [
+        "ESG",
+        "carbon credits",
+        "brand strategy",
+        "client work",
+        "research"
+      ],
+      "highlights": [
+        {
+          "text": "Delivered a guerrilla brand kit and brand strategy, solo, for Redshaw, a London-based carbon credits consultancy, incorporating carbon credit due diligence and ESG deep-dive research into the design work.",
+          "variants": [
+            "heavy-industry-value-engineer-climatetech",
+            "heavy-industry-value-engineer-heavy-manufacturing-tech",
+            "heavy-industry-value-engineer-agritech",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "all"
+          ]
+        },
+        {
+          "text": "Received a client commendation on the final deliverable.",
+          "variants": [
+            "heavy-industry-value-engineer-climatetech",
+            "heavy-industry-value-engineer-heavy-manufacturing-tech",
+            "heavy-industry-value-engineer-agritech",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Carbon Forward Conference, Lead Magnet Design",
+      "description": "Deputy team lead on a real-client design engagement for an upcoming carbon conference.",
+      "url": "",
+      "variants": [
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "experiential-event-producer-esports-events",
+        "experiential-event-producer-brand-activations",
+        "experiential-event-producer-tech-conferences",
+        "zero-cost-growth-hacker-d2c-marketplaces",
+        "zero-cost-growth-hacker-creator-economy-startups",
+        "all"
+      ],
+      "keywords": [
+        "conference marketing",
+        "lead magnet",
+        "team leadership",
+        "ESG"
+      ],
+      "highlights": [
+        {
+          "text": "Served as deputy team leader designing a lead magnet for Carbon Forward, applying the same carbon credit due diligence and ESG research used on the Redshaw engagement.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "all"
+          ]
+        },
+        {
+          "text": "Recognized internally as the semester's more significant client engagement; delivered alongside a strong grade.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "experiential-event-producer-esports-events",
+            "experiential-event-producer-brand-activations",
+            "experiential-event-producer-tech-conferences",
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Airbnb London, Pricing and Regression Models",
+      "description": "Regression-based pricing models for London Airbnb listings.",
+      "url": "",
+      "variants": [
+        "analytics-intelligence-lead-supply-chain-tech",
+        "analytics-intelligence-lead-e-commerce-logistics",
+        "analytics-intelligence-lead-hedge-funds",
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "venture-diligence-analyst-pre-seed-funds",
+        "venture-diligence-analyst-family-offices",
+        "venture-diligence-analyst-deeptech-syndicates",
+        "all"
+      ],
+      "keywords": [
+        "regression",
+        "analytics",
+        "pricing model",
+        "airbnb",
+        "python"
+      ],
+      "highlights": [
+        {
+          "text": "Led a team building regression-based pricing models for Airbnb listings in the London market, serving as team lead, primary developer, and designer.",
+          "variants": [
+            "analytics-intelligence-lead-supply-chain-tech",
+            "analytics-intelligence-lead-e-commerce-logistics",
+            "analytics-intelligence-lead-hedge-funds",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OneYMCA, Community Event Booking and Design Thinking",
+      "description": "Community event booking concept delivered alongside the NIRMANA capstone term.",
+      "url": "",
+      "variants": [
+        "ux-research-translation-lead-govtech",
+        "ux-research-translation-lead-edtech",
+        "ux-research-translation-lead-civic-tech-platforms",
+        "behavioral-product-manager-consumer-social-apps",
+        "behavioral-product-manager-gamified-edtech",
+        "behavioral-product-manager-digital-wellness",
+        "strategic-interaction-designer-spatial-computing",
+        "strategic-interaction-designer-immersive-web",
+        "strategic-interaction-designer-gametech",
+        "phygital-spatial-designer-luxury-retail-tech",
+        "phygital-spatial-designer-museumexpo-design",
+        "phygital-spatial-designer-spatial-computing-labs",
+        "all"
+      ],
+      "keywords": [
+        "design thinking",
+        "community booking",
+        "service design",
+        "charity"
+      ],
+      "highlights": [
+        {
+          "text": "Developed a community event booking concept and applied design thinking methodology for OneYMCA across the Bedfordshire, Hertfordshire, and Luton area.",
+          "variants": [
+            "ux-research-translation-lead-govtech",
+            "ux-research-translation-lead-edtech",
+            "ux-research-translation-lead-civic-tech-platforms",
+            "behavioral-product-manager-consumer-social-apps",
+            "behavioral-product-manager-gamified-edtech",
+            "behavioral-product-manager-digital-wellness",
+            "strategic-interaction-designer-spatial-computing",
+            "strategic-interaction-designer-immersive-web",
+            "strategic-interaction-designer-gametech",
+            "phygital-spatial-designer-luxury-retail-tech",
+            "phygital-spatial-designer-museumexpo-design",
+            "phygital-spatial-designer-spatial-computing-labs",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hospitality Craft Erosion Article",
+      "description": "Analytical article reframing hospitality craft erosion as an innovation failure.",
+      "url": "",
+      "variants": [
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "management-consultant-mbb-standard-big-3-consulting",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "management-consultant-mbb-standard-corporate-turnarounds",
+        "gastronomic-systems-operator-elite-hospitality-groups",
+        "gastronomic-systems-operator-culinary-consulting",
+        "gastronomic-systems-operator-luxury-travel",
+        "all"
+      ],
+      "keywords": [
+        "writing",
+        "hospitality",
+        "analysis",
+        "innovation"
+      ],
+      "highlights": [
+        {
+          "text": "Authored an analytical article positioning hospitality craft erosion as a sector-wide innovation failure rather than an isolated service issue.",
+          "variants": [
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Career Guidance Startup Feasibility Teardown",
+      "description": "Independent teardown of a career guidance startup concept before capital commitment.",
+      "url": "",
+      "variants": [
+        "early-stage-operator-yc-alumni-startups",
+        "early-stage-operator-stealth-web3-protocols",
+        "early-stage-operator-boutique-saas",
+        "venture-diligence-analyst-pre-seed-funds",
+        "venture-diligence-analyst-family-offices",
+        "venture-diligence-analyst-deeptech-syndicates",
+        "ai-governance-ethics-officer-medtech",
+        "ai-governance-ethics-officer-govtech",
+        "ai-governance-ethics-officer-regulated-decentralized-finance",
+        "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+        "autodidact-skunkworks-researcher-corporate-rd-labs",
+        "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+        "all"
+      ],
+      "keywords": [
+        "feasibility",
+        "venture analysis",
+        "risk",
+        "strategy"
+      ],
+      "highlights": [
+        {
+          "text": "Avoided capital and build commitment to a flawed concept by running an unsolicited feasibility teardown, surfacing payer-user misalignment and liability exposure.",
+          "variants": [
+            "early-stage-operator-yc-alumni-startups",
+            "early-stage-operator-stealth-web3-protocols",
+            "early-stage-operator-boutique-saas",
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "ai-governance-ethics-officer-medtech",
+            "ai-governance-ethics-officer-govtech",
+            "ai-governance-ethics-officer-regulated-decentralized-finance",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Family Governance Office Proposal",
+      "description": "Governance proposal for multi-generation family wealth and business decision-making.",
+      "url": "",
+      "variants": [
+        "executive-translation-lead-fortune-500-strategy",
+        "executive-translation-lead-private-equity-operations",
+        "executive-translation-lead-tech-conglomerates",
+        "management-consultant-mbb-standard-big-3-consulting",
+        "management-consultant-mbb-standard-tier-2-strategy",
+        "management-consultant-mbb-standard-corporate-turnarounds",
+        "systematic-organizational-designer-enterprise-transformation",
+        "systematic-organizational-designer-civictech",
+        "systematic-organizational-designer-deeptech-skunkworks",
+        "all"
+      ],
+      "keywords": [
+        "governance",
+        "family office",
+        "strategy",
+        "proposal"
+      ],
+      "highlights": [
+        {
+          "text": "Authored a governance proposal establishing a coordinating office structure for multi-generation family wealth and business decisions.",
+          "variants": [
+            "executive-translation-lead-fortune-500-strategy",
+            "executive-translation-lead-private-equity-operations",
+            "executive-translation-lead-tech-conglomerates",
+            "management-consultant-mbb-standard-big-3-consulting",
+            "management-consultant-mbb-standard-tier-2-strategy",
+            "management-consultant-mbb-standard-corporate-turnarounds",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Amanuensis (Whisper Fine-Tuning for Hindi ASR)",
+      "description": "Open-source Hindi speech recognition work based on Whisper fine-tuning.",
+      "url": "",
+      "variants": [
+        "agentic-systems-architect-autonomous-ai-labs",
+        "agentic-systems-architect-fintech-automation",
+        "agentic-systems-architect-rpa-enterprise-tech",
+        "core-ai-pipeline-engineer-quant-trading",
+        "core-ai-pipeline-engineer-biotech",
+        "core-ai-pipeline-engineer-high-frequency-trading",
+        "ai-governance-ethics-officer-medtech",
+        "ai-governance-ethics-officer-govtech",
+        "ai-governance-ethics-officer-regulated-decentralized-finance",
+        "all"
+      ],
+      "keywords": [
+        "Whisper",
+        "ASR",
+        "Hindi",
+        "fine-tuning",
+        "speech AI"
+      ],
+      "highlights": [
+        {
+          "text": "Fine-tuned OpenAI Whisper for Hindi speech recognition targeting prerecorded and code-switched audio.",
+          "variants": [
+            "agentic-systems-architect-autonomous-ai-labs",
+            "agentic-systems-architect-fintech-automation",
+            "agentic-systems-architect-rpa-enterprise-tech",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "ai-governance-ethics-officer-medtech",
+            "ai-governance-ethics-officer-govtech",
+            "ai-governance-ethics-officer-regulated-decentralized-finance",
+            "all"
+          ]
+        },
+        {
+          "text": "Paused development after reaching a hardware bottleneck on further fine-tuning iterations.",
+          "variants": [
+            "agentic-systems-architect-autonomous-ai-labs",
+            "agentic-systems-architect-fintech-automation",
+            "agentic-systems-architect-rpa-enterprise-tech",
+            "core-ai-pipeline-engineer-quant-trading",
+            "core-ai-pipeline-engineer-biotech",
+            "core-ai-pipeline-engineer-high-frequency-trading",
+            "ai-governance-ethics-officer-medtech",
+            "ai-governance-ethics-officer-govtech",
+            "ai-governance-ethics-officer-regulated-decentralized-finance",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GANET, Personal Finance Knowledge Architecture",
+      "description": "Public finance knowledge architecture built around simulation postmortems and research.",
+      "url": "https://kartavya.tech/ganet-project-bwc",
+      "variants": [
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "venture-diligence-analyst-pre-seed-funds",
+        "venture-diligence-analyst-family-offices",
+        "venture-diligence-analyst-deeptech-syndicates",
+        "investment-banking-analyst-bulge-bracket-investment-banks",
+        "investment-banking-analyst-boutique-ma-advisory",
+        "investment-banking-analyst-growth-equity",
+        "all"
+      ],
+      "keywords": [
+        "finance",
+        "knowledge architecture",
+        "case study",
+        "public site"
+      ],
+      "highlights": [
+        {
+          "text": "Bundled the BWC investment simulation postmortem and subsequent finance research into a public, navigable knowledge architecture at kartavya.tech/ganet-project-bwc.",
+          "variants": [
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "venture-diligence-analyst-pre-seed-funds",
+            "venture-diligence-analyst-family-offices",
+            "venture-diligence-analyst-deeptech-syndicates",
+            "investment-banking-analyst-bulge-bracket-investment-banks",
+            "investment-banking-analyst-boutique-ma-advisory",
+            "investment-banking-analyst-growth-equity",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Presentation Tooling Project",
+      "description": "Local-first presentation tooling with format round-tripping and preserved animation fidelity.",
+      "url": "",
+      "variants": [
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "developer-experience-dx-evangelist-web3-infrastructure",
+        "developer-experience-dx-evangelist-api-first-saas",
+        "developer-experience-dx-evangelist-devtools",
+        "customer-facing-founding-engineer-pre-seed-saas",
+        "customer-facing-founding-engineer-open-source-protocols",
+        "customer-facing-founding-engineer-developer-tooling",
+        "strategic-interaction-designer-spatial-computing",
+        "strategic-interaction-designer-immersive-web",
+        "strategic-interaction-designer-gametech",
+        "all"
+      ],
+      "keywords": [
+        "presentation tooling",
+        "electron",
+        "PPTX",
+        "Google Slides",
+        "HTML"
+      ],
+      "highlights": [
+        {
+          "text": "Built bidirectional PPTX/Google Slides/HTML round-tripping with preserved animation fidelity inside a local-first Electron shell with a plug-in layer.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "customer-facing-founding-engineer-pre-seed-saas",
+            "customer-facing-founding-engineer-open-source-protocols",
+            "customer-facing-founding-engineer-developer-tooling",
+            "strategic-interaction-designer-spatial-computing",
+            "strategic-interaction-designer-immersive-web",
+            "strategic-interaction-designer-gametech",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "File Archive Reorganization System",
+      "description": "Archival reorganization system producing a SQLite manifest as the structural output.",
+      "url": "",
+      "variants": [
+        "systems-qa-auditor-crypto-exchanges",
+        "systems-qa-auditor-tech-private-equity",
+        "systems-qa-auditor-fintech-infrastructure",
+        "tactical-it-systems-administrator-enterprise-data-centers",
+        "tactical-it-systems-administrator-local-government-it",
+        "tactical-it-systems-administrator-managed-service-providers",
+        "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+        "autodidact-skunkworks-researcher-corporate-rd-labs",
+        "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+        "systematic-organizational-designer-enterprise-transformation",
+        "systematic-organizational-designer-civictech",
+        "systematic-organizational-designer-deeptech-skunkworks",
+        "all"
+      ],
+      "keywords": [
+        "archives",
+        "sqlite",
+        "information architecture",
+        "file systems"
+      ],
+      "highlights": [
+        {
+          "text": "Organized roughly 47,000 files across 16GB using an MPLP-inspired archival methodology, producing a SQLite manifest as the structural deliverable.",
+          "variants": [
+            "systems-qa-auditor-crypto-exchanges",
+            "systems-qa-auditor-tech-private-equity",
+            "systems-qa-auditor-fintech-infrastructure",
+            "tactical-it-systems-administrator-enterprise-data-centers",
+            "tactical-it-systems-administrator-local-government-it",
+            "tactical-it-systems-administrator-managed-service-providers",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PACA, Applied Food Science",
+      "description": "Closed-universe home baking and fermentation modeling using Monte Carlo analysis.",
+      "url": "",
+      "variants": [
+        "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+        "autodidact-skunkworks-researcher-corporate-rd-labs",
+        "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+        "data-narrative-consultant-macro-economic-research",
+        "data-narrative-consultant-policy-think-tanks",
+        "data-narrative-consultant-economic-development",
+        "gastronomic-systems-operator-elite-hospitality-groups",
+        "gastronomic-systems-operator-culinary-consulting",
+        "gastronomic-systems-operator-luxury-travel",
+        "all"
+      ],
+      "keywords": [
+        "food science",
+        "monte carlo",
+        "modeling",
+        "culinary analytics"
+      ],
+      "highlights": [
+        {
+          "text": "Modeled bread fermentation and ingredient combinations using Monte Carlo analysis, treating home baking as a closed-universe data science problem.",
+          "variants": [
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "data-narrative-consultant-macro-economic-research",
+            "data-narrative-consultant-policy-think-tanks",
+            "data-narrative-consultant-economic-development",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PACAKATVA",
+      "description": "Bloomberg-Terminal-style recipe and data infrastructure concept framed as a community third space for chefs.",
+      "url": "",
+      "variants": [
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "gastronomic-systems-operator-elite-hospitality-groups",
+        "gastronomic-systems-operator-culinary-consulting",
+        "gastronomic-systems-operator-luxury-travel",
+        "phygital-spatial-designer-luxury-retail-tech",
+        "phygital-spatial-designer-museumexpo-design",
+        "phygital-spatial-designer-spatial-computing-labs",
+        "all"
+      ],
+      "keywords": [
+        "culinary systems",
+        "product concept",
+        "data infrastructure",
+        "community"
+      ],
+      "highlights": [
+        {
+          "text": "Extended PACA into a Bloomberg-Terminal-style recipe and data infrastructure concept, framed as a community third space for chefs.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "phygital-spatial-designer-luxury-retail-tech",
+            "phygital-spatial-designer-museumexpo-design",
+            "phygital-spatial-designer-spatial-computing-labs",
+            "all"
+          ]
+        },
+        {
+          "text": "Repurposed the concept as the submitted deliverable for the Creativity course.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "gastronomic-systems-operator-elite-hospitality-groups",
+            "gastronomic-systems-operator-culinary-consulting",
+            "gastronomic-systems-operator-luxury-travel",
+            "phygital-spatial-designer-luxury-retail-tech",
+            "phygital-spatial-designer-museumexpo-design",
+            "phygital-spatial-designer-spatial-computing-labs",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Great-Sage, Personal Knowledge Management System",
+      "description": "Knowledge management system underlying research and planning across projects.",
+      "url": "",
+      "variants": [
+        "systematic-organizational-designer-enterprise-transformation",
+        "systematic-organizational-designer-civictech",
+        "systematic-organizational-designer-deeptech-skunkworks",
+        "developer-experience-dx-evangelist-web3-infrastructure",
+        "developer-experience-dx-evangelist-api-first-saas",
+        "developer-experience-dx-evangelist-devtools",
+        "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+        "autodidact-skunkworks-researcher-corporate-rd-labs",
+        "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+        "all"
+      ],
+      "keywords": [
+        "knowledge management",
+        "research systems",
+        "planning",
+        "information architecture"
+      ],
+      "highlights": [
+        {
+          "text": "Built and maintained the knowledge management system underlying research and planning across every other project in this document.",
+          "variants": [
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "developer-experience-dx-evangelist-web3-infrastructure",
+            "developer-experience-dx-evangelist-api-first-saas",
+            "developer-experience-dx-evangelist-devtools",
+            "autodidact-skunkworks-researcher-x-the-moonshot-factory",
+            "autodidact-skunkworks-researcher-corporate-rd-labs",
+            "autodidact-skunkworks-researcher-bleeding-edge-stealth-startups",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Design, Digital Garden",
+      "description": "Public digital garden documenting art and design projects.",
+      "url": "",
+      "variants": [
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "strategic-interaction-designer-spatial-computing",
+        "strategic-interaction-designer-immersive-web",
+        "strategic-interaction-designer-gametech",
+        "all"
+      ],
+      "keywords": [
+        "digital garden",
+        "design portfolio",
+        "public writing"
+      ],
+      "highlights": [
+        {
+          "text": "Published and maintain a public digital garden documenting art and design projects.",
+          "variants": [
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "strategic-interaction-designer-spatial-computing",
+            "strategic-interaction-designer-immersive-web",
+            "strategic-interaction-designer-gametech",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EcoLithify",
+      "description": "Sustainable culinary crockery concept repurposing Jaipur marble slurry waste.",
+      "url": "",
+      "variants": [
+        "heavy-industry-value-engineer-climatetech",
+        "heavy-industry-value-engineer-heavy-manufacturing-tech",
+        "heavy-industry-value-engineer-agritech",
+        "phygital-spatial-designer-luxury-retail-tech",
+        "phygital-spatial-designer-museumexpo-design",
+        "phygital-spatial-designer-spatial-computing-labs",
+        "proptech-underwriter-designer-proptech",
+        "proptech-underwriter-designer-high-end-real-estate-pe",
+        "proptech-underwriter-designer-co-working-conglomerates",
+        "all"
+      ],
+      "keywords": [
+        "sustainability",
+        "industrial design",
+        "materials",
+        "culinary"
+      ],
+      "highlights": [
+        {
+          "text": "Developed a sustainable culinary crockery concept repurposing marble slurry waste, an industrial byproduct of Jaipur's stone industry.",
+          "variants": [
+            "heavy-industry-value-engineer-climatetech",
+            "heavy-industry-value-engineer-heavy-manufacturing-tech",
+            "heavy-industry-value-engineer-agritech",
+            "phygital-spatial-designer-luxury-retail-tech",
+            "phygital-spatial-designer-museumexpo-design",
+            "phygital-spatial-designer-spatial-computing-labs",
+            "proptech-underwriter-designer-proptech",
+            "proptech-underwriter-designer-high-end-real-estate-pe",
+            "proptech-underwriter-designer-co-working-conglomerates",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Crestaron, Smart Hotel Room Digital Twin System",
+      "description": "Hospitality-focused digital twin concept for in-room systems.",
+      "url": "",
+      "variants": [
+        "proptech-underwriter-designer-proptech",
+        "proptech-underwriter-designer-high-end-real-estate-pe",
+        "proptech-underwriter-designer-co-working-conglomerates",
+        "strategic-interaction-designer-spatial-computing",
+        "strategic-interaction-designer-immersive-web",
+        "strategic-interaction-designer-gametech",
+        "systematic-organizational-designer-enterprise-transformation",
+        "systematic-organizational-designer-civictech",
+        "systematic-organizational-designer-deeptech-skunkworks",
+        "all"
+      ],
+      "keywords": [
+        "digital twin",
+        "hospitality tech",
+        "smart rooms",
+        "systems modeling"
+      ],
+      "highlights": [
+        {
+          "text": "Prototyped a digital twin concept for smart hotel room technology, modeling local in-room systems for hospitality applications.",
+          "variants": [
+            "proptech-underwriter-designer-proptech",
+            "proptech-underwriter-designer-high-end-real-estate-pe",
+            "proptech-underwriter-designer-co-working-conglomerates",
+            "strategic-interaction-designer-spatial-computing",
+            "strategic-interaction-designer-immersive-web",
+            "strategic-interaction-designer-gametech",
+            "systematic-organizational-designer-enterprise-transformation",
+            "systematic-organizational-designer-civictech",
+            "systematic-organizational-designer-deeptech-skunkworks",
+            "all"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Personal Brand and Digital Presence",
+      "description": "Personal brand refresh across major channels and owned web properties.",
+      "url": "https://kartavya.tech",
+      "variants": [
+        "zero-cost-growth-hacker-d2c-marketplaces",
+        "zero-cost-growth-hacker-creator-economy-startups",
+        "hybrid-creative-technologist-elite-digital-agencies",
+        "hybrid-creative-technologist-luxury-e-commerce",
+        "hybrid-creative-technologist-web3-brand-studios",
+        "generative-search-architect-media-conglomerates",
+        "generative-search-architect-programmatic-adtech",
+        "generative-search-architect-affiliate-networks",
+        "open-source-community-lead-open-source-foundations",
+        "open-source-community-lead-web3-layer-1s",
+        "open-source-community-lead-developer-api-startups",
+        "all"
+      ],
+      "keywords": [
+        "personal branding",
+        "content architecture",
+        "visual identity",
+        "web presence"
+      ],
+      "highlights": [
+        {
+          "text": "Refreshed personal brand across LinkedIn, Instagram, and kartavya.tech: visual identity, headline framing, and content architecture.",
+          "variants": [
+            "zero-cost-growth-hacker-d2c-marketplaces",
+            "zero-cost-growth-hacker-creator-economy-startups",
+            "hybrid-creative-technologist-elite-digital-agencies",
+            "hybrid-creative-technologist-luxury-e-commerce",
+            "hybrid-creative-technologist-web3-brand-studios",
+            "generative-search-architect-media-conglomerates",
+            "generative-search-architect-programmatic-adtech",
+            "generative-search-architect-affiliate-networks",
+            "open-source-community-lead-open-source-foundations",
+            "open-source-community-lead-web3-layer-1s",
+            "open-source-community-lead-developer-api-startups",
+            "all"
+          ]
+        }
+      ]
+    }
+  ]
 }

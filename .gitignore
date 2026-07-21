@@ -36,3 +36,11 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # Build artifacts
 .build-cache
 
+# Local design and research exports
+.kombai/
+Canvas_Downloads/
+
+# Unused source-logo exports (the production set lives in assets/img/logos/)
+assets/img/logo/
+assets/img/logos/logo_kj_neutral.png
+assets/img/logos/logo_kj_og.png

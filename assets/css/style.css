@@ -1,0 +1,628 @@
+/* =================================================================
+   DESIGN TOKENS — PRECISION OBSIDIAN + SPEC V1.0
+   ================================================================= */
+:root {
+  /* Palette: Precision Obsidian */
+  --bg-obsidian: #0d0d0d;
+  --stage-obsidian: #090909;
+  --surface-obsidian: #1a1a1a;
+  --accent-cyan: #0a8a7a;
+  --text-obsidian: #fafafa;
+  --muted-obsidian: #737373;
+  --muted-dark: #525252;
+  --border-obsidian: #262626;
+
+  /* Spec v1.3 Typesetting Units (A4 derived) — scaled via --u */
+  /*
+   * Scale derivation (r = 1.2, λ = 1.272):
+   *   --u  = 14pt  (base unit, 1 pica + 2pt)
+   *   --s0 = u/λ   = 14/1.272 ≈ 11pt   (body)
+   *   --s1 = s0·r  = 11×1.2  = 13.2→13pt (title line)
+   *   --s2 = s0·r² = 11×1.44 = 15.8→16pt (name)
+   * All spacing tokens (var(--u) multiples) scale with it.
+   */
+  --u:  14pt;
+  --s0: 11pt;
+  --s1: 13pt;
+  --s2: 16pt;
+
+  /* A4 derived margins (n=12), shifted up one --u at top, reduced footing */
+  --margin-lr: 17.5mm;
+  --margin-top: 12mm;             /* was 16.5mm — reduced by ~1u (4.23mm) */
+  --margin-bottom: 18mm;          /* was 33mm — reduced footing */
+
+  /* Spec v1.3 Typesetting additions */
+  --date-reserved-width: 54pt;
+  --col-gutter: 6pt;
+  --cap-offset-s2: 0pt;
+  --sp-section: calc(var(--u) * 1.55);
+  --sp-entry: calc(var(--u) * 0.72);
+  --sp-tight: calc(var(--u) * 0.32);
+  --sp-label-gap: calc(var(--u) * 0.68);
+
+  /* Heuristic tracking */
+  --track-display: -0.015em;
+  --track-body: 0;
+  --track-label: 0.06em;
+  --hang-bullet: 0.22em;
+
+  /* UI Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --stage-pad: 40px;
+  --stage-pad-right: 104px;
+}
+
+/* =================================================================
+   RESET & BASE
+   ================================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-obsidian); color: var(--text-obsidian); }
+body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-kerning: normal; }
+button, select { font-family: inherit; color: inherit; border: none; background: none; }
+img { display: block; max-width: 100%; }
+
+/* =================================================================
+   APP LAYOUT (3-Column IDE Shell)
+   ================================================================= */
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.aside {
+  width: 22vw;
+  min-width: 280px;
+  max-width: 380px;
+  height: 100%;
+  padding: 32px;
+  background: var(--bg-obsidian);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.aside.l { border-right: 1px solid var(--border-obsidian); }
+.aside.r { border-left: 1px solid var(--border-obsidian); }
+
+.stage {
+  flex: 1;
+  background: var(--stage-obsidian);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--stage-pad) var(--stage-pad-right) var(--stage-pad) var(--stage-pad);
+}
+
+/* Precision Grid Texture */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+/* Calibration marks */
+.stage::after {
+  content: '';
+  position: absolute;
+  width: calc(100% - 80px); height: calc(100% - 80px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+/* =================================================================
+   PRECISION SHEET (Spec v1.0)
+   ================================================================= */
+
+/*
+ * .wrap — JS-controlled container that matches the visual (post-scale)
+ * footprint of .sheet so the flexbox centering on .stage remains correct.
+ * Starts at 0×0 to avoid a layout flash before JS runs.
+ */
+.wrap {
+  position: relative;
+  transition: opacity .3s var(--ease-out-expo);
+  z-index: 1;
+  /* Deep elevation shadow applied to the visible sheet surface */
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.85));
+  /* JS owns width/height — start collapsed to avoid pre-scale layout flash */
+  width: 0;
+  height: 0;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+.wrap.swap { opacity: 0; }
+
+.sheet {
+  width: 210mm;
+  height: 297mm;
+  background: #fff;
+  color: #111;
+  padding: var(--margin-top) var(--margin-lr) var(--margin-bottom) var(--margin-lr);
+  font-family: 'Source Serif 4', serif;
+  font-size: var(--s0);
+  line-height: var(--u);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+  /* JS sets scale() here; top-left origin keeps the sheet pinned to
+     the wrap's top-left corner so the wrap dimensions exactly match
+     the visual footprint. */
+  transform-origin: top left;
+  backface-visibility: hidden;
+  will-change: transform;
+  isolation: isolate;
+}
+
+/* Paper Texture overlay */
+.sheet::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background: url('https://www.transparenttextures.com/patterns/paper.png');
+}
+
+/* =================================================================
+   TARGETED DOM UPDATES — CONTENT TRANSITIONS
+   Each section fades + slides up when new content is swapped in.
+   Staggered delays are set via JS setTimeout for a cascading effect.
+   ================================================================= */
+
+/* Base state: all resume sections start hidden with slight upward offset */
+#r-name,
+#r-ctc,
+#r-summary,
+#r-experience,
+#r-projects,
+#r-education,
+#r-additional {
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(6px);
+}
+/* Name and contact use faster timing for immediate feedback */
+#r-name,
+#r-ctc {
+  transition-duration: 0.2s;
+}
+
+/* Active state: fade in and slide to final position */
+.up-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Future: odometer-style digit animation & text manipulation hooks */
+.r-name-inner,
+.r-tagline-inner,
+.ctc-part,
+.bl-item,
+.summary-text,
+.skills-text {
+  transition: color 0.2s ease;
+}
+
+/* Resume Components */
+.r-name {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--s2);
+  /* 20pt name needs ≥ 2u (24pt) leading to stay on grid; gives 1.2 ratio */
+  line-height: calc(var(--u) * 2);
+  letter-spacing: var(--track-display);
+  text-align: center;
+  font-weight: 400;
+  text-wrap: balance;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  /* gap below name before CTC row */
+  margin-bottom: calc(var(--u) * 0.22);
+}
+@supports not (text-box-trim: trim-both) {
+  .r-name { margin-top: calc(-1 * var(--cap-offset-s2)); }
+}
+
+/* CTC — contact row, sits directly after name, full --u gap before sections */
+.r-ctc {
+  min-height: var(--u);
+  display: flex; justify-content: center; align-items: center; gap: 3px 4px;
+  flex-wrap: wrap;
+  font-size: var(--s0);
+  line-height: calc(var(--u) * 0.92);
+  color: #555;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: calc(var(--u) * 0.82);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.r-ctc span { white-space: nowrap; }
+.r-ctc span.sep { color: #bbb; font-weight: 300; margin: 0 3px; }
+.ctc-part { max-width: 100%; }
+
+.r-lbl {
+  /* min-height rather than fixed height — avoids clipping small-caps */
+  min-height: calc(var(--u) * 0.9);
+  font-family: 'Inter', sans-serif;
+  /* s2 (16pt) declared so rendered small-caps land visually equal to or bigger than r-co (11pt) */
+  font-size: var(--s2);
+  font-weight: 500;
+  font-variant-caps: all-small-caps;
+  line-height: calc(var(--u) * 0.92);
+  letter-spacing: var(--track-label);
+  border-bottom: 0.5pt solid #ccc;
+  padding-bottom: 2px;
+  margin-bottom: var(--sp-label-gap);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.r-sec { margin-bottom: var(--sp-section); break-inside: avoid; }
+
+.r-prose { font-variant-numeric: oldstyle-nums proportional-nums; text-align: justify; text-wrap: pretty; hyphens: auto; }
+
+/*
+ * Entry header: company left, date right-flush on same baseline.
+ * min-height rather than height so it never clips when anything wraps.
+ * .r-co  — flex grows to fill; min-width:0 so it can shrink without overflow.
+ * .r-date — flex: 0 0 auto + white-space:nowrap; takes its natural ink width,
+ *           no fixed pixel/pt width that can clip a long range like "Jan 2020 – Present".
+ */
+.r-item-hdr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: baseline;
+  min-height: var(--u);
+  gap: var(--col-gutter);
+}
+.r-co {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: var(--s0);
+  min-width: 0;
+  line-height: calc(var(--u) * 0.92);
+  white-space: normal;
+}
+.r-date {
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: var(--s0);
+  line-height: calc(var(--u) * 0.92);
+  color: #666;
+  min-width: var(--date-reserved-width);
+  white-space: nowrap;
+  text-align: right;
+}
+
+.r-role {
+  font-style: italic;
+  min-height: calc(var(--u) * 0.9);
+  line-height: calc(var(--u) * 0.92);
+  margin-bottom: var(--sp-tight);
+}
+
+/*
+ * Bullet hanging into the left margin (§6 — optical alignment):
+ *
+ * Text is FLUSH with the section left edge (padding-left: 0 on li).
+ * The bullet circle lives inside the sheet's 17.5mm left margin via a
+ * negative left offset on the ::before pseudo-element.
+ *
+ * Geometry (at s0 = 9.5pt, u = 12pt):
+ *   Margin = 17.5mm ≈ 50pt.  Bullet at left: -0.75em ≈ -7pt into margin.
+ *   Circle diameter = 3pt.
+ *   Vertical optical centre of cap-height ≈ top: 0.38em at this leading.
+ *
+ * The ::before has no display content (''), so it cannot shift line spacing.
+ */
+.r-ul { list-style: none; padding: 0; margin: 0; }
+.r-ul li {
+  position: relative;
+  padding-left: 0;       /* text flush with surrounding content */
+  margin-bottom: var(--sp-tight);
+  line-height: inherit;
+  text-wrap: pretty;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+.r-ul li:last-child { margin-bottom: 0; }
+.r-ul li::before {
+  content: '';
+  display: block;
+  position: absolute;
+  /* ── sits in the left margin of the sheet ── */
+  left: -0.75em;         /* ≈ −7pt; tweak if margin-lr changes */
+  /* ── optical vertical centre at s0 / u ── */
+  top: 0.38em;           /* cap-height midpoint minus half circle radius */
+  width:  3pt;
+  height: 3pt;
+  background: #999;      /* muted grey — calibrate to §13 median grey */
+  border-radius: 50%;
+}
+
+.exp-block, .proj-block, .edu-block { break-inside: avoid; }
+
+.exp-block + .exp-block,
+.proj-block + .proj-block {
+  margin-top: var(--sp-entry);
+}
+
+.edu-block + .edu-block {
+  margin-top: calc(var(--u) * 0.45);
+}
+
+.proj-desc {
+  margin-bottom: var(--sp-tight);
+}
+
+.edu-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 0;
+}
+
+.edu-degree {
+  font-style: italic;
+}
+
+.edu-summary {
+  color: #666;
+  font-style: normal;
+  text-align: right;
+  margin-left: auto;
+}
+
+/* =================================================================
+   SIDEBAR COMPONENTS
+   ================================================================= */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 56px;
+  color: inherit;
+  text-decoration: none;
+}
+.brand-mark {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+}
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.brand-copy {
+  min-width: 0;
+}
+.brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-obsidian);
+  margin-bottom: 6px;
+}
+.brand-lbl {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-weight: 700;
+  color: var(--muted-dark);
+}
+.mobile-brand {
+  display: none;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 25;
+}
+.mobile-brand .brand-lockup {
+  margin-bottom: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(13,13,13,0.78);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+}
+.mobile-brand .brand-title {
+  font-size: 13px;
+}
+.mobile-brand .brand-lbl {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.sec-title {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; color: var(--muted-obsidian);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+}
+.sec-dot { width: 4px; height: 4px; background: var(--accent-cyan); border-radius: 50%; }
+
+/* Configuration Cards */
+.card {
+  background: var(--surface-obsidian);
+  border: 1px solid var(--border-obsidian);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.field { margin-bottom: 20px; }
+.field:last-child { margin-bottom: 0; }
+.field-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; color: var(--muted-dark); margin-bottom: 6px; display: block; }
+.field-control {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border-obsidian);
+  padding-bottom: 8px;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.field-control:hover { border-color: var(--accent-cyan); }
+.field-val { font-size: 14px; font-weight: 500; }
+.field-control i { font-size: 12px; color: var(--muted-dark); transition: color .2s; }
+.field-control:hover i { color: var(--accent-cyan); }
+
+.btn-secondary {
+  width: 100%;
+  padding: 16px;
+  background: var(--surface-obsidian);
+  border: 1px solid var(--border-obsidian);
+  border-radius: 4px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--muted-obsidian);
+  cursor: pointer;
+  transition: all .2s var(--ease-out-expo);
+}
+.btn-secondary:hover { color: var(--text-obsidian); border-color: var(--accent-cyan); background: rgba(255,255,255,0.03); }
+
+.dl-btn {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--text-obsidian);
+  color: var(--bg-obsidian);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em;
+  box-shadow: 4px 4px 0 0 rgba(10, 138, 122, 0.4);
+  transition: all .2s var(--ease-out-expo);
+  margin-bottom: 32px;
+}
+.dl-btn:hover { background: #e5e5e5; transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 rgba(10, 138, 122, 0.4); }
+.dl-btn:active { transform: translate(4px, 4px); box-shadow: none; transition: all .1s; }
+
+.status-txt { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted-obsidian); }
+
+/* =================================================================
+   STAGE CONTROLS (Moved to Sidebar)
+   ================================================================= */
+.zoom-ctrl {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 99px;
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+.zoom-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.5);
+  background: transparent; border: none;
+  cursor: pointer; transition: all .2s var(--ease-out-expo);
+}
+.zoom-btn:hover { background: rgba(255,255,255,0.1); color: #fff; transform: scale(1.1); }
+.zoom-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.08); margin: 0 8px; }
+
+/* Utilities & New UI Components */
+.mt-auto { margin-top: auto; }
+.action-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.microcopy { font-size: 11px; color: var(--muted-obsidian); margin-top: 16px; line-height: 1.4; font-weight: 500; }
+.signature-box {
+  margin-top: auto;
+  padding: 24px 0;
+  display: flex; justify-content: center; align-items: center;
+  border-top: 1px dashed rgba(255, 255, 255, 0.05);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.01);
+  margin-bottom: 24px;
+  min-height: 100px;
+  border-radius: 4px;
+}
+.signature-placeholder { height: 60px; max-width: 100%; object-fit: contain; }
+
+/* =================================================================
+   REDACT MODE
+   ================================================================= */
+body.redact-mode .sensitive {
+  background-color: #111 !important;
+  color: transparent !important;
+  border-radius: 2px;
+  user-select: none;
+  position: relative;
+  display: inline-block;
+}
+body.redact-mode .sensitive::before {
+  content: '';
+  position: absolute;
+  inset: -1px -3px;
+  background-color: #111;
+  border-radius: 2px;
+  z-index: -1;
+}
+body.redact-mode #btnRedact {
+  color: var(--accent-cyan);
+  background: rgba(10, 138, 122, 0.15);
+}
+
+/* =================================================================
+   MOBILE
+   ================================================================= */
+@media (max-width: 1023px) {
+  body { overflow: auto; }
+  .aside { display: none; }
+  .app { flex-direction: column; height: auto; min-height: 100vh; }
+  .stage { padding: 92px 16px 120px; display: flex; align-items: flex-start; justify-content: center; }
+  .zoom-ctrl { display: none; }
+  .mobile-brand { display: block; }
+  .brand-mark { width: 44px; height: 44px; border-radius: 12px; }
+}
+
+@media screen and (max-width: 210mm) {
+  .page-wrapper { transform: scale(min(1, calc(100vw / 210mm))); transform-origin: top left; }
+}
+
+@media (min-width: 1280px) {
+  .brand-mark { width: 60px; height: 60px; }
+}
+
+@media (min-width: 1536px) {
+  .brand-mark { width: 68px; height: 68px; }
+  .brand-title { font-size: 15px; }
+}
+
+/* Modal for dropdowns */
+.mtx-pop {
+  position: fixed; background: var(--surface-obsidian);
+  border: 1px solid var(--border-obsidian);
+  border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  z-index: 100; min-width: 200px;
+
+  /* QoL Transition */
+  opacity: 0; transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .2s var(--ease-out-expo), transform .2s var(--ease-out-expo);
+  display: block; /* Always block, use opacity for hide */
+}
+.mtx-pop.on {
+  opacity: 1; transform: translateY(0); pointer-events: auto;
+}
+.mtx-opt { display: block; width: 100%; border: 0; padding: 12px 16px; background: transparent; color: inherit; font: inherit; font-size: 13px; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
+.mtx-opt:hover { background: rgba(255,255,255,0.03); color: var(--accent-cyan); }
+.mtx-opt.sel { color: var(--accent-cyan); font-weight: 600; }

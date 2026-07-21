@@ -24,13 +24,13 @@ GitHub repository (main branch)
 └── assets/             ← Images, fonts
 ```
 
-GitHub Pages serves from the repository root on the `main` branch. There is no `dist/` directory, no build branch, no CI/CD compilation step for the HTML. Bun writes directly to `index.html` at root. What is committed is what is served.
+GitHub Pages serves from the repository root on the `main` branch. There is no `dist/` directory or build branch. Bun writes the deterministic profile payload to `public/data.js`; the committed HTML, CSS, JavaScript, and payload are what the browser receives.
 
 This means:
 - Zero deployment config
 - Zero build minutes on GitHub Actions
 - Instant cache invalidation on push
-- The committed `index.html` is always readable as a real file, not a build artifact
+- The committed `index.html` remains a readable source file rather than a generated bundle
 
 ---
 
@@ -47,19 +47,20 @@ bun/src/
 └── test.js         → assertion suite on data integrity
 ```
 
-Bun runs locally. It never runs in GitHub Actions. It never runs in CI. Its sole output is a mutation to `index.html` — specifically, it replaces the data block inside the `<script>` tag with a freshly compiled, minified payload derived from `data/resume.json` and `data/variants.json`.
+Bun runs locally. Its build output is `public/data.js`, derived from `data/resume.json` and `data/variants.json`. Validation runs before compilation, and the test command verifies both profile integrity and deterministic output.
 
 PDF generation is also local-only. Bun has no role in it. See the PDF section below.
 
 ### 2. Runtime (browser, pure vanilla JS)
 
 ```
-index.html
-├── <style>         → all CSS inline, single file
-└── <script>        → all JS inline, single file
+index.html              → semantic shell
+assets/css/style.css    → presentation and print rules
+assets/js/app.js        → rendering and interaction logic
+public/data.js          → generated profile payload
 ```
 
-The browser receives one file. It contains the compiled data payload, the rendering logic, the state machine, and the animation scaffolding. No external JS dependencies are fetched at runtime unless explicitly opted into (CDN libs for Three.js/Anime.js are loaded with `defer` and degrade gracefully if blocked).
+The browser runtime is framework-free application code with a small vendored Zustand-compatible state helper. Fonts and the icon webfont are loaded from CDNs; the resume renderer itself has no network API dependency.
 
 ---
 
@@ -125,9 +126,9 @@ No structural changes to the HTML, CSS, or rendering logic.
 
 ## Rendering Architecture
 
-### No framework
+### No UI framework
 
-The render layer is plain DOM manipulation. There is no virtual DOM, no reactive state system, no component model. This is a deliberate choice — the complexity budget for a single-page resume application does not justify a framework.
+The render layer uses plain DOM manipulation with a small vendored state store. There is no virtual DOM or component runtime; targeted DOM updates keep the browser surface compact.
 
 ### Targeted updates on variant switch
 

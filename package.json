@@ -5,17 +5,18 @@
   "private": true,
   "description": "Recruiter-facing adaptive resume engine for Kartavya Jharwal. Flips the Teal paradigm — serves hyper-specialised profiles while revealing polymathic depth.",
   "author": "Kartavya Jharwal <KartavyaJharwal@gmail.com>",
-  "homepage": "https://resume.kartavya.tech",
+  "homepage": "https://kartavya.tech",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kartavya-Jharwal/polymath-resume-dossier"
+    "url": "https://github.com/Kartavya-Jharwal/Kartavya-Jharwal.github.io"
   },
   "scripts": {
-    "build":    "bun run bun/src/compile.js",
+    "build": "bun run validate && bun run compile",
+    "compile": "bun run bun/src/compile.js",
     "validate": "bun run bun/src/validate.js",
-    "test":     "bun run bun/src/test.js",
-    "serve":    "bunx serve . --port 3000",
-    "clean":    "echo 'Nothing to clean — root is production'"
+    "test": "bun run build && bun run bun/src/test.js",
+    "serve": "bunx serve . --port 3000",
+    "clean": "echo 'Nothing to clean — root is production'"
   },
   "devDependencies": {
     "@types/bun": "latest"

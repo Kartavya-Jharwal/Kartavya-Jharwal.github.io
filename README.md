@@ -60,20 +60,25 @@ Cold visits to the root domain run through a client-side weighted selector on pa
 ```
 polymath-resume-dossier/
 │
-├── index.html          ← the entire front-end lives here (HTML + CSS + JS)
+├── index.html          ← production HTML shell served by GitHub Pages
 │
 ├── data/
 │   ├── resume.json     ← JSON Resume standard, extended with variant tags
 │   └── variants.json   ← Set Pair definitions, weights, metrics, PDF names
 │
 ├── bun/
-│   └── src/            ← build scripts (validate, compile, minify → root)
+│   └── src/            ← validation, compilation, and integrity tests
 │
 ├── assets/
-│   ├── img/            ← logo PNG at 1×, 2×, 3× density
-│   └── fonts/          ← self-hosted font fallbacks if needed
+│   ├── css/            ← production styles
+│   ├── img/            ← production logo assets
+│   └── js/             ← browser renderer and vendored state helper
 │
-├── resumes/            ← pre-built ATS-compliant PDFs, manually placed
+├── public/
+│   ├── data.js         ← deterministic generated profile payload
+│   └── resumes/        ← pre-built ATS-compliant PDFs
+│
+├── resumes/            ← local PDF source workspace
 │   └── Kartavya_Jharwal_Resume_[Role]_[Industry].pdf
 │
 ├── package.json
@@ -83,7 +88,7 @@ polymath-resume-dossier/
 └── CONTRIBUTING.md
 ```
 
-**GitHub Pages serves from root.** The `index.html` at root is the production file. Bun's job is to take the source template in `bun/src/`, inject the compiled data payload, minify, and write the output back to `index.html` at root.
+**GitHub Pages serves from root.** The browser loads `index.html`, `assets/css/style.css`, `assets/js/app.js`, and the generated `public/data.js` payload directly. Bun validates the source JSON and deterministically rebuilds `public/data.js`.
 
 ---
 
@@ -131,14 +136,14 @@ Bun handles three things and nothing else:
 
 1. **Validate** — parses `data/resume.json` against the JSON Resume schema, checks that every variant reference points to a defined pair, runs ATS keyword compliance checks for each targeted variant, and exits non-zero on any hard error.
 
-2. **Compile** — walks the data, applies variant filters, formats dates with proper en dashes, resolves PDF filenames, and produces a minified data payload.
+2. **Compile** — walks the data, applies variant filters, formats dates with proper en dashes, resolves PDF filenames, and writes `public/data.js`.
 
-3. **Populate** — injects the compiled payload into the source HTML template and writes the minified output to `index.html` at root, ready for GitHub Pages.
+3. **Test** — checks every compiled profile, verifies required sections, and proves that repeated builds produce byte-identical output.
 
 ```bash
 bun run validate   # schema check + keyword compliance
-bun run build      # validate → compile → write root index.html
-bun run test       # assertion suite on data integrity
+bun run build      # validate → compile public/data.js
+bun run test       # build + compiled-payload integrity suite
 ```
 
 **PDF generation never runs in this pipeline.** PDFs are authored locally, placed in `resumes/`, and committed. CI never touches them.
