@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>404 Page Not Found — Kartavya Jharwal</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href="/favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="404 - Page not found on kartavya.tech. Return to the main digital contact landing card.">
+		<meta name="robots" content="noindex, follow" />
+		<meta name="theme-color" content="#1a1b26">
+		<link rel="stylesheet" href="/assets/css/theme.css" />
+		<link rel="stylesheet" href="/assets/css/core.css" />
+		<style>
+			.error-card {
+				width: min(92vw, 26rem);
+				margin: 0 auto;
+				padding: 2.5rem 2rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				background: linear-gradient(135deg, rgba(0, 30, 58, 0.45), rgba(15, 23, 42, 0.75));
+				border: 1px solid rgba(255, 255, 255, 0.14);
+				border-radius: 1.25rem;
+				backdrop-filter: blur(16px);
+				-webkit-backdrop-filter: blur(16px);
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+			}
+			.error-code {
+				font-size: clamp(3.5rem, 10vw, 5rem);
+				font-weight: 900;
+				line-height: 1;
+				background: linear-gradient(135deg, #7cb1ff, #3b82f6);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				margin-bottom: 0.5rem;
+			}
+			.error-title {
+				font-size: 1.4rem;
+				font-weight: 700;
+				color: #ffffff;
+				margin: 0 0 1rem 0;
+			}
+			.error-desc {
+				font-size: 0.95rem;
+				color: rgba(255, 255, 255, 0.8);
+				line-height: 1.6;
+				margin-bottom: 2rem;
+			}
+			.btn-group {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				justify-content: center;
+				width: 100%;
+			}
+			.action-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.65rem 1.3rem;
+				border-radius: 999px;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #ffffff;
+				background: linear-gradient(135deg, rgba(124, 177, 255, 0.2), rgba(59, 130, 246, 0.3));
+				border: 1px solid rgba(124, 177, 255, 0.35);
+				transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+				text-decoration: none;
+			}
+			.action-btn:hover {
+				transform: translateY(-2px);
+				background: linear-gradient(135deg, rgba(124, 177, 255, 0.35), rgba(59, 130, 246, 0.45));
+				box-shadow: 0 6px 20px rgba(124, 177, 255, 0.25);
+			}
+			.action-btn.secondary {
+				background: rgba(255, 255, 255, 0.08);
+				border-color: rgba(255, 255, 255, 0.15);
+			}
+			.action-btn.secondary:hover {
+				background: rgba(255, 255, 255, 0.16);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+			}
+		</style>
+	</head>
+	<body class="theme-dark">
+		<div id="wrapper">
+			<div id="bg" aria-hidden="true">
+				<div class="bg-overlay"></div>
+			</div>
+
+			<div id="main" role="main" tabindex="-1">
+				<div class="error-card">
+					<div class="error-code">404</div>
+					<h1 class="error-title">Page Not Found</h1>
+					<p class="error-desc">The digital space or route you are looking for doesn't exist or has moved. Return to the main landing card or explore downstream project maps.</p>
+					<div class="btn-group">
+						<a href="/" class="action-btn"><i class="fas fa-home"></i> Back to Landing Card</a>
+						<a href="https://github.com/Kartavya-Jharwal" class="action-btn secondary"><i class="fab fa-github"></i> Projects &amp; Maps</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

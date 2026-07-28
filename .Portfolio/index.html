@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartavya Jharwal - Project Portfolio</title>
+    <meta name="description" content="Portfolio showcasing innovative projects in sustainability, AI, and web development by Kartavya Jharwal">
+    <meta name="author" content="Kartavya Jharwal">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../Kartavya-Jharwal.github.io/favicon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent-color: #f59e0b;
+            --bg-color: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #475569;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(245, 158, 11, 0.1));
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Projects Grid */
+        .projects-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        .status-live {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+
+        .status-development {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning-color);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: var(--bg-tertiary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-link:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .projects-section {
+                padding: 2rem 0;
+            }
+
+            .project-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .project-header,
+            .project-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Loading animation for iframes */
+        .iframe-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .loading-spinner {
+            border: 2px solid var(--border-color);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">KJ</div>
+                    <span class="logo-text">Kartavya Jharwal</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="#projects" class="nav-link">
+                        <i class="fas fa-code"></i>
+                        Projects
+                    </a>
+                    <a href="https://kartavya-jharwal.github.io" target="_blank" class="nav-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Full Portfolio
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Innovation Through Code</h1>
+            <p>Student, Polymath & Tech Enthusiast building sustainable solutions and creative digital experiences</p>
+            <a href="https://kartavya-jharwal.github.io" target="_blank" class="cta-button">
+                <i class="fas fa-external-link-alt"></i>
+                View Complete Portfolio
+            </a>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- Main Portfolio Site -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #2563eb, #f59e0b);">
+                                <i class="fas fa-user" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">Personal Portfolio</h3>
+                            <span class="project-status status-live">
+                                <i class="fas fa-circle"></i>
+                                Live
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Interactive portfolio showcasing my journey as a polymath and tech enthusiast. Features dynamic theming, modern design, and comprehensive project showcase.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <iframe src="https://kartavya-jharwal.github.io" class="project-iframe" loading="lazy"></iframe>
+                        <div class="project-links">
+                            <a href="https://kartavya-jharwal.github.io" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Visit Site
+                            </a>
+                            <a href="https://github.com/Kartavya-Jharwal/Kartavya-Jharwal.github.io" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">PWA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EcoLithify -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                <i class="fas fa-leaf" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">EcoLithify</h3>
+                            <span class="project-status status-development">
+                                <i class="fas fa-code-branch"></i>
+                                Startup
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Revolutionary sustainability startup transforming marble industry waste into luxury crockery. Leading the circular economy movement with innovative waste-to-product solutions.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <iframe src="https://kartavya-jharwal.github.io/EcoLithify" class="project-iframe" loading="lazy"></iframe>
+                        <div class="project-links">
+                            <a href="https://kartavya-jharwal.github.io/EcoLithify" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Site
+                            </a>
+                            <a href="https://github.com/Kartavya-Jharwal/EcoLithify" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Sustainability</span>
+                            <span class="tech-tag">Circular Economy</span>
+                            <span class="tech-tag">Startup</span>
+                            <span class="tech-tag">Web Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Bard -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                <i class="fas fa-feather-alt" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">The Bard</h3>
+                            <span class="project-status status-development">
+                                <i class="fas fa-code-branch"></i>
+                                Active Dev
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            A quiet publisher for the modern web. Transforms Markdown stories into beautiful, webcore-aesthetic static sites with automatic background publishing from Obsidian.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <iframe src="https://kartavya-jharwal.github.io/The-Bard" class="project-iframe" loading="lazy"></iframe>
+                        <div class="project-links">
+                            <a href="https://kartavya-jharwal.github.io/The-Bard" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/Kartavya-Jharwal/The-Bard" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Static Site Generator</span>
+                            <span class="tech-tag">Markdown</span>
+                            <span class="tech-tag">Obsidian</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amanuensis -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                <i class="fas fa-microphone" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">Amanuensis</h3>
+                            <span class="project-status status-development">
+                                <i class="fas fa-code-branch"></i>
+                                Active Dev
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Cross-platform speech-to-text assistant powered by embedded LLMs. Converts natural language to structured data with multi-platform speech recognition support.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="iframe-loading">
+                            <div class="loading-spinner"></div>
+                            AI-powered CLI tool - Integration with Ollama and Whisper
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Kartavya-Jharwal/Amanuensis" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Speech Recognition</span>
+                            <span class="tech-tag">LLM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloom -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+                                <i class="fas fa-seedling" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">Bloom</h3>
+                            <span class="project-status status-development">
+                                <i class="fas fa-code-branch"></i>
+                                Active Dev
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Beautiful terminal-based bonsai tree visualization with realistic physics, wind effects, and falling petals. Perfect for Unix ricing enthusiasts.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="iframe-loading">
+                            <div class="loading-spinner"></div>
+                            Terminal application - Interactive bonsai with real-time physics
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Kartavya-Jharwal/Bloom" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Terminal UI</span>
+                            <span class="tech-tag">Physics Simulation</span>
+                            <span class="tech-tag">Rich</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Numerology -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                <i class="fas fa-calculator" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">Numerology Calculator</h3>
+                            <span class="project-status status-live">
+                                <i class="fas fa-circle"></i>
+                                Active
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Comprehensive web application for Chaldean numerology calculations and interpretations. Features personal numerology reports, compatibility analysis, and interactive web interface with historical context.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="iframe-loading">
+                            <div class="loading-spinner"></div>
+                            FastAPI web application - Advanced numerology calculations
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Kartavya-Jharwal/Numerology" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">Web App</span>
+                            <span class="tech-tag">Numerology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quickie -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                                <i class="fas fa-database" style="color: white;"></i>
+                            </div>
+                            <h3 class="project-name">Quickie</h3>
+                            <span class="project-status status-development">
+                                <i class="fas fa-code-branch"></i>
+                                Active Dev
+                            </span>
+                        </div>
+                        <p class="project-description">
+                            Customer data management application built with Reflex framework. Features live tabular data editing, persistent database integration, and modern web interface for data visualization.
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="iframe-loading">
+                            <div class="loading-spinner"></div>
+                            Reflex-based data app - Real-time database operations
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Kartavya-Jharwal/Quickie" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Repository
+                            </a>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Reflex</span>
+                            <span class="tech-tag">Database</span>
+                            <span class="tech-tag">Web App</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://github.com/Kartavya-Jharwal" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/kartavya-jharwal" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:KartavyaJharwal@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p>&copy; 2025 Kartavya Jharwal. Building the future, one project at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading state for iframes
+        document.querySelectorAll('.project-iframe').forEach(iframe => {
+            const loadingDiv = iframe.previousElementSibling;
+            
+            iframe.addEventListener('load', function() {
+                if (loadingDiv && loadingDiv.classList.contains('iframe-loading')) {
+                    loadingDiv.style.display = 'none';
+                }
+                iframe.style.display = 'block';
+            });
+
+            iframe.addEventListener('error', function() {
+                if (loadingDiv && loadingDiv.classList.contains('iframe-loading')) {
+                    loadingDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Unable to load preview';
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

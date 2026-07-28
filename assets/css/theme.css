@@ -1,216 +1,26 @@
-/* Global Theme Variables */
+/* Theme tokens + base typography */
 :root {
-  /* Base colors */
-  --color-primary: #7cb1ff;
-  --color-primary-dark: #3b82f6;
-  --color-primary-light: #bfdbfe;
-  
-  --color-secondary: #10b981;
-  --color-secondary-dark: #059669;
-  --color-secondary-light: #a7f3d0;
-  
-  --color-accent: #ec4899;
-  --color-accent-dark: #db2777;
-  --color-accent-light: #fbcfe8;
-  
-  /* Background */
-  --bg-dark: rgba(15, 23, 42, 0.95);
-  --bg-card: rgba(0, 30, 58, 0.08);
-  --bg-overlay: rgba(0, 0, 0, 0.65);
-  
-  /* Text - Updated to make sure name is white */
-  --text-primary: #ffffff;
-  --text-secondary: #e2e8f0;
-  --text-muted: #94a3b8;
-  
-  /* Effects */
-  --blur-strength: 8px;
-  --card-radius: 1.2rem;
-  --button-radius: 0.75rem; /* Updated to rem for consistency */
-  --icon-radius: 0.5rem;    /* More compact icons */
-  
-  /* Animations */
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 15px rgba(124, 177, 255, 0.5);
-  
-  /* Animation timing */
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --animation-timing: cubic-bezier(0.16, 1, 0.3, 1);
-  --animation-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --animation-duration-fast: 0.2s;
-  --animation-duration-normal: 0.3s;
-  --animation-duration-slow: 0.5s;
-  
-  /* Typography */
-  /* Prefer local Satoshi, then system UI, then emoji-capable fonts for emoji fallback */
-  --font-primary: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
-  --font-display: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
-  --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
-  
-  /* Spacing - updated for modern rem-based scale */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  
-  /* Mobile responsive variables */
-  --mobile-padding: 1rem;
-  --tablet-padding: 2rem;
-  --desktop-padding: 3rem;
-  
-  --mobile-font-scale: 0.9;
-  --tablet-font-scale: 1;
-  --desktop-font-scale: 1.1;
-  
-  /* Mobile viewport height fix */
   --vh: 1vh;
 }
 
-/* Apply fonts to all text elements */
-body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select {
-    font-family: var(--font-primary);
+.theme-dark { color-scheme: dark; }
+
+body, h1, h2, h3, h4, h5, h6, p, a, button {
+  font-family: var(--font-primary);
 }
 
-/* Text rendering optimizations */
 body {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Responsive font scaling */
-@media (max-width: 480px) {
-    :root {
-        font-size: 16px;
-    }
-    
-    body, input, select, textarea {
-        font-size: 16px !important;
-    }
-}
 
-@media (min-width: 481px) and (max-width: 768px) {
-    :root {
-        font-size: 15px;
-    }
-    
-    body, input, select, textarea {
-        font-size: 15px !important;
-    }
-}
 
-@media (min-width: 769px) and (max-width: 1024px) {
-    :root {
-        font-size: 15px;
-    }
-}
-
-@media (min-width: 1025px) {
-    :root {
-        font-size: 16px;
-    }
-}
-
-/* Dark theme (default) */
-.theme-dark {
-  color-scheme: dark;
-}
-
-/* Animation keyframes */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes tongueRollOut {
-  0% {
-    transform: translateY(-50%) scaleX(0);
-    opacity: 0;
-  }
-  70% {
-    transform: translateY(-50%) scaleX(1.05);
-  }
-  100% {
-    transform: translateY(-50%) scaleX(1);
-    opacity: 1;
-  }
-}
-
-@keyframes slideUpIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(124, 177, 255, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(124, 177, 255, 0.4);
-  }
-}
-
-/* Typography scale */
-.text-xs { font-size: 0.75rem; line-height: 1rem; }
-.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-.text-base { font-size: 1rem; line-height: 1.5rem; }
-.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-.text-2xl { font-size: 1.5rem; line-height: 2rem; }
-.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-.text-5xl { font-size: 3rem; line-height: 1; }
-
-/* Font weights */
-.font-light { font-weight: 300; }
-.font-normal { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.font-black { font-weight: 900; }
-
-/* Accessibility utility classes */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.js .js-only {
-  display: block;
-}
-
-.no-js .js-only {
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-    :root {
-        /* Adjust spacing variables for smaller screens */
-        --spacing-xl: 1.5rem;
-        --spacing-2xl: 2rem;
-        --spacing-3xl: 2.5rem;
-    }
 }

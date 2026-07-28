@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Primary Digital Contact Landing Card -->
+    <url>
+        <loc>https://kartavya.tech/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.00</priority>
+    </url>
+
+
+    <!-- Adaptive Resume Microsite -->
+    <url>
+        <loc>https://resume.kartavya.tech/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Nirmana: Art & Science of Design -->
+    <url>
+        <loc>http://kartavya.tech/Nirmana/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Team BWC Hult Archive & Quant Audit -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/ganet-project-bwc/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <!-- Kartavya Design Uni -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/Kartavya-Design-uni/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <!-- EcoLithify: Marble Slurry Crockery -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/EcoLithify/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- The Bard -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/The-Bard/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- Personal Kindle Dashboard -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/Personal-kindle-dashboard/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.65</priority>
+    </url>
+
+    <!-- Grade 12th Portfolio Projects Index -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/Kartavya12B_projects/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.60</priority>
+    </url>
+
+    <!-- Quickie Microsite -->
+    <url>
+        <loc>https://kartavya-jharwal.github.io/Quickie/</loc>
+        <lastmod>2026-07-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.60</priority>
+    </url>
+
+</urlset>

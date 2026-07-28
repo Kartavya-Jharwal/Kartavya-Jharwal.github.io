@@ -5,17 +5,8 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Create subtle floating particles
     createParticles();
-    
-    // Initialize learn more button functionality
-    initLearnMoreButton();
-    
-    // Initialize role text interactions
     initRoleInteractions();
-    
-    // Add subtle interactive effects
     addCardInteractivity();
 });
 
@@ -53,43 +44,6 @@ function createParticles() {
         
         // Add to DOM
         wrapper.appendChild(particle);
-    }
-}
-
-/**
- * Initializes Learn More button functionality
- */
-function initLearnMoreButton() {
-    const learnMoreBtn = document.getElementById('learn-more-btn');
-    if (learnMoreBtn) {
-        learnMoreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Create more extensive content
-            const modal = document.getElementById('polymath-modal');
-            modal.classList.remove('active');
-            document.body.classList.remove('modal-open');
-            
-            // Show temporary notification
-            const notification = document.createElement('div');
-            notification.className = 'context-popup active';
-            notification.style.bottom = '50%';
-            notification.style.transform = 'translateX(-50%) translateY(50%)';
-            notification.innerHTML = `
-                <div class="popup-content">
-                    <p>Full polymath portfolio coming soon!</p>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Remove after delay
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 500);
-            }, 2000);
-        });
     }
 }
 
@@ -139,32 +93,5 @@ function addCardInteractivity() {
     // Reset transform when mouse leaves
     document.addEventListener('mouseleave', function() {
         card.style.transform = '';
-    });
-}
-
-/**
- * Creates accessible tab navigation for modal
- */
-function setupModalAccessibility() {
-    const modal = document.getElementById('polymath-modal');
-    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-    
-    // Handle tab key navigation
-    modal.addEventListener('keydown', function(e) {
-        if (e.key !== 'Tab') return;
-        
-        if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-                lastElement.focus();
-                e.preventDefault();
-            }
-        } else {
-            if (document.activeElement === lastElement) {
-                firstElement.focus();
-                e.preventDefault();
-            }
-        }
     });
 }

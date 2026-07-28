@@ -59,67 +59,117 @@
                 // Get element under cursor
                 const target = e.target;
                 
-                // Contextual states — restored remote behavior, current markup
-                if (target.closest('.logo-lockup, .logo')) {
-                    cursor.classList.add('cursor-logo', 'cursor-hover');
-                } else if (target.closest('#polymath-link, .tagline-button')) {
-                    cursor.classList.add('cursor-polymath', 'cursor-hover');
+                // Check for specific elements to assign proper icons
+                if (target.closest('.logo')) {
+                    cursor.classList.add('cursor-logo');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('#polymath-link')) {
+                    cursor.classList.add('cursor-polymath');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
                 } else if (target.closest('.hult-role')) {
-                    cursor.classList.add('cursor-hult', 'cursor-hover');
-                } else if (target.closest('#header nav li.professional .fa-github')) {
-                    cursor.classList.add('cursor-professional', 'github', 'cursor-hover');
-                } else if (target.closest('#header nav li.professional')) {
-                    cursor.classList.add('cursor-professional', 'cursor-hover');
-                } else if (target.closest('#header nav li.contact .fa-paper-plane')) {
-                    cursor.classList.add('cursor-contact', 'telegram', 'cursor-hover');
-                } else if (target.closest('#header nav li.contact .fa-envelope, #email-modal-trigger')) {
-                    cursor.classList.add('cursor-contact', 'cursor-hover');
-                } else if (target.closest('#header nav li.contact')) {
-                    cursor.classList.add('cursor-contact', 'cursor-hover');
-                } else if (target.closest('#header nav li.personal')) {
-                    cursor.classList.add('cursor-personal', 'cursor-hover');
-                } else if (target.closest('a, button, [role="button"], .classic-link, .role-text[data-skill]')) {
+                    cursor.classList.add('cursor-hult');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('#header nav li.professional a.fa-linkedin')) {
+                    cursor.classList.add('cursor-professional');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('#header nav li.professional a.fa-github')) {
+                    cursor.classList.add('cursor-professional');
+                    cursor.classList.add('github');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('#header nav li.contact a.fa-envelope')) {
+                    cursor.classList.add('cursor-contact');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('#header nav li.contact a.fa-paper-plane')) {
+                    cursor.classList.add('cursor-contact');
+                    cursor.classList.add('telegram');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('#header nav li.personal a.fa-spotify')) {
+                    cursor.classList.add('cursor-personal');
+                    
+                    // Add hover state when hovering
+                    if (target.matches(':hover')) {
+                        cursor.classList.add('cursor-hover');
+                    }
+                } else if (target.closest('a') || target.closest('button') || 
+                          target.closest('[role="button"]') || target.closest('input[type="submit"]') || 
+                          target.closest('input[type="button"]') || target.closest('.btn')) {
+                    // Generic interactive elements
                     cursor.classList.add('cursor-hover');
                 }
-
-                // Trail on primary interactive surfaces
-                const isSpecial = target.closest('.tagline-button') ||
-                                 target.closest('#header nav li.professional') ||
-                                 target.closest('#header nav li.contact') ||
-                                 target.closest('#header nav li.personal') ||
-                                 target.closest('.logo-lockup');
-
+                
+                // Only show the trail on special elements
+                const isSpecial = target.closest('.tagline-button') || 
+                                 target.closest('#header nav li.professional a') ||
+                                 target.closest('#header nav li.contact a') ||
+                                 target.closest('#header nav li.personal a');
+                
                 if (isSpecial) {
                     cursorTrail.style.opacity = '1';
                     cursorTrail.style.left = `${mouseX}px`;
                     cursorTrail.style.top = `${mouseY}px`;
                     cursorTrail.classList.add('active');
-
-                    if (target.closest('#header nav li.professional')) {
+                    
+                    // Set trail color based on element type
+                    if (target.closest('#header nav li.professional a')) {
                         cursorTrail.dataset.type = 'professional';
                         cursor.classList.add('cursor-professional');
-                        if (target.closest('.fa-github')) cursor.classList.add('github');
-                    } else if (target.closest('#header nav li.contact')) {
+                        
+                        if (target.closest('.fa-github')) {
+                            cursor.classList.add('github');
+                        }
+                    } else if (target.closest('#header nav li.contact a')) {
                         cursorTrail.dataset.type = 'contact';
                         cursor.classList.add('cursor-contact');
-                        if (target.closest('.fa-paper-plane')) cursor.classList.add('telegram');
-                    } else if (target.closest('#header nav li.personal')) {
+                        
+                        if (target.closest('.fa-paper-plane')) {
+                            cursor.classList.add('telegram');
+                        }
+                    } else if (target.closest('#header nav li.personal a')) {
                         cursorTrail.dataset.type = 'personal';
                         cursor.classList.add('cursor-personal');
-                    } else if (target.closest('.tagline-button, .logo-lockup')) {
+                    } else if (target.closest('.tagline-button')) {
                         cursorTrail.dataset.type = 'tagline';
-                        if (target.closest('.tagline-button')) cursor.classList.add('cursor-polymath');
+                        cursor.classList.add('cursor-polymath');
                     }
                 } else {
                     cursorTrail.style.opacity = '0';
                     cursorTrail.classList.remove('active');
                     cursorTrail.dataset.type = '';
-                    cursor.classList.remove('cursor-professional', 'cursor-contact', 'cursor-personal', 'github', 'telegram');
+                    cursor.classList.remove('cursor-professional', 'cursor-contact', 'cursor-personal');
                     cursorRing.classList.remove('cursor-ring-professional', 'cursor-ring-contact', 'cursor-ring-personal');
                 }
-
-                const isHoverable = target.closest('a, button, [role="button"], .btn, .tagline-button, .classic-link, .role-text[data-skill]');
-
+                
+                // Change cursor state when hovering over interactive elements
+                const isHoverable = target.closest('a, button, [role="button"], input[type="submit"], input[type="button"], .btn, .tagline-button');
+                
                 if (isHoverable) {
                     cursor.classList.add('cursor-hover');
                     cursorRing.classList.add('cursor-ring-hover');
@@ -160,32 +210,48 @@
             
             updateCursorPosition();
             
-            // Ripples on social icons (anchors + email button)
-            document.querySelectorAll('#header nav li a, #header nav li button').forEach((link) => {
-                link.addEventListener('click', function (e) {
+            // Handle icon interactions
+            const iconLinks = document.querySelectorAll('#header nav li a');
+            iconLinks.forEach(link => {
+                // Add ripple effect on click
+                link.addEventListener('click', function(e) {
                     const ripple = document.createElement('div');
                     ripple.className = 'cursor-ripple';
-                    if (this.closest('.professional')) ripple.classList.add('professional');
-                    else if (this.closest('.contact')) ripple.classList.add('contact');
-                    else if (this.closest('.personal')) ripple.classList.add('personal');
+                    
+                    if (this.closest('.professional')) {
+                        ripple.classList.add('professional');
+                    } else if (this.closest('.contact')) {
+                        ripple.classList.add('contact');
+                    } else if (this.closest('.personal')) {
+                        ripple.classList.add('personal');
+                    }
+                    
                     ripple.style.left = `${e.clientX}px`;
                     ripple.style.top = `${e.clientY}px`;
                     document.body.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 1000);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000);
                 });
             });
-
-            // Ripples on other interactive surfaces
-            document.addEventListener('click', function (e) {
+            
+            // Add ripple effect to all interactive elements
+            document.addEventListener('click', function(e) {
                 const target = e.target;
-                const isInteractive = target.closest('a, button, [role="button"], .btn, .tagline-button, .classic-link');
-                if (isInteractive && !target.closest('#header nav li a, #header nav li button')) {
+                const isInteractive = target.closest('a, button, [role="button"], input[type="submit"], input[type="button"], .btn, .tagline-button');
+                
+                if (isInteractive && !target.closest('#header nav li a')) {
                     const ripple = document.createElement('div');
                     ripple.className = 'cursor-ripple';
+                    
                     ripple.style.left = `${e.clientX}px`;
                     ripple.style.top = `${e.clientY}px`;
                     document.body.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 1000);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000);
                 }
             });
             

@@ -1,12 +1,27 @@
 /* ========================================
-   Enhanced Cursor System (remote restore)
-   Vars: design-tokens.css (--cursor-*)
-   Combines SVG cursors + dynamic sphere / trail / ripple
+   Enhanced Cursor System
+   ========================================
+   Combines SVG cursors and dynamic effects
 */
 
 /* ------------------------
    FEATURE DETECTION & SETUP
    ------------------------ */
+:root {
+    /* Core cursor variables */
+    --cursor-dot-size: 36px; /* Tripled from 12px */
+    --cursor-ring-size: 120px; /* Tripled from 40px */
+    --cursor-animation-speed: 0.3s;
+    --cursor-animation-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --cursor-hover-scale: 1.3;
+    
+    /* Theme colors for cursors */
+    --cursor-color-primary: rgba(26, 43, 72, 0.7);
+    --cursor-color-glow: rgba(124, 177, 255, 0.4);
+    --cursor-color-professional: rgba(59, 130, 246, 0.7);
+    --cursor-color-contact: rgba(16, 185, 129, 0.7);
+    --cursor-color-personal: rgba(236, 72, 153, 0.7);
+}
 
 /* Only hide default cursor when dynamic cursors are enabled */
 body.use-dynamic-cursor {
@@ -418,70 +433,63 @@ body:not(.use-dynamic-cursor).is-preload {
    ICON HOVER ANIMATIONS
    ------------------------ */
 
-/* Base icon hover effects (anchors + email button) */
-#header nav a::before,
-#header nav button::before {
-    transition: all 0.3s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
+/* Base icon hover effects */
+#header nav a:before {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: visible;
 }
 
 /* Professional icon animation */
-#header nav li.professional a::before,
-#header nav li.professional button::before {
+#header nav li.professional a:before {
     box-shadow: 0 0 0 0 var(--cursor-color-professional);
 }
 
-#header nav li.professional a:hover::before,
-#header nav li.professional button:hover::before {
+#header nav li.professional a:hover:before {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
     animation: professionalPulse 1.5s infinite;
 }
 
 /* Contact icon animation */
-#header nav li.contact a::before,
-#header nav li.contact button::before {
+#header nav li.contact a:before {
     box-shadow: 0 0 0 0 var(--cursor-color-contact);
 }
 
-#header nav li.contact a:hover::before,
-#header nav li.contact button:hover::before {
+#header nav li.contact a:hover:before {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
     animation: contactPulse 1.5s infinite;
 }
 
 /* Personal icon animation */
-#header nav li.personal a::before,
-#header nav li.personal button::before {
+#header nav li.personal a:before {
     box-shadow: 0 0 0 0 var(--cursor-color-personal);
 }
 
-#header nav li.personal a:hover::before,
-#header nav li.personal button:hover::before {
+#header nav li.personal a:hover:before {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
     animation: personalPulse 1.5s infinite;
 }
 
-/* Instagram (professional row in current markup) */
-#header nav li.professional a.fa-instagram::before {
+/* Instagram icon animation */
+#header nav li.contact a.fa-instagram:before {
     box-shadow: 0 0 0 0 #e1306c;
 }
 
-#header nav li.professional a.fa-instagram:hover::before {
+#header nav li.contact a.fa-instagram:hover:before {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
     animation: contactPulse 1.5s infinite;
 }
 
-/* Calendar */
-#header nav li.contact a.fa-calendar::before {
+/* Calendar icon animation */
+#header nav li.contact a.fa-calendar:before {
     box-shadow: 0 0 0 0 #10b981;
 }
 
-#header nav li.contact a.fa-calendar:hover::before {
+#header nav li.contact a.fa-calendar:hover:before {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
     animation: contactPulse 1.5s infinite;
@@ -567,23 +575,30 @@ body:not(.use-dynamic-cursor).is-preload {
 
 /* For reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    #header nav a:hover::before,
-    #header nav button:hover::before {
+    /* Disable animations */
+    #header nav a:hover:before {
         animation: none !important;
         transform: translateY(-2px) scale(1.05);
         transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
+    /* Hide dynamic cursor elements */
     .cursor-trail, .cursor-ripple, .custom-cursor, .cursor-ring {
         display: none !important;
     }
 
-    body.use-dynamic-cursor,
+    /* Disable SVG animations */
+    [style*="@keyframes"] {
+        animation: none !important;
+    }
+    
+    /* Force normal browser cursors */
+    body.use-dynamic-cursor, 
     body.use-dynamic-cursor * {
         cursor: auto !important;
     }
-
-    body.use-dynamic-cursor.is-preload {
+    
+    body.use-dynamic-cursor .is-preload {
         cursor: wait !important;
     }
 }

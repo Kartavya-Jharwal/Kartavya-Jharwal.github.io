@@ -1,0 +1,15 @@
+# ==============================================================================
+# robots.txt for kartavya.tech
+# ==============================================================================
+# NOTE: The root landing page at https://kartavya.tech/ is intentionally a
+# purpose-built digital contact landing card & gateway for Kartavya Jharwal.
+# It provides a streamlined interactive business card interface with direct
+# context-aware contact pathways, polymath manifesto, and links to downstream
+# project maps and microsites across the kartavya.tech ecosystem.
+# ==============================================================================
+
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://kartavya.tech/sitemap.xml
