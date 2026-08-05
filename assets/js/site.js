@@ -160,4 +160,98 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    /* -----------------------------------------------------------------------
+       Base city highlight — flip data-base-city="london"|"jaipur" when you move
+       Sep becomes > when London is base, < when Jaipur is base
+       Hover tooltips show live local time (HH:MM:SS) with BST/GMT or IST
+    ----------------------------------------------------------------------- */
+    const locations = document.getElementById('locations');
+    const locationSep = document.getElementById('location-sep');
+    const locationTags = document.querySelectorAll('.location-tag[data-tz]');
+
+    function syncBaseCity() {
+        if (!locations) return;
+        const base = (locations.getAttribute('data-base-city') || 'jaipur').toLowerCase();
+        locationTags.forEach((tag) => {
+            const loc = tag.getAttribute('data-location');
+            tag.classList.toggle('is-base', loc === base);
+        });
+        if (locationSep) {
+            locationSep.textContent = base === 'jaipur' ? '<' : '>';
+        }
+    }
+
+    function formatCityTime(timeZone) {
+        const now = new Date();
+        const time = new Intl.DateTimeFormat('en-GB', {
+            timeZone,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        }).format(now);
+
+        if (timeZone === 'Europe/London') {
+            const tzName = (
+                new Intl.DateTimeFormat('en-GB', {
+                    timeZone,
+                    timeZoneName: 'short',
+                }).formatToParts(now).find((p) => p.type === 'timeZoneName') || {}
+            ).value || 'GMT';
+            // en-GB usually yields "GMT" / "BST"; some engines use "GMT+1"
+            const label = /BST|\+01/i.test(tzName) ? 'BST' : 'GMT';
+            return `${time} ${label}`;
+        }
+        if (timeZone === 'Asia/Kolkata') {
+            return `${time} IST`;
+        }
+        return time;
+    }
+
+    function refreshLocationTooltips() {
+        locationTags.forEach((tag) => {
+            const tz = tag.getAttribute('data-tz');
+            const city = tag.getAttribute('data-location');
+            if (!tz) return;
+            const label = city ? city.charAt(0).toUpperCase() + city.slice(1) : '';
+            tag.setAttribute('data-tooltip', `${label} · ${formatCityTime(tz)}`);
+        });
+    }
+
+    if (locations && locationTags.length) {
+        syncBaseCity();
+        refreshLocationTooltips();
+
+        // Keep live seconds while a location tooltip might be shown
+        setInterval(refreshLocationTooltips, 1000);
+
+        // Observe class/attr edits so flipping data-base-city updates instantly
+        const mo = new MutationObserver(syncBaseCity);
+        mo.observe(locations, { attributes: true, attributeFilter: ['data-base-city'] });
+
+        // Expose tiny helper for console / future UI
+        window.setBaseCity = function setBaseCity(city) {
+            if (!city) return;
+            locations.setAttribute('data-base-city', String(city).toLowerCase());
+            syncBaseCity();
+        };
+    }
+
+    /* Logo tone follows wallpaper (sakura → dark offset plate for contrast) */
+    const logo = document.getElementById('logo');
+    function syncLogoTone() {
+        const tone = (
+            document.body.getAttribute('data-logo-tone')
+            || (document.body.getAttribute('data-wallpaper') === 'sakura' ? 'dark' : 'light')
+        ).toLowerCase();
+        if (logo) logo.setAttribute('data-logo-tone', tone);
+        document.body.setAttribute('data-logo-tone', tone);
+    }
+    syncLogoTone();
+    window.setLogoTone = function setLogoTone(tone) {
+        if (!tone) return;
+        document.body.setAttribute('data-logo-tone', String(tone).toLowerCase());
+        syncLogoTone();
+    };
 });

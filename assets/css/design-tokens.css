@@ -41,13 +41,13 @@
   --text-inverse: var(--ink-950);
 
   --bg-page: var(--ink-950);
-  --bg-card: rgba(0, 30, 58, 0.42);
-  --bg-card-elevated: rgba(15, 23, 42, 0.72);
+  --bg-card: rgba(0, 30, 58, 0.68);           /* bumped from 0.42 for readability */
+  --bg-card-elevated: rgba(15, 23, 42, 0.82); /* bumped from 0.72 */
   --bg-overlay: rgba(0, 0, 0, 0.65);
   --bg-glass: color-mix(in srgb, var(--ink-900) 55%, transparent);
 
-  --border-subtle: color-mix(in srgb, white 14%, transparent);
-  --border-strong: color-mix(in srgb, white 22%, transparent);
+  --border-subtle: color-mix(in srgb, white 22%, transparent);  /* was 14%, lifted for a11y */
+  --border-strong: color-mix(in srgb, white 32%, transparent);  /* was 22% */
   --border-focus: color-mix(in srgb, var(--blue-400) 70%, white);
 
   --bg-social-blue-base: color-mix(in srgb, var(--blue-400) 14%, transparent);
@@ -58,13 +58,29 @@
   --bg-social-green-hover: color-mix(in srgb, var(--green-500) 28%, transparent);
   --border-social-green: color-mix(in srgb, var(--green-500) 28%, transparent);
 
-  /* ---------- Layout / composition ---------- */
-  --card-max-width: 23rem;
-  --social-grid-max: 14.5rem;
-  --social-cell-min: 3.65rem;
-  --logo-size: 3.5rem;
+  /* ---------- Layout / composition (fluid — mobile entryway first) ---------- */
+  --card-max-width: min(34rem, 92vw);
+  --card-width: min(92vw, 86dvw, var(--card-max-width));
+  --social-grid-max: min(100%, 16rem);
+  --social-cell: clamp(2.35rem, 13cqi, 3.35rem);
+  --logo-size: clamp(2.75rem, 7.5vmin + 0.35rem, 5.25rem);
+  --logo-inset: max(0.7rem, var(--safe-top), 2.4vmin);
   --content-max: 40rem;
   --prose-max: 36rem;
+
+  /* Logo offset ring (not a drop-shadow — a second circle behind the mark) */
+  --logo-ring-x: 12%;
+  --logo-ring-y: 14%;
+  --logo-ring-dark: #070b12;
+  --logo-ring-light: #f3f6fa;
+
+  /* City identity tints (whitish-grey base + hue hint; .is-base pops) */
+  --city-london: color-mix(in srgb, #9ad4d0 28%, #e6eef2);
+  --city-london-base: color-mix(in srgb, #7ee0d8 45%, #f4fbff);
+  --city-london-glow: color-mix(in srgb, #6b5ca8 50%, #5b8cff);
+  --city-jaipur: color-mix(in srgb, #e8b4a4 32%, #f3ece8);
+  --city-jaipur-base: color-mix(in srgb, #f0a890 48%, #fff6f2);
+  --city-jaipur-glow: color-mix(in srgb, #c45c3e 70%, #e07a5f);
 
   --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
@@ -77,11 +93,11 @@
   --space-3xl: 3rem;
   --space-4xl: 4rem;
 
-  --card-padding-y: clamp(1.75rem, 4.5vh, 2.75rem);
-  --card-padding-x: clamp(1.25rem, 4vw, 2rem);
-  --section-gap: clamp(1rem, 2.8vh, 1.65rem);
-  --item-gap: 0.55rem;
-  --cluster-gap: 0.4rem;
+  --card-padding-y: clamp(1.25rem, 3.5vh, 2rem);
+  --card-padding-x: clamp(1rem, 3.5vw, 1.6rem);
+  --section-gap: clamp(0.75rem, 2vh, 1.15rem);
+  --item-gap: 0.4rem;
+  --cluster-gap: 0.25rem;
 
   /* Safe areas — for notched phones / future PWA chrome */
   --safe-top: env(safe-area-inset-top, 0px);
@@ -159,6 +175,7 @@
 
   /* ---------- Z-index scale ---------- */
   --z-bg: 0;
+  --z-shader: 1;
   --z-main: 2;
   --z-raised: 10;
   --z-sticky: 100;
@@ -211,7 +228,9 @@
 @supports (color: color-mix(in oklab, white 50%, black)) {
   :root {
     --bg-glass: color-mix(in oklab, var(--ink-900) 60%, transparent);
-    --border-subtle: color-mix(in oklab, white 14%, transparent);
+    /* Note: --border-subtle intentionally NOT overridden here —
+       the sRGB value (22%) is the canonical a11y-lifted value.
+       The oklab block only upgrades the bg-glass calculation. */
     --shadow-glow: 0 0 24px color-mix(in oklab, var(--blue-400) 18%, transparent) inset;
   }
 }
@@ -219,10 +238,9 @@
 /* ---------- Desktop token lifts ---------- */
 @media (min-width: 480px) {
   :root {
-    --logo-size: 3.75rem;
-    --card-padding-y: clamp(2rem, 5vh, 3.25rem);
-    --card-padding-x: clamp(1.5rem, 5vw, 2.25rem);
-    --section-gap: clamp(1.15rem, 3vh, 1.85rem);
+    --card-padding-y: clamp(1.5rem, 4vh, 2.25rem);
+    --card-padding-x: clamp(1.25rem, 4vw, 1.75rem);
+    --section-gap: clamp(0.85rem, 2.5vh, 1.35rem);
   }
 }
 

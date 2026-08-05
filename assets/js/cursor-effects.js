@@ -78,7 +78,7 @@
                     cursor.classList.add('cursor-contact', 'cursor-hover');
                 } else if (target.closest('#header nav li.personal')) {
                     cursor.classList.add('cursor-personal', 'cursor-hover');
-                } else if (target.closest('a, button, [role="button"], .classic-link, .role-text[data-skill]')) {
+                } else if (target.closest('a, button, [role="button"], .classic-link, .home-link, .explore-btn, .explore-link, .role-text[data-skill]')) {
                     cursor.classList.add('cursor-hover');
                 }
 
@@ -118,7 +118,7 @@
                     cursorRing.classList.remove('cursor-ring-professional', 'cursor-ring-contact', 'cursor-ring-personal');
                 }
 
-                const isHoverable = target.closest('a, button, [role="button"], .btn, .tagline-button, .classic-link, .role-text[data-skill]');
+                const isHoverable = target.closest('a, button, [role="button"], .btn, .tagline-button, .classic-link, .explore-btn, .role-text[data-skill]');
 
                 if (isHoverable) {
                     cursor.classList.add('cursor-hover');
@@ -178,7 +178,7 @@
             // Ripples on other interactive surfaces
             document.addEventListener('click', function (e) {
                 const target = e.target;
-                const isInteractive = target.closest('a, button, [role="button"], .btn, .tagline-button, .classic-link');
+                const isInteractive = target.closest('a, button, [role="button"], .btn, .tagline-button, .classic-link, .explore-btn');
                 if (isInteractive && !target.closest('#header nav li a, #header nav li button')) {
                     const ripple = document.createElement('div');
                     ripple.className = 'cursor-ripple';

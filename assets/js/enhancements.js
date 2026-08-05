@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function createParticles() {
     const wrapper = document.getElementById('wrapper');
+    if (!wrapper) return; // guard: #wrapper may not exist in future refactors
+
     const particleCount = 15; // Keep number low for performance
     
     for (let i = 0; i < particleCount; i++) {
@@ -48,50 +50,20 @@ function createParticles() {
 }
 
 /**
- * Initializes role text interactions
+ * Initialises role text interactions.
+ * Hover colour is handled entirely in CSS (.role-text[data-skill]:hover).
+ * This function is kept as a no-op stub so call-sites don't need updating
+ * if behaviour is added back later (e.g. analytics, sound, haptics).
  */
 function initRoleInteractions() {
-    const roleTexts = document.querySelectorAll('.role-text');
-    
-    roleTexts.forEach(role => {
-        // Add subtle hover animation
-        role.addEventListener('mouseenter', () => {
-            role.style.transform = 'translateY(-3px)';
-            role.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-        });
-        
-        role.addEventListener('mouseleave', () => {
-            role.style.transform = '';
-            role.style.boxShadow = '';
-        });
-    });
+    // CSS-only hover — no JS needed. Stub retained for extensibility.
 }
 
 /**
  * Adds interactive effects to business card
+ * Note: mouse-cursor tilt (rotateZ/parallax) intentionally removed —
+ * the card should feel stable and grounded, not reactive to cursor drift.
  */
 function addCardInteractivity() {
-    const card = document.querySelector('.business-card');
-    if (!card) return;
-    
-    // Subtle parallax effect on mouse movement
-    document.addEventListener('mousemove', function(e) {
-        // Check if we're on a desktop device (no effect on mobile)
-        if (window.innerWidth <= 768) return;
-        
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        // Very subtle movement - just 2-3px in any direction
-        const moveX = (mouseX - 0.5) * 6;
-        const moveY = (mouseY - 0.5) * 6;
-        const rotate = (mouseX - 0.5) * 2;
-        
-        card.style.transform = `translateX(${moveX}px) translateY(${moveY}px) rotateZ(${rotate}deg)`;
-    });
-    
-    // Reset transform when mouse leaves
-    document.addEventListener('mouseleave', function() {
-        card.style.transform = '';
-    });
+    // Tilt removed. Reserved for future focus-ring or entrance animation enhancements.
 }
