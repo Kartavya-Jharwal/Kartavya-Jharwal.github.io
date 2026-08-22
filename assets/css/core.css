@@ -63,13 +63,20 @@
    RESET & BASE
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
-html { height: 100%; scroll-behavior: smooth; }
+html {
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
+    height: 100%;
+    height: 100dvh;
     min-height: 100%;
     min-height: calc(var(--vh, 1vh) * 100);
-    overflow-x: hidden;
+    overflow: hidden;
     background: var(--bg-page, #00212f);
     color: var(--text-primary, #fff);
     font-family: var(--font-primary);
@@ -102,13 +109,18 @@ ul { list-style: none; margin: 0; padding: 0; }
    ========================================================================== */
 #wrapper {
     position: fixed; inset: 0; opacity: 0;
+    overflow: hidden;
     animation: wrapper-in 0.6s ease forwards;
 }
 @keyframes wrapper-in { to { opacity: 1; } }
 
 #bg {
     position: fixed; inset: 0; z-index: var(--z-bg, 0);
-    background: var(--bg-page, #00212f) url("images/bg-main.jpg") center / cover no-repeat;
+    background-color: var(--bg-page, #00212f);
+    background-image: url("images/bg-main.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* Middle layer — sits on the wallpaper, under the card/logo */
@@ -136,19 +148,36 @@ ul { list-style: none; margin: 0; padding: 0; }
 #bg-shader[data-shader="vignette"] .bg-shader-mount { display: none; }
 #bg-shader[data-shader="wash"] .bg-shader-mount { mix-blend-mode: color; opacity: 0.28; }
 
+/* Centering is done by `margin: auto` on the card, not justify-content —
+   auto margins collapse instead of clipping when the card overflows. */
 #main {
     position: fixed; inset: 0; z-index: var(--z-main, 2);
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding:
-        max(1rem, var(--safe-top))
+        max(0.75rem, var(--safe-top))
         max(1rem, var(--safe-right))
         calc(1rem + var(--safe-bottom))
         max(1rem, var(--safe-left));
-    overflow-y: auto;
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+#main::-webkit-scrollbar { display: none; }
+
+/* Mobile: logo sits above the card, so reserve that band */
+@media (max-width: 800px) {
+    #main {
+        padding-top: max(var(--logo-clear, 5.5rem), var(--safe-top));
+    }
+    .business-card.vertical {
+        max-height: calc(100dvh - var(--logo-clear, 5.5rem) - 1.25rem);
+    }
 }
 
 /* ==========================================================================
-   LOGO — perfect circle, the source images have internal padding already
+   LOGO — centred base plate, 1–2px wider than the mark (no offset ring)
    ========================================================================== */
 .logo-lockup {
     position: fixed;
@@ -167,11 +196,11 @@ ul { list-style: none; margin: 0; padding: 0; }
     border: none;
     background: transparent;
     overflow: visible;
-    transition: transform 0.3s var(--ease-out);
+    transition: opacity 0.25s ease, filter 0.25s ease;
 }
 
 .logo:hover, .logo:focus-visible {
-    transform: scale(1.05);
+    opacity: 0.92;
     outline: none;
 }
 
@@ -180,35 +209,23 @@ ul { list-style: none; margin: 0; padding: 0; }
     outline-offset: 4px;
 }
 
-.logo-offset,
+/* Perfectly centred behind the image — same circle, slightly wider */
 .logo-plate {
     position: absolute;
-    inset: 0;
+    inset: calc(var(--logo-plate-outset, 2px) * -1);
     border-radius: 50%;
     pointer-events: none;
-}
-
-.logo-offset {
-    z-index: 0;
-    inset: -4%;
-    transform: translate(var(--logo-ring-x), var(--logo-ring-y));
-    opacity: 0.88;
-}
-
-.logo-plate {
     z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
-.logo[data-logo-tone="dark"] .logo-offset,
 .logo[data-logo-tone="dark"] .logo-plate,
-[data-logo-tone="dark"] .logo .logo-offset,
 [data-logo-tone="dark"] .logo .logo-plate {
     background: var(--logo-ring-dark, #070b12);
 }
 
-.logo[data-logo-tone="light"] .logo-offset,
 .logo[data-logo-tone="light"] .logo-plate,
-[data-logo-tone="light"] .logo .logo-offset,
 [data-logo-tone="light"] .logo .logo-plate {
     background: var(--logo-ring-light, #f3f6fa);
 }
@@ -271,10 +288,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 
 @media (orientation: portrait) {
-    .logo-lockup {
-        left: 50%; transform: translateX(-50%);
-        flex-direction: column; align-items: center;
-    }
     .logo-name-rollout {
         transform: translateY(-0.3rem) scaleY(0.9);
         transform-origin: top center; white-space: normal;
@@ -287,7 +300,57 @@ ul { list-style: none; margin: 0; padding: 0; }
     }
     .logo-name-pill { align-items: center; text-align: center; border-radius: 0.85rem; white-space: normal; }
     .logo-name-pill .phonetic-text { white-space: normal; }
-    #main { padding-top: calc(var(--logo-size) + 2.25rem); }
+}
+
+/* Narrow: logo centres, sits lower; card sits below it */
+@media (max-width: 800px) {
+    .logo-lockup {
+        left: 50%;
+        right: auto;
+        top: var(--logo-inset, 1.4rem);
+        transform: translateX(-50%);
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-plate,
+    .logo[data-logo-tone="dark"] .logo-plate,
+    [data-logo-tone="dark"] .logo .logo-plate {
+        background:
+            linear-gradient(165deg,
+                color-mix(in srgb, #3aa0e6 46%, transparent) 0%,
+                color-mix(in srgb, #00527f 55%, rgba(0, 36, 68, 0.62)) 100%);
+        backdrop-filter: blur(var(--blur-strong, 16px));
+        -webkit-backdrop-filter: blur(var(--blur-strong, 16px));
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.32),
+            0 0 18px color-mix(in srgb, var(--blue-400, #7cb1ff) 28%, transparent) inset;
+    }
+
+    .logo-name-rollout {
+        transform: translateY(-0.3rem) scaleY(0.9);
+        transform-origin: top center;
+        white-space: normal;
+    }
+
+    .logo-lockup:hover .logo-name-rollout,
+    .logo-lockup.expanded .logo-name-rollout,
+    .logo-lockup:focus-within .logo-name-rollout {
+        max-width: min(90vw, 17rem);
+        margin-left: 0;
+        margin-top: 0.4rem;
+        transform: translateY(0) scaleY(1);
+    }
+
+    .logo-name-pill {
+        align-items: center;
+        text-align: center;
+        border-radius: 0.85rem;
+        white-space: normal;
+    }
+
+    .logo-name-pill .phonetic-text { white-space: normal; }
 }
 
 /* ==========================================================================
@@ -299,19 +362,10 @@ ul { list-style: none; margin: 0; padding: 0; }
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Short-viewport guard — landscape phones (e.g. iPhone SE 375×667 rotated)
-   Card aligns to top of scroll area so nothing is clipped */
-@media (max-height: 520px) {
-    #main {
-        align-items: flex-start;
-        padding-top: calc(var(--logo-size) + 1rem);
-    }
-}
-
 .business-card.vertical {
     width: var(--card-width, min(92vw, var(--card-max-width)));
     max-width: var(--card-max-width);
-    margin: 0 auto;
+    margin: auto;
     padding: var(--card-padding-y) var(--card-padding-x);
     display: flex; flex-direction: column;
     gap: 0; /* children own their own margins for precise control */
@@ -323,6 +377,7 @@ ul { list-style: none; margin: 0; padding: 0; }
     -webkit-backdrop-filter: blur(var(--blur-strong));
     box-shadow: var(--shadow-card), var(--shadow-glow);
     animation: header-fade 0.65s 0.12s backwards;
+    max-height: calc(100dvh - 1.5rem);
     /* Tasks 1+2: position:relative anchors ::before; isolation creates
        a stacking context so z-index on children is self-contained */
     position: relative;
@@ -335,6 +390,17 @@ ul { list-style: none; margin: 0; padding: 0; }
     width: 100%;
 }
 
+/* ==========================================================================
+   RESPONSIVE LAYOUT — must stay after the card base rule so these win
+   ========================================================================== */
+
+/* Short landscape: card starts just under the logo, never clipped */
+@media (max-height: 560px) and (orientation: landscape) {
+    .business-card.vertical {
+        margin-block: 0 auto;
+    }
+}
+
 /* ---------- TYPESETTING HIERARCHY ----------
    Name  — Black 900, largest, tight tracking
    Tagline — Light Italic 300, smaller, airy
@@ -344,7 +410,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 .name-and-title {
     display: flex; flex-direction: column; align-items: center;
-    gap: 0.2rem; width: 100%;
+    gap: var(--space-xs); width: 100%;
     margin-bottom: var(--space-sm); /* gap between tagline pill and roles */
 }
 
@@ -356,9 +422,9 @@ ul { list-style: none; margin: 0; padding: 0; }
     color: var(--text-primary);
     margin: 0;
     letter-spacing: var(--tracking-tight, -0.03em);
+    max-width: 100%;
 }
-
-@media (min-width: 720px) {
+@container card (min-width: 20rem) {
     #name { white-space: nowrap; }
 }
 
@@ -366,7 +432,6 @@ ul { list-style: none; margin: 0; padding: 0; }
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    margin-top: 0.25rem;
     padding: 0.2rem 0.75rem 0.22rem;
     border: 1px solid rgba(124, 177, 255, 0.22);
     border-radius: var(--radius-sm);
@@ -397,7 +462,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .meta-section.roles { margin-bottom: var(--space-2xs); }
 
 /* gap between locations and the explore/social block — deliberate breathing room */
-.meta-section.locations { margin-bottom: var(--space-md); }
+.meta-section.locations { margin-bottom: var(--space-lg); }
 
 .roles-container, .locations-container {
     display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
@@ -499,15 +564,14 @@ ul { list-style: none; margin: 0; padding: 0; }
     display: flex; align-items: center; justify-content: center;
     width: var(--cell); height: var(--cell);
     border-radius: var(--radius-md);
-    font-size: clamp(0.9rem, 4.6cqi, 1.15rem);
+    font-size: clamp(1.2rem, 6cqi, 1.55rem);
     border: 1px solid rgba(255,255,255,0.18);
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
 #header nav a:hover::before, #header nav button:hover::before {
-    transform: translateY(-2px) scale(1.06);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 14px rgba(0,0,0,0.28);
 }
 
 #header nav li.professional a::before,
@@ -550,6 +614,8 @@ ul { list-style: none; margin: 0; padding: 0; }
    ========================================================================== */
 .explore-btn-wrap {
     width: 100%;
+    display: flex;
+    justify-content: center;
     /* No extra horizontal padding — card's padding-x already provides inset */
     margin-bottom: var(--space-xs);
 }
@@ -560,6 +626,7 @@ ul { list-style: none; margin: 0; padding: 0; }
     justify-content: center;
     gap: 0.4rem;
     width: 100%;
+    min-height: 2.75rem;
     padding: 0.45rem 1rem;
     border-radius: var(--radius-md); /* rounded-rect, not full pill */
     background: transparent;
@@ -577,6 +644,40 @@ ul { list-style: none; margin: 0; padding: 0; }
         border-color var(--duration-fast) ease,
         color var(--duration-fast) ease,
         transform var(--duration-fast) var(--ease-out);
+}
+
+@media (orientation: landscape) {
+    .explore-btn {
+        width: auto;
+        min-width: 7.5rem;
+        padding-inline: 1.5rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .explore-btn {
+        min-height: 2.35rem;
+        padding: 0.38rem 0.9rem;
+        font-size: 0.72rem;
+        gap: 0.3rem;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+    .explore-btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 800px) and (orientation: landscape) {
+    .explore-btn {
+        width: auto;
+        min-width: 6.25rem;
+        padding-inline: 1.1rem;
+    }
 }
 
 .explore-btn:hover,
@@ -628,14 +729,17 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 
 /* ==========================================================================
-   TOOLTIPS
+   TOOLTIPS — side of the trigger (left / right), ease in-out
    ========================================================================== */
 [data-tooltip] { position: relative; }
 
 [data-tooltip]::after {
     content: attr(data-tooltip);
-    position: absolute; left: 50%; bottom: calc(100% + 0.5rem);
-    transform: translateX(-50%) translateY(0.2rem);
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.55rem);
+    bottom: auto;
+    transform: translateY(-50%) translateX(-0.35rem);
     padding: 0.3rem 0.55rem;
     border-radius: 0.4rem;
     background: rgba(15,23,42,0.94);
@@ -646,11 +750,24 @@ ul { list-style: none; margin: 0; padding: 0; }
     letter-spacing: 0.02em; white-space: nowrap;
     opacity: 0; pointer-events: none; z-index: 30;
     box-shadow: 0 3px 10px rgba(0,0,0,0.25);
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 [data-tooltip]:hover::after, [data-tooltip]:focus-visible::after {
-    opacity: 1; transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Left column of the 3×2 social grid — tip opens to the left */
+#header nav li:nth-child(3n + 1) [data-tooltip]::after {
+    left: auto;
+    right: calc(100% + 0.55rem);
+    transform: translateY(-50%) translateX(0.35rem);
+}
+
+#header nav li:nth-child(3n + 1) [data-tooltip]:hover::after,
+#header nav li:nth-child(3n + 1) [data-tooltip]:focus-visible::after {
+    transform: translateY(-50%) translateX(0);
 }
 
 .location-tag[data-tooltip]::after {
@@ -658,13 +775,23 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 
 .location-tag[data-location="london"][data-tooltip]::after {
+    left: auto;
+    right: calc(100% + 0.45rem);
+    transform: translateY(-50%) translateX(0.35rem);
     background: color-mix(in srgb, #12182a 88%, #5b8cff);
     border-color: color-mix(in srgb, #9ad4d0 35%, transparent);
     box-shadow: 0 6px 18px color-mix(in srgb, var(--city-london-glow) 38%, transparent);
     color: #f2f7ff;
 }
 
+.location-tag[data-location="london"][data-tooltip]:hover::after,
+.location-tag[data-location="london"][data-tooltip]:focus-visible::after {
+    transform: translateY(-50%) translateX(0);
+}
+
 .location-tag[data-location="jaipur"][data-tooltip]::after {
+    left: calc(100% + 0.45rem);
+    right: auto;
     background: color-mix(in srgb, #2a1612 86%, #c45c3e);
     border-color: color-mix(in srgb, #e8b4a4 40%, transparent);
     box-shadow: 0 6px 20px color-mix(in srgb, var(--city-jaipur-glow) 44%, transparent);

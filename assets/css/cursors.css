@@ -179,16 +179,34 @@ body:not(.use-dynamic-cursor).is-preload {
 
 /* Default cursor inner icon */
 .custom-cursor::after {
-    content: '\f245'; /* Default cursor icon from FontAwesome */
+    content: '\f245'; /* mouse-pointer */
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: calc(var(--cursor-dot-size) * 0.45);
-    opacity: 0.9;
+    font-size: calc(var(--cursor-dot-size) * 0.42);
+    opacity: 0.95;
+    mix-blend-mode: normal;
+    pointer-events: none;
+}
+
+.custom-cursor.cursor-hidden {
+    opacity: 0 !important;
+    visibility: hidden;
+}
+
+.custom-cursor.cursor-brand::after {
+    font-family: 'Font Awesome 5 Brands';
+    font-weight: 400;
 }
 
 /* Remove cursor ring since we're using a larger cursor with icon */
@@ -234,13 +252,13 @@ body:not(.use-dynamic-cursor).is-preload {
     box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.6);
 }
 
-/* Professional icons - change inner icon */
+/* Professional icons — matching FA glyphs */
 .cursor-professional::after {
-    content: '\f0b1'; /* Briefcase icon instead of LinkedIn icon */
+    content: '\f0b1';
 }
-.cursor-professional.github::after {
-    content: '\f108'; /* Desktop icon instead of GitHub icon */
-}
+.cursor-icon-linkedin::after { content: '\f08c'; }
+.cursor-icon-github::after { content: '\f09b'; }
+.cursor-icon-instagram::after { content: '\f16d'; }
 
 /* Contact element states */
 .cursor-contact {
@@ -256,13 +274,13 @@ body:not(.use-dynamic-cursor).is-preload {
     box-shadow: 0 0 20px 5px rgba(16, 185, 129, 0.6);
 }
 
-/* Contact icons - change inner icon */
+/* Contact icons — matching FA glyphs */
 .cursor-contact::after {
-    content: '\f0e0'; /* Email icon */
+    content: '\f0e0';
 }
-.cursor-contact.telegram::after {
-    content: '\f1d8'; /* Paper Plane icon */
-}
+.cursor-icon-envelope::after { content: '\f0e0'; }
+.cursor-icon-telegram::after { content: '\f1d8'; }
+.cursor-icon-calendar::after { content: '\f133'; }
 
 /* Personal element states */
 .cursor-personal {
@@ -415,80 +433,41 @@ body:not(.use-dynamic-cursor).is-preload {
 }
 
 /* ------------------------
-   ICON HOVER ANIMATIONS
+   ICON HOVER — ease in/out only (no pulse / scale flicker)
    ------------------------ */
 
-/* Base icon hover effects (anchors + email button) */
 #header nav a::before,
 #header nav button::before {
-    transition: all 0.3s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
     position: relative;
     overflow: visible;
 }
 
-/* Professional icon animation */
-#header nav li.professional a::before,
-#header nav li.professional button::before {
-    box-shadow: 0 0 0 0 var(--cursor-color-professional);
-}
-
 #header nav li.professional a:hover::before,
 #header nav li.professional button:hover::before {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-    animation: professionalPulse 1.5s infinite;
-}
-
-/* Contact icon animation */
-#header nav li.contact a::before,
-#header nav li.contact button::before {
-    box-shadow: 0 0 0 0 var(--cursor-color-contact);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.35);
 }
 
 #header nav li.contact a:hover::before,
 #header nav li.contact button:hover::before {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
-    animation: contactPulse 1.5s infinite;
-}
-
-/* Personal icon animation */
-#header nav li.personal a::before,
-#header nav li.personal button::before {
-    box-shadow: 0 0 0 0 var(--cursor-color-personal);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.35);
 }
 
 #header nav li.personal a:hover::before,
 #header nav li.personal button:hover::before {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
-    animation: personalPulse 1.5s infinite;
-}
-
-/* Instagram (professional row in current markup) */
-#header nav li.professional a.fa-instagram::before {
-    box-shadow: 0 0 0 0 #e1306c;
+    box-shadow: 0 5px 15px rgba(236, 72, 153, 0.35);
 }
 
 #header nav li.professional a.fa-instagram:hover::before {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
-    animation: contactPulse 1.5s infinite;
-}
-
-/* Calendar */
-#header nav li.contact a.fa-calendar::before {
-    box-shadow: 0 0 0 0 #10b981;
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.35);
 }
 
 #header nav li.contact a.fa-calendar:hover::before {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
-    animation: contactPulse 1.5s infinite;
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.35);
 }
 
 /* ------------------------
-   ANIMATIONS
+   ANIMATIONS (cursor trail / ripple only — not icon hover)
    ------------------------ */
 
 /* Trail pulse animation */
@@ -570,8 +549,8 @@ body:not(.use-dynamic-cursor).is-preload {
     #header nav a:hover::before,
     #header nav button:hover::before {
         animation: none !important;
-        transform: translateY(-2px) scale(1.05);
-        transition: transform 0.1s ease, box-shadow 0.1s ease;
+        transform: none !important;
+        transition: background 0.1s ease, box-shadow 0.1s ease;
     }
 
     .cursor-trail, .cursor-ripple, .custom-cursor, .cursor-ring {
@@ -588,20 +567,42 @@ body:not(.use-dynamic-cursor).is-preload {
     }
 }
 
-/* Mobile/touch devices */
-@media (pointer: coarse) {
-    /* Hide all custom cursor elements */
+/* Mobile / touch / explicit opt-out — never show custom cursors */
+@media (max-width: 767px), (pointer: coarse) {
     .cursor-trail, .cursor-ripple, .custom-cursor, .cursor-ring {
         display: none !important;
     }
-    
-    /* Force normal browser cursors */
-    body.use-dynamic-cursor, 
-    body.use-dynamic-cursor * {
+
+    html, body,
+    body.use-dynamic-cursor,
+    body.use-dynamic-cursor *,
+    body:not(.use-dynamic-cursor),
+    body:not(.use-dynamic-cursor) * {
         cursor: auto !important;
     }
-    
-    body.is-preload {
-        cursor: wait !important;
+
+    a, button, [role="button"], .btn, .tagline-button, .explore-btn {
+        cursor: pointer !important;
     }
+}
+
+body.no-custom-cursors .cursor-trail,
+body.no-custom-cursors .cursor-ripple,
+body.no-custom-cursors .custom-cursor,
+body.no-custom-cursors .cursor-ring {
+    display: none !important;
+}
+
+body.no-custom-cursors,
+body.no-custom-cursors * {
+    cursor: auto !important;
+}
+
+body.no-custom-cursors a,
+body.no-custom-cursors button,
+body.no-custom-cursors [role="button"],
+body.no-custom-cursors .btn,
+body.no-custom-cursors .tagline-button,
+body.no-custom-cursors .explore-btn {
+    cursor: pointer !important;
 }

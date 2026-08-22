@@ -238,20 +238,10 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    /* Logo tone follows wallpaper (sakura → dark offset plate for contrast) */
     const logo = document.getElementById('logo');
     function syncLogoTone() {
-        const tone = (
-            document.body.getAttribute('data-logo-tone')
-            || (document.body.getAttribute('data-wallpaper') === 'sakura' ? 'dark' : 'light')
-        ).toLowerCase();
+        const tone = (document.body.getAttribute('data-logo-tone') || 'dark').toLowerCase();
         if (logo) logo.setAttribute('data-logo-tone', tone);
-        document.body.setAttribute('data-logo-tone', tone);
     }
     syncLogoTone();
-    window.setLogoTone = function setLogoTone(tone) {
-        if (!tone) return;
-        document.body.setAttribute('data-logo-tone', String(tone).toLowerCase());
-        syncLogoTone();
-    };
 });

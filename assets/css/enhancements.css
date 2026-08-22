@@ -56,30 +56,32 @@
 }
 
 /* --------------------
-   Skill Preview Tooltips
+   Skill Preview Tooltips — beside the card (right on wide, left if cramped)
    -------------------- */
 .skill-preview {
     position: fixed;
-    background: rgba(15, 23, 42, 0.9);
+    top: 50%;
+    left: auto;
+    right: max(0.75rem, calc(50% - min(var(--card-max-width, 34rem), 92vw) / 2 - 17.5rem));
+    background: rgba(15, 23, 42, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 1rem;
+    width: min(16rem, 42vw);
     max-width: 300px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 100;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(-50%) translateX(0.5rem);
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s var(--animation-timing);
-    top: calc(50% - 120px);
-    right: 10%;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .skill-preview.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-50%) translateX(0);
     pointer-events: auto;
 }
 
@@ -116,18 +118,30 @@
     opacity: 0.9;
 }
 
-/* On smaller screens, position the previews at the bottom */
-@media (max-width: 1024px) {
+/* Not enough room on the right — flip to the left of the card */
+@media (max-width: 1100px) and (min-width: 801px) {
+    .skill-preview {
+        right: auto;
+        left: max(0.75rem, calc(50% - min(var(--card-max-width, 34rem), 92vw) / 2 - 17.5rem));
+        transform: translateY(-50%) translateX(-0.5rem);
+    }
+
+    .skill-preview.active {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+/* Narrow: sit beside viewport edge under the card area */
+@media (max-width: 800px) {
     .skill-preview {
         top: auto;
-        right: auto;
+        bottom: max(1rem, env(safe-area-inset-bottom, 0px));
         left: 50%;
-        bottom: 5%;
-        transform: translateX(-50%) translateY(20px);
-        max-width: 90%;
-        width: 300px;
+        right: auto;
+        width: min(20rem, 92vw);
+        transform: translateX(-50%) translateY(0.4rem);
     }
-    
+
     .skill-preview.active {
         transform: translateX(-50%) translateY(0);
     }

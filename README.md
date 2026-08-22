@@ -214,6 +214,12 @@ Project pages live in subfolders. The root page does not try to showcase all of 
 - Confident, not loud
 - Handmade with modern craft — intentional layout, readable type, personality over polish
 
+### Background image + accent
+
+Replace the wallpaper by overwriting one file: `assets/css/images/bg-main.jpg`
+
+Accent stays the existing blue (`--color-primary` / `#9ec5ff` in `assets/css/design-tokens.css`). To change it later, edit that one token. No wallpaper switching system.
+
 ### Root page (`index.html`) should feel like
 
 1. **A front door** — name, tagline, locations, three roles
@@ -242,8 +248,8 @@ Project pages live in subfolders. The root page does not try to showcase all of 
 
 ### What we keep
 
-- Daily-seeded gradient background (distinctive, personal)
-- KJ logo mark and variant system (light / dark / neutral)
+- Single background image (ssets/css/images/bg-main.jpg) + existing blue accent
+- KJ logo mark and variant system (light / dark / neutral / **bw** + offset contrast ring)
 - Satoshi as primary typeface
 - Accessibility baseline: skip link, ARIA labels, keyboard nav, reduced-motion support
 - Location tags (London · Jaipur)

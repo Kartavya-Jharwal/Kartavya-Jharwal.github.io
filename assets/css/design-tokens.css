@@ -59,19 +59,19 @@
   --border-social-green: color-mix(in srgb, var(--green-500) 28%, transparent);
 
   /* ---------- Layout / composition (fluid — mobile entryway first) ---------- */
-  --card-max-width: min(34rem, 92vw);
+  --card-max-width: min(32rem, 92vw);
   --card-width: min(92vw, 86dvw, var(--card-max-width));
   --social-grid-max: min(100%, 16rem);
   --social-cell: clamp(2.35rem, 13cqi, 3.35rem);
   --logo-size: clamp(2.75rem, 7.5vmin + 0.35rem, 5.25rem);
   --logo-inset: max(0.7rem, var(--safe-top), 2.4vmin);
+  --logo-clear: calc(var(--logo-inset) + var(--logo-size) + 1.5rem);
   --content-max: 40rem;
   --prose-max: 36rem;
 
-  /* Logo offset ring (not a drop-shadow — a second circle behind the mark) */
-  --logo-ring-x: 12%;
-  --logo-ring-y: 14%;
-  --logo-ring-dark: #070b12;
+  /* Base plate behind logo — centred, 1–2px wider than the mark */
+  --logo-plate-outset: 2px;
+  --logo-ring-dark: #101820;
   --logo-ring-light: #f3f6fa;
 
   /* City identity tints (whitish-grey base + hue hint; .is-base pops) */
@@ -275,6 +275,84 @@
   --bg-card: rgba(255, 255, 255, 0.72);
   --border-subtle: color-mix(in srgb, #0b1220 12%, transparent);
   --color-primary: #2563eb;
+}
+
+/* Laptop / wide short — fit 16:9 without bleed or scroll */
+@media (min-width: 801px) and (orientation: landscape) {
+  :root {
+    --card-max-width: min(26rem, 38vw, calc((100dvh - 4rem) * 0.72));
+    --card-width: min(90vw, var(--card-max-width));
+    --text-name: clamp(1.7rem, 1.4rem + 1.1vw, 2.2rem);
+  }
+}
+
+@media (min-width: 801px) and (max-height: 900px) {
+  :root {
+    --card-max-width: min(24rem, 36vw, calc((100dvh - 3.5rem) * 0.7));
+    --card-padding-y: clamp(0.8rem, 2vh, 1.25rem);
+    --card-padding-x: clamp(1rem, 2vw, 1.4rem);
+    --section-gap: 0.5rem;
+    --space-lg: 0.9rem;
+    --space-sm: 0.5rem;
+    --space-xs: 0.4rem;
+    --text-name: clamp(1.6rem, 1.35rem + 1vw, 2.05rem);
+    --social-cell: clamp(2.15rem, 7cqi, 2.75rem);
+  }
+}
+
+/* Mobile: larger, lower logo */
+@media (max-width: 800px) {
+  :root {
+    --logo-size: clamp(3.75rem, 18vmin, 5.25rem);
+    --logo-inset: max(1.4rem, calc(var(--safe-top) + 0.9rem), 5.5vmin);
+    --card-width: min(92vw, 24.5rem);
+    --card-padding-y: clamp(1rem, 3.2vh, 1.5rem);
+    --card-padding-x: clamp(0.9rem, 4vw, 1.35rem);
+  }
+}
+
+@media (max-width: 800px) and (max-height: 740px) {
+  :root {
+    --card-padding-y: 0.85rem;
+    --space-lg: 0.85rem;
+    --space-sm: 0.5rem;
+    --social-cell: 2.55rem;
+    --text-name: clamp(1.45rem, 6.6vw, 1.85rem);
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --card-width: min(94vw, 22.5rem);
+    --card-max-width: 22.5rem;
+    --card-padding-y: 0.9rem;
+    --card-padding-x: 0.8rem;
+    --section-gap: 0.55rem;
+    --logo-size: clamp(3.4rem, 20vmin, 4.6rem);
+    --logo-inset: max(1.15rem, calc(var(--safe-top) + 0.7rem), 4.5vmin);
+    --text-name: clamp(1.5rem, 7.4vw, 1.9rem);
+    --text-tagline: 0.95rem;
+    --text-role: 0.84rem;
+    --social-cell: max(2.55rem, 12cqi);
+  }
+}
+
+@media (max-width: 340px) {
+  :root {
+    --card-width: min(96vw, 20.5rem);
+    --card-padding-x: 0.65rem;
+    --text-name: clamp(1.35rem, 7vw, 1.7rem);
+    --social-cell: 2.45rem;
+  }
+}
+
+@media (max-height: 640px) and (orientation: landscape) {
+  :root {
+    --card-padding-y: 0.7rem;
+    --card-padding-x: 1rem;
+    --section-gap: 0.4rem;
+    --logo-size: clamp(2.1rem, 8vmin, 2.7rem);
+  }
 }
 
 /* ---------- Future CSS capability layer (opt-in utilities) ---------- */

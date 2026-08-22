@@ -1,7 +1,10 @@
 /**
  * Wallpaper shader layer — progressive enhancement over CSS vignette.
- * Uses Paper Shaders (vanilla) when WebGL2 is available.
- * Modes via #bg-shader[data-shader]: paper | wash | vignette | none
+ * Modes via #bg-shader[data-shader]: none | vignette | paper | wash | …
+ *
+ * Default is off (`none`). When re-enabled, prefer restrained effects
+ * (duotone, halftone, magenta/cyan offset, fluted glass, fine dither grain)
+ * — not heavy full-field “vomit” shaders.
  */
 const SHADER_CDN = 'https://esm.sh/@paper-design/shaders@0.0.78';
 
@@ -22,12 +25,47 @@ let activeMode = null;
 
 function canUseWebGL() {
     if (window.matchMedia('(prefers-reduced-data: reduce)').matches) return false;
+    if (window.matchMedia('(max-width: 700px)').matches) return false;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+    if (navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType || ''))) {
+        return false;
+    }
     try {
         const c = document.createElement('canvas');
         return Boolean(c.getContext('webgl2'));
     } catch {
         return false;
     }
+}
+
+/** Resolve when an HTMLImageElement is fully decoded and usable as a sampler. */
+function whenImageReady(img) {
+    if (!img) return Promise.reject(new Error('Paper Shaders: missing image'));
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve(img);
+    return new Promise((resolve, reject) => {
+        const onLoad = () => {
+            cleanup();
+            if (img.naturalWidth > 0) resolve(img);
+            else reject(new Error('Paper Shaders: image decoded with zero size'));
+        };
+        const onError = () => {
+            cleanup();
+            reject(new Error('Paper Shaders: image failed to load'));
+        };
+        const cleanup = () => {
+            img.removeEventListener('load', onLoad);
+            img.removeEventListener('error', onError);
+        };
+        img.addEventListener('load', onLoad);
+        img.addEventListener('error', onError);
+    });
+}
+
+/** Build a 1×1 placeholder Image from the emptyPixel data URL. */
+function emptyImageFrom(emptyPixel) {
+    const img = new Image();
+    img.src = emptyPixel;
+    return whenImageReady(img);
 }
 
 async function createMount(mode) {
@@ -52,13 +90,18 @@ async function createMount(mode) {
     };
 
     if (mode === 'paper') {
+        const [u_image, u_noiseTexture] = await Promise.all([
+            emptyImageFrom(emptyPixel),
+            whenImageReady(getShaderNoiseTexture()),
+        ]);
+
         return new ShaderMount(
             host,
             paperTextureFragmentShader,
             {
                 ...sizingUniforms,
-                u_image: emptyPixel,
-                u_noiseTexture: getShaderNoiseTexture(),
+                u_image,
+                u_noiseTexture,
                 u_colorFront: color('#e8eef7', [0.91, 0.93, 0.97, 0.55]),
                 u_colorBack: color('#00212f', [0, 0.13, 0.18, 0.15]),
                 u_contrast: 0.32,
