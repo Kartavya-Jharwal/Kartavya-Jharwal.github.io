@@ -18,7 +18,7 @@ The site is inspired by **personal identity websites** — handmade, layered, fo
 
 **Domain:** [kartavya.tech](https://kartavya.tech)  
 **Repo:** GitHub Pages static site  
-**SEO & Sitemap:** Root `sitemap.xml`, `robots.txt` (including generative crawlers), `llms.txt` agent briefing, `404.html`, and JSON-LD Person / WebSite / ProfilePage / ContactPage.
+**SEO & Sitemap:** Root `sitemap.xml` (ecosystem map: this origin + GitHub Pages rooms), `robots.txt` (including generative crawlers), `llms.txt` agent briefing, `404.html`, and JSON-LD Person / WebSite / ContactPage+ProfilePage.
 
 ---
 
@@ -162,7 +162,8 @@ These describe *how I show up*, not job titles on a CV.
 ```
 kartavya.tech/
 ├── index.html          ← Layer 1 + 2 (contact + polymath)
-├── classic/            ← Layer 3 gateway (HOME button, new tab)
+├── home/               ← post-card site index (HOME button, new tab)
+├── classic/            ← stub redirect → /home/
 ├── assets/
 │   ├── logo/           ← categorised KJ marks (white/dark/neutral/bw + masters + social OG)
 │   ├── css/            ← tokens, core, cursors, polymath, enhancements
@@ -260,7 +261,7 @@ Accent stays the existing blue (`--color-primary` / `#9ec5ff` in `assets/css/des
 - **Tooltips:** beside the trigger on laptop, above + tap-to-show on mobile
 - **Roles:** hover/tap opens a preview card; grey-cyan Kawase blur radiates from the card; logo stays sharp
 - **Cursor (fine pointer, desktop):** 12px empty ball at rest; grows on socials / Home / cities / Ambitious Polymath. Pairings: briefcase, `<>`, camera, document, SMS, phone. Home uses a house icon tinted by the base city
-- **HOME:** `classic/`, larger label, opens in a new tab
+- **HOME:** `home/`, larger label, opens in a new tab (`classic/` redirects there)
 
 ### What we keep
 
@@ -307,7 +308,7 @@ Full history: [`CHANGELOG.md`](CHANGELOG.md).
 | 2026-07-04 | README rewritten as design document. Passion/, Cards.html removed. Entrepreneur → Founder's Associate. Software Engineer → Strategic Design. |
 | 2026-07-05 | Replaced `main.css` with `core.css`; polymath split into `polymath.css` + `polymath.js`. |
 | 2026-08-23 | Landing-card polish: glass logo plate, Kawase role veil, pairing cursor, organised logos, updated role copy. |
-| 2026-08-23 | SEO / GEO / agentic pass: expanded meta + JSON-LD, `llms.txt`, crawler allows, sitemap lastmod. |
+| 2026-08-23 | SEO / GEO / agentic: `/home/` index, ecosystem sitemap, `llms.txt` briefing, ContactPage+ProfilePage JSON-LD, OG 1200×630 tags. |
 
 ---
 

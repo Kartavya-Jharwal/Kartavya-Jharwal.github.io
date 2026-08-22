@@ -2,6 +2,15 @@
 
 All notable changes to the kartavya.tech landing card. The README remains the design spec.
 
+## 2026-08-23 — Contact-card SEO / GEO / agentic
+
+- Root stays the contact card; depth lives in `llms.txt`, JSON-LD, and aria — not extra on-card copy
+- `classic/` renamed to `home/` as the temporary post-card index; `classic/` redirects
+- Sitemap is an ecosystem map (this origin + GitHub Pages rooms + planned resume subdomain); Nirmana is https
+- `robots.txt` points at `llms.txt`; briefing covers coined Ambitious Polymath, visual card story, and rooms
+- JSON-LD: single ContactPage+ProfilePage node; Person `relatedLink` mirrors rooms; speakable on visible nodes
+- OG still tags assume 1200×630 `assets/logo/social/og.png` (drop the photo into that path)
+
 ## 2026-08-23 — SEO, GEO, and agentic metadata
 
 Kept the existing Person / ContactPage story and layered:
@@ -12,7 +21,7 @@ Kept the existing Person / ContactPage story and layered:
 - `robots.txt` allows major AI crawlers
 - Homepage `lastmod` in `sitemap.xml`
 
-## 2026-08-23 — Landing card polish
+## 2026-08-23 — Landing-card polish
 
 ### Card & layout
 - Glassmorphic contact card with fractal grain overlay on the card and logo plate

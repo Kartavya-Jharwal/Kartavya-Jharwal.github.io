@@ -11,6 +11,9 @@
 User-agent: *
 Allow: /
 
+# Identity briefing for agents
+# https://kartavya.tech/llms.txt
+
 # Generative / agent crawlers — identity briefing is public
 User-agent: GPTBot
 Allow: /
@@ -45,5 +48,5 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-# Canonical Sitemap
+# Canonical Sitemap (ecosystem map: this origin + GitHub Pages rooms)
 Sitemap: https://kartavya.tech/sitemap.xml

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ecosystem map for Kartavya Jharwal.
+  Includes this origin (kartavya.tech) plus GitHub Pages rooms (*.github.io/repo/)
+  and the planned resume subdomain. Discovery list for Bing and generic crawlers;
+  Search Console for kartavya.tech may ignore off-host URLs unless those properties
+  are verified separately.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-    <!-- Primary Digital Contact Landing Card -->
+    <!-- Primary digital contact landing card -->
     <url>
         <loc>https://kartavya.tech/</loc>
         <lastmod>2026-08-23</lastmod>
@@ -12,8 +19,15 @@
         <priority>1.00</priority>
     </url>
 
+    <!-- Post-card site index (Home button) -->
+    <url>
+        <loc>https://kartavya.tech/home/</loc>
+        <lastmod>2026-08-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.70</priority>
+    </url>
 
-    <!-- Adaptive Resume Microsite -->
+    <!-- Adaptive resume microsite (subdomain planned; not wired yet) -->
     <url>
         <loc>https://resume.kartavya.tech/</loc>
         <lastmod>2026-07-29</lastmod>
@@ -23,7 +37,7 @@
 
     <!-- Nirmana: Art & Science of Design -->
     <url>
-        <loc>http://kartavya.tech/Nirmana/</loc>
+        <loc>https://kartavya.tech/Nirmana/</loc>
         <lastmod>2026-07-29</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
