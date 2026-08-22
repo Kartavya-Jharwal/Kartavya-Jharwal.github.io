@@ -2,6 +2,16 @@
 
 All notable changes to the kartavya.tech landing card. The README remains the design spec.
 
+## 2026-08-23 — SEO, GEO, and agentic metadata
+
+Kept the existing Person / ContactPage story and layered:
+
+- Richer title, description, keywords, `og:profile`, locale, image alt, `rel="me"`
+- JSON-LD graph: Person (occupations, knowsAbout, contactPoints, alumniOf Hult), WebSite, ProfilePage, speakable
+- `llms.txt` briefing for generative engines and agents
+- `robots.txt` allows major AI crawlers
+- Homepage `lastmod` in `sitemap.xml`
+
 ## 2026-08-23 — Landing card polish
 
 ### Card & layout

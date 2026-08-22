@@ -18,7 +18,7 @@ The site is inspired by **personal identity websites** — handmade, layered, fo
 
 **Domain:** [kartavya.tech](https://kartavya.tech)  
 **Repo:** GitHub Pages static site  
-**SEO & Sitemap:** Standardized root `sitemap.xml`, `robots.txt`, `404.html`, and JSON-LD schema.org Person/ContactPage metadata.
+**SEO & Sitemap:** Root `sitemap.xml`, `robots.txt` (including generative crawlers), `llms.txt` agent briefing, `404.html`, and JSON-LD Person / WebSite / ProfilePage / ContactPage.
 
 ---
 
@@ -307,6 +307,7 @@ Full history: [`CHANGELOG.md`](CHANGELOG.md).
 | 2026-07-04 | README rewritten as design document. Passion/, Cards.html removed. Entrepreneur → Founder's Associate. Software Engineer → Strategic Design. |
 | 2026-07-05 | Replaced `main.css` with `core.css`; polymath split into `polymath.css` + `polymath.js`. |
 | 2026-08-23 | Landing-card polish: glass logo plate, Kawase role veil, pairing cursor, organised logos, updated role copy. |
+| 2026-08-23 | SEO / GEO / agentic pass: expanded meta + JSON-LD, `llms.txt`, crawler allows, sitemap lastmod. |
 
 ---
 
