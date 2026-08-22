@@ -1,0 +1,32 @@
+# Changelog
+
+All notable changes to the kartavya.tech landing card. The README remains the design spec.
+
+## 2026-08-23 — Landing card polish
+
+### Card & layout
+- Glassmorphic contact card with fractal grain overlay on the card and logo plate
+- Transparent white KJ mark (`assets/logo/white-transparent`) instead of the opaque black `_bw` square
+- Logo assets sorted into `white-transparent`, `dark-transparent`, `neutral-transparent`, `bw-opaque-black`, `masters`, and `social`
+- Portrait phones get taller vertical rhythm (polymath → roles → Home)
+- No scrollbar on the main screen
+- HOME button copy, larger type, `classic/` in a new tab
+
+### Interaction
+- Laptop tooltips float beside the trigger; mobile tooltips sit above and work on tap
+- Role previews: grey-cyan Kawase-style blur radiating from the card; logo stays sharp; hover no longer jitters
+- Custom cursor: 12px empty ball at rest; grows to 65% of a social cell on Home, cities, socials, and Ambitious Polymath
+- Pairing glyphs: LinkedIn → briefcase, GitHub → `<>`, Instagram → camera, Telegram → SMS, Email → document, Calendar → phone
+- Cursor hidden on the name and logo plate; logo + plate scale 2% on hover (frog-rollout timing)
+
+### Content
+- Founder's Associate: Go-to-Market, fundraising / due diligence, business strategy and architecture
+- Strategic Design: insights to strategy, systems thinking, technical prototyping and AI integration
+- Storyteller: brand ecosystem, design thinking, stakeholder alignment, cultural and emotional narratives
+
+## 2026-07-05 — CSS split
+- Replaced `main.css` with `core.css`; polymath split into `polymath.css` + `polymath.js`
+
+## 2026-07-04 — Design document
+- README rewritten as the architecture spec
+- Role labels: Entrepreneur → Founder's Associate; Software Engineer → Strategic Design

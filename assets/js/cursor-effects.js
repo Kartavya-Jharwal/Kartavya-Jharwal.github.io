@@ -40,6 +40,7 @@
 
         const cursor = document.createElement('div');
         cursor.className = 'custom-cursor';
+        cursor.style.opacity = '0';
         document.body.appendChild(cursor);
 
         const cursorRing = document.createElement('div');
@@ -54,10 +55,12 @@
         let mouseY = 0;
         let cursorX = 0;
         let cursorY = 0;
-        let ringX = 0;
-        let ringY = 0;
+        let trailX = 0;
+        let trailY = 0;
+        let trailOn = false;
 
         const hideTrail = () => {
+            trailOn = false;
             cursorTrail.style.opacity = '0';
             cursorTrail.classList.remove('active');
             cursorTrail.dataset.type = '';
@@ -66,11 +69,18 @@
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            cursor.style.opacity = '1';
 
             cursor.className = 'custom-cursor';
             const target = e.target;
 
-            if (target.closest('.logo-lockup, .logo')) {
+            if (target.closest('#name')) {
+                cursor.classList.add('cursor-hidden');
+                hideTrail();
+                return;
+            }
+
+            if (target.closest('.logo-lockup, .logo, .logo-plate')) {
                 cursor.classList.add('cursor-hidden');
                 hideTrail();
                 return;
@@ -78,8 +88,13 @@
 
             if (target.closest('#polymath-link, .tagline-button')) {
                 cursor.classList.add('cursor-polymath', 'cursor-hover');
-            } else if (target.closest('.hult-role')) {
-                cursor.classList.add('cursor-hult', 'cursor-hover');
+            } else if (target.closest('.explore-btn')) {
+                const base = (document.getElementById('locations')?.getAttribute('data-base-city') || 'jaipur').toLowerCase();
+                cursor.classList.add('cursor-home', `cursor-home-${base}`, 'cursor-hover');
+            } else if (target.closest('.location-tag[data-location="london"]')) {
+                cursor.classList.add('cursor-city', 'cursor-city-london', 'cursor-hover');
+            } else if (target.closest('.location-tag[data-location="jaipur"]')) {
+                cursor.classList.add('cursor-city', 'cursor-city-jaipur', 'cursor-hover');
             } else if (target.closest('#header nav li')) {
                 const item = target.closest('#header nav li');
                 cursor.classList.add('cursor-hover');
@@ -87,21 +102,17 @@
                 if (item.classList.contains('contact')) cursor.classList.add('cursor-contact');
                 if (item.classList.contains('personal')) cursor.classList.add('cursor-personal');
 
-                if (target.closest('.fa-linkedin')) cursor.classList.add('cursor-icon-linkedin', 'cursor-brand');
-                else if (target.closest('.fa-github')) cursor.classList.add('cursor-icon-github', 'cursor-brand');
-                else if (target.closest('.fa-instagram')) cursor.classList.add('cursor-icon-instagram', 'cursor-brand');
+                if (target.closest('.fa-linkedin')) cursor.classList.add('cursor-icon-linkedin');
+                else if (target.closest('.fa-github')) cursor.classList.add('cursor-icon-github');
+                else if (target.closest('.fa-instagram')) cursor.classList.add('cursor-icon-instagram');
                 else if (target.closest('.fa-envelope, #email-modal-trigger')) cursor.classList.add('cursor-icon-envelope');
                 else if (target.closest('.fa-paper-plane')) cursor.classList.add('cursor-icon-telegram');
                 else if (target.closest('.fa-calendar')) cursor.classList.add('cursor-icon-calendar');
-            } else if (target.closest('a, button, [role="button"], .explore-btn, .role-text[data-skill]')) {
-                cursor.classList.add('cursor-hover');
             }
 
-            const isSpecial = target.closest('.tagline-button, #header nav li');
+            const isSpecial = target.closest('#header nav li, .explore-btn, .location-tag, .tagline-button, #polymath-link');
             if (isSpecial) {
-                cursorTrail.style.opacity = '1';
-                cursorTrail.style.left = `${mouseX}px`;
-                cursorTrail.style.top = `${mouseY}px`;
+                trailOn = true;
                 cursorTrail.classList.add('active');
 
                 if (target.closest('#header nav li.professional')) {
@@ -110,8 +121,15 @@
                     cursorTrail.dataset.type = 'contact';
                 } else if (target.closest('#header nav li.personal')) {
                     cursorTrail.dataset.type = 'personal';
-                } else if (target.closest('.tagline-button')) {
+                } else if (target.closest('.explore-btn')) {
+                    const base = (document.getElementById('locations')?.getAttribute('data-base-city') || 'jaipur').toLowerCase();
+                    cursorTrail.dataset.type = base === 'london' ? 'london' : 'jaipur';
+                } else if (target.closest('.tagline-button, #polymath-link')) {
                     cursorTrail.dataset.type = 'tagline';
+                } else if (target.closest('.location-tag[data-location="jaipur"]')) {
+                    cursorTrail.dataset.type = 'jaipur';
+                } else if (target.closest('.location-tag[data-location="london"]')) {
+                    cursorTrail.dataset.type = 'london';
                 }
             } else {
                 hideTrail();
@@ -134,13 +152,14 @@
 
             cursorX = lerp(cursorX, mouseX, 0.2);
             cursorY = lerp(cursorY, mouseY, 0.2);
-            ringX = lerp(ringX, mouseX, 0.15);
-            ringY = lerp(ringY, mouseY, 0.15);
-
             cursor.style.left = `${cursorX}px`;
             cursor.style.top = `${cursorY}px`;
-            cursorRing.style.left = `${ringX}px`;
-            cursorRing.style.top = `${ringY}px`;
+
+            trailX = lerp(trailX, mouseX, 0.12);
+            trailY = lerp(trailY, mouseY, 0.12);
+            cursorTrail.style.left = `${trailX}px`;
+            cursorTrail.style.top = `${trailY}px`;
+            cursorTrail.style.opacity = trailOn ? '0.55' : '0';
 
             requestAnimationFrame(updateCursorPosition);
         };
@@ -181,8 +200,7 @@
         });
 
         document.addEventListener('mouseenter', () => {
-            if (!cursor.classList.contains('cursor-hidden')) cursor.style.opacity = '1';
-            cursorRing.style.opacity = '0.6';
+            cursor.style.opacity = '1';
         });
     };
 

@@ -59,25 +59,96 @@ function closeModal(modal) {
 
 document.addEventListener('DOMContentLoaded', function () {
     /* Role hover / touch / keyboard previews */
+    const updateRoleVeilOrigin = () => {
+        const card = document.querySelector('.business-card');
+        const veil = document.getElementById('role-veil');
+        if (!card || !veil) return;
+        const r = card.getBoundingClientRect();
+        veil.style.setProperty('--role-cx', `${r.left + r.width / 2}px`);
+        veil.style.setProperty('--role-cy', `${r.top + r.height / 2}px`);
+        veil.style.setProperty('--role-inner', `${Math.max(r.width, r.height) * 0.52}px`);
+    };
+
+    const syncRoleFocus = () => {
+        const on = !!document.querySelector('.skill-preview.active');
+        document.body.classList.toggle('role-focus', on);
+        const veil = document.getElementById('role-veil');
+        if (veil) veil.setAttribute('aria-hidden', on ? 'false' : 'true');
+        if (on) updateRoleVeilOrigin();
+    };
+
+    window.addEventListener('resize', updateRoleVeilOrigin);
+
     const roleTexts = document.querySelectorAll('.role-text[data-skill]');
+    const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let roleHideTimer = null;
+
+    const clearRoleHide = () => {
+        if (roleHideTimer) {
+            clearTimeout(roleHideTimer);
+            roleHideTimer = null;
+        }
+    };
+
+    const deactivateRoles = (keep) => {
+        roleTexts.forEach((r) => {
+            if (r !== keep) r.classList.remove('is-active');
+        });
+        document.querySelectorAll('.skill-preview.active').forEach((p) => {
+            if (!keep || p.id !== `preview-${keep.getAttribute('data-skill')}`) {
+                p.classList.remove('active');
+            }
+        });
+    };
+
     roleTexts.forEach((role) => {
         const skill = role.getAttribute('data-skill');
         const preview = document.getElementById(`preview-${skill}`);
         if (!preview) return;
 
-        const show = () => preview.classList.add('active');
-        const hide = () => preview.classList.remove('active');
+        const show = () => {
+            clearRoleHide();
+            deactivateRoles(role);
+            role.classList.add('is-active');
+            preview.classList.add('active');
+            syncRoleFocus();
+        };
+        const hide = () => {
+            role.classList.remove('is-active');
+            preview.classList.remove('active');
+            syncRoleFocus();
+        };
+        const scheduleHide = () => {
+            clearRoleHide();
+            roleHideTimer = setTimeout(hide, 180);
+        };
         const toggle = () => {
-            document.querySelectorAll('.skill-preview.active').forEach((p) => {
-                if (p !== preview) p.classList.remove('active');
-            });
-            preview.classList.toggle('active');
+            clearRoleHide();
+            const on = !preview.classList.contains('active');
+            deactivateRoles(on ? role : null);
+            role.classList.toggle('is-active', on);
+            preview.classList.toggle('active', on);
+            syncRoleFocus();
         };
 
-        role.addEventListener('mouseenter', show);
-        role.addEventListener('mouseleave', hide);
+        if (fineHover.matches) {
+            role.addEventListener('mouseenter', show);
+            role.addEventListener('mouseleave', (e) => {
+                if (e.relatedTarget && (preview.contains(e.relatedTarget) || e.relatedTarget === preview)) return;
+                scheduleHide();
+            });
+            preview.addEventListener('mouseenter', show);
+            preview.addEventListener('mouseleave', (e) => {
+                if (e.relatedTarget && (role.contains(e.relatedTarget) || e.relatedTarget === role)) return;
+                scheduleHide();
+            });
+        }
+
         role.addEventListener('focus', show);
-        role.addEventListener('blur', hide);
+        role.addEventListener('blur', (e) => {
+            if (e.relatedTarget && preview.contains(e.relatedTarget)) return;
+            scheduleHide();
+        });
         role.addEventListener('touchstart', (e) => {
             e.preventDefault();
             toggle();
@@ -93,7 +164,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.role-text') && !e.target.closest('.skill-preview')) {
             document.querySelectorAll('.skill-preview.active').forEach((p) => p.classList.remove('active'));
+            document.querySelectorAll('.role-text[data-skill].is-active').forEach((r) => r.classList.remove('is-active'));
+            syncRoleFocus();
         }
+    });
+
+    /* Touch tooltips — tap to pin; locations stay until the next tap elsewhere */
+    document.querySelectorAll('[data-tooltip]').forEach((el) => {
+        el.addEventListener('pointerdown', () => {
+            if (!window.matchMedia('(hover: none)').matches) return;
+            document.querySelectorAll('[data-tooltip].is-tip').forEach((tip) => {
+                if (tip !== el) tip.classList.remove('is-tip');
+            });
+            el.classList.add('is-tip');
+        });
+    });
+    document.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('[data-tooltip]')) return;
+        document.querySelectorAll('[data-tooltip].is-tip').forEach((tip) => tip.classList.remove('is-tip'));
     });
 
     /* Logo frog-tongue — hover desktop; tap toggle (portrait tongue drops via CSS) */
@@ -141,6 +229,31 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        const copyBtn = e.target.closest('.email-copy');
+        if (copyBtn) {
+            e.preventDefault();
+            const value = copyBtn.getAttribute('data-copy') || '';
+            const label = copyBtn.getAttribute('aria-label') || 'Copy email';
+            const copied = () => {
+                document.querySelectorAll('.email-copy.is-copied').forEach((b) => {
+                    b.classList.remove('is-copied');
+                    const original = b.getAttribute('data-label') || b.getAttribute('aria-label');
+                    if (original) b.setAttribute('aria-label', original.replace(/^Copied:\s*/, 'Copy '));
+                });
+                copyBtn.classList.add('is-copied');
+                copyBtn.setAttribute('data-label', label);
+                copyBtn.setAttribute('aria-label', `Copied: ${value}`);
+                window.setTimeout(() => {
+                    copyBtn.classList.remove('is-copied');
+                    copyBtn.setAttribute('aria-label', label);
+                }, 1600);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(copied).catch(() => {});
+            }
+            return;
+        }
+
         const closeBtn = e.target.closest('.close-modal');
         if (closeBtn) {
             closeModal(closeBtn.closest('.modal'));
@@ -157,6 +270,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const activeModals = document.querySelectorAll('.modal.active');
             if (activeModals.length) {
                 closeModal(activeModals[activeModals.length - 1]);
+                return;
+            }
+            if (document.body.classList.contains('role-focus')) {
+                document.querySelectorAll('.skill-preview.active').forEach((p) => p.classList.remove('active'));
+                document.querySelectorAll('.role-text[data-skill].is-active').forEach((r) => r.classList.remove('is-active'));
+                syncRoleFocus();
             }
         }
     });

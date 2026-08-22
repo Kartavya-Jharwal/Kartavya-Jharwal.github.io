@@ -68,7 +68,7 @@ Contact is not a flat icon row. It is **complex by design** — different channe
 | [kjisgreatforever@gmail.com](mailto:kjisgreatforever@gmail.com) | Legacy / fun — the old address, still mine, still valid |
 | [kjharwal@student.hult.edu](mailto:kjharwal@student.hult.edu) | Academic — Hult outreach, university context |
 
-Implemented on homepage as an expandable `<details>` block — three labeled addresses, pick your context.
+Implemented on homepage as a context picker modal — three labeled addresses plus copy-to-clipboard.
 
 #### Other channels
 
@@ -138,19 +138,20 @@ These describe *how I show up*, not job titles on a CV.
 ### Role depth (hover / expand on homepage)
 
 **Founder's Associate**
-- Fintech innovation projects
-- Tech startup experience
-- Business strategy development
+- Go-to-Market for Early-Stage Startups
+- Fundraising and Due Diligence
+- Business Strategy and Architecture
 
 **Storyteller**
-- Narrative & communication
-- Design thinking
-- Cross-disciplinary synthesis
+- Brand Ecosystem and Visual Design
+- Design Thinking
+- Stakeholder Alignment
+- Cultural and Emotional Narratives
 
 **Strategic Design**
-- Full stack development
-- AI & machine learning
-- UI/UX & systems design
+- Insights to Strategy
+- Systems Thinking and Implementation Strategy
+- Technical Prototyping and AI Integration
 
 ---
 
@@ -161,9 +162,12 @@ These describe *how I show up*, not job titles on a CV.
 ```
 kartavya.tech/
 ├── index.html          ← Layer 1 + 2 (contact + polymath)
-├── .Portfolio/         ← Layer 3 (untracked, needs integration)
-│   └── index.html
-├── assets/             ← shared images, fonts, css, js
+├── classic/            ← Layer 3 gateway (HOME button, new tab)
+├── assets/
+│   ├── logo/           ← categorised KJ marks (white/dark/neutral/bw + masters + social OG)
+│   ├── css/            ← tokens, core, cursors, polymath, enhancements
+│   ├── js/             ← site, cursor, polymath, shaders
+│   └── webfonts/
 ├── archive/            ← deprecated code (do not deploy)
 └── CNAME               ← kartavya.tech
 ```
@@ -231,7 +235,7 @@ Accent stays the existing blue (`--color-primary` / `#9ec5ff` in `assets/css/des
 
 - `main.css` (~86 KB html5up legacy) → archived as `main.legacy.css`, replaced by `core.css` (~8 KB)
 - `theme.css` trimmed to tokens + base typography only
-- Custom cursor stack, `name-animation.js`, Font Awesome kit CDN (prior pass)
+- Custom SVG cursor stack, `name-animation.js`, Font Awesome kit CDN (prior pass)
 - `assets/sass/` source tree (unused; site is plain CSS)
 - Duplicate modal CSS, orphan `satoshi.css` / `name-simple.css`
 
@@ -239,20 +243,32 @@ Accent stays the existing blue (`--color-primary` / `#9ec5ff` in `assets/css/des
 
 | File | Role |
 |---|---|
-| `core.css` | Layout shell, card, contact icons, modal frame |
+| `core.css` | Layout shell, card grain, logo plate, side/touch tooltips, contact icons, modal frame |
+| `cursors.css` | 12px rest ball; hover blob at 65% of social cell; pairing glyphs; hide on name/logo |
 | `polymath.css` | Layer 2 identity content |
-| `enhancements.css` | Particles, skill previews, email UI, easter egg |
-| `site.js` | Background, roles, context popup |
+| `enhancements.css` | Role-preview Kawase veil, skill cards, email UI, easter egg |
+| `site.js` | Roles + veil origin, location times, logo tone, touch tooltips |
+| `cursor-effects.js` | Contextual orb (pairings, city-tinted home, polymath hover) |
 | `polymath.js` | Modal open/close + focus trap |
-| `enhancements.js` | Particles + card parallax |
+| `enhancements.js` | Particles |
+| `bg-shader.js` | Optional wallpaper shader (off by default) |
+
+### Landing card — current behaviour
+
+- **Card:** glass + fractal grain; no main-page scrollbar; portrait contact-card spacing on vertical phones
+- **Logo:** transparent white mark on the same glass plate as the card; 2% grow on hover (frog-rollout timing); cursor hidden over the plate
+- **Tooltips:** beside the trigger on laptop, above + tap-to-show on mobile
+- **Roles:** hover/tap opens a preview card; grey-cyan Kawase blur radiates from the card; logo stays sharp
+- **Cursor (fine pointer, desktop):** 12px empty ball at rest; grows on socials / Home / cities / Ambitious Polymath. Pairings: briefcase, `<>`, camera, document, SMS, phone. Home uses a house icon tinted by the base city
+- **HOME:** `classic/`, larger label, opens in a new tab
 
 ### What we keep
 
 - Single background image (ssets/css/images/bg-main.jpg) + existing blue accent
-- KJ logo mark and variant system (light / dark / neutral / **bw** + offset contrast ring)
+- KJ logo mark — organised under `assets/logo/` (`white-transparent` is the live lockup; `bw-opaque-black` is unused on the plate)
 - Satoshi as primary typeface
 - Accessibility baseline: skip link, ARIA labels, keyboard nav, reduced-motion support
-- Location tags (London · Jaipur)
+- Location tags (London · Jaipur) with live-time captions that stay inside the card
 - Duct tape — CDN font fallbacks, inline guards, pragmatic workarounds that keep the site working
 
 ### Open design questions
@@ -275,7 +291,7 @@ Accent stays the existing blue (`--color-primary` / `#9ec5ff` in `assets/css/des
 | Hosting | GitHub Pages |
 | Domain | kartavya.tech (CNAME) |
 | Stack | Static HTML / CSS / JS — no build step required |
-| Assets | Local fonts (Satoshi), local logo PNGs in `assets/` |
+| Assets | Local fonts (Satoshi), logo PNGs in `assets/logo/` |
 | Performance pass | Lighthouse — unused CSS/JS removal only |
 
 No framework mandate. Prefer simplicity and deployability over tooling.
@@ -284,10 +300,13 @@ No framework mandate. Prefer simplicity and deployability over tooling.
 
 ## Content changelog
 
+Full history: [`CHANGELOG.md`](CHANGELOG.md).
+
 | Date | Change |
 |---|---|
 | 2026-07-04 | README rewritten as design document. Passion/, Cards.html removed. Entrepreneur → Founder's Associate. Software Engineer → Strategic Design. |
 | 2026-07-05 | Replaced `main.css` with `core.css`; polymath split into `polymath.css` + `polymath.js`. |
+| 2026-08-23 | Landing-card polish: glass logo plate, Kawase role veil, pairing cursor, organised logos, updated role copy. |
 
 ---
 

@@ -56,6 +56,130 @@
 }
 
 /* --------------------
+   Role preview veil — Kawase-style fractal blur radiating from the card
+   Grey-cyan tint. Softer on desktop, stronger on mobile.
+   -------------------- */
+.role-veil {
+    --role-cx: 50%;
+    --role-cy: 48%;
+    --role-inner: 12rem;
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.32s ease;
+}
+body.role-focus .role-veil {
+    opacity: 1;
+}
+
+.role-veil-kawase,
+.role-veil-tint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.role-veil-kawase {
+    -webkit-mask-image: radial-gradient(
+        circle at var(--role-cx) var(--role-cy),
+        transparent 0,
+        transparent calc(var(--role-inner) + var(--kawase-in, 0px)),
+        rgba(0, 0, 0, 0.45) calc(var(--role-inner) + var(--kawase-mid, 80px)),
+        #000 calc(var(--role-inner) + var(--kawase-out, 220px))
+    );
+    mask-image: radial-gradient(
+        circle at var(--role-cx) var(--role-cy),
+        transparent 0,
+        transparent calc(var(--role-inner) + var(--kawase-in, 0px)),
+        rgba(0, 0, 0, 0.45) calc(var(--role-inner) + var(--kawase-mid, 80px)),
+        #000 calc(var(--role-inner) + var(--kawase-out, 220px))
+    );
+}
+
+/* Dual-Kawase octaves: 0.5, 1.5, 2.5, 3.5 sample offsets → stacked Gaussians */
+.role-veil-kawase[data-pass="1"] {
+    --kawase-in: 0px;
+    --kawase-mid: 48px;
+    --kawase-out: 140px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+.role-veil-kawase[data-pass="2"] {
+    --kawase-in: 28px;
+    --kawase-mid: 90px;
+    --kawase-out: 200px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.role-veil-kawase[data-pass="3"] {
+    --kawase-in: 64px;
+    --kawase-mid: 150px;
+    --kawase-out: 280px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.role-veil-kawase[data-pass="4"] {
+    --kawase-in: 110px;
+    --kawase-mid: 220px;
+    --kawase-out: 420px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.role-veil-tint {
+    background:
+        radial-gradient(
+            circle at var(--role-cx) var(--role-cy),
+            transparent 0,
+            transparent calc(var(--role-inner) * 0.72),
+            color-mix(in srgb, #8fa8a6 10%, rgba(18, 28, 30, 0.04)) calc(var(--role-inner) + 40px),
+            color-mix(in srgb, #7d9694 22%, rgba(14, 22, 24, 0.28)) 100%
+        );
+    mix-blend-mode: multiply;
+}
+
+@media (max-width: 800px) {
+    .role-veil-kawase[data-pass="1"] {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+    .role-veil-kawase[data-pass="2"] {
+        backdrop-filter: blur(9px);
+        -webkit-backdrop-filter: blur(9px);
+    }
+    .role-veil-kawase[data-pass="3"] {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+    .role-veil-kawase[data-pass="4"] {
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+    }
+    .role-veil-tint {
+        background:
+            radial-gradient(
+                circle at var(--role-cx) var(--role-cy),
+                transparent 0,
+                transparent calc(var(--role-inner) * 0.6),
+                color-mix(in srgb, #8fa8a6 16%, rgba(16, 26, 28, 0.12)) calc(var(--role-inner) + 24px),
+                color-mix(in srgb, #7d9694 32%, rgba(10, 18, 20, 0.42)) 100%
+            );
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .role-veil {
+        transition: opacity 0.1s ease;
+    }
+    .role-veil-kawase {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+/* --------------------
    Skill Preview Tooltips — beside the card (right on wide, left if cramped)
    -------------------- */
 .skill-preview {
@@ -72,7 +196,7 @@
     max-width: 300px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
+    z-index: 50;
     opacity: 0;
     transform: translateY(-50%) translateX(0.5rem);
     pointer-events: none;
@@ -131,14 +255,16 @@
     }
 }
 
-/* Narrow: sit beside viewport edge under the card area */
+/* Narrow: toast inside the viewport, never past the side gutters */
 @media (max-width: 800px) {
     .skill-preview {
         top: auto;
-        bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+        bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
         left: 50%;
         right: auto;
-        width: min(20rem, 92vw);
+        width: min(20rem, calc(100vw - 1.5rem));
+        max-width: calc(100vw - 1.5rem);
+        box-sizing: border-box;
         transform: translateX(-50%) translateY(0.4rem);
     }
 
